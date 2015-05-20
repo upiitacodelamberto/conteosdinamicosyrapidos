@@ -11,6 +11,6 @@ $git add --all
 
 $git commit
 
-$git pushorigin master
+$git push origin master
 
 
