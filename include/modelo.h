@@ -47,6 +47,8 @@ class Casilla{
   int distElectLocal;  //Distrito Electoral Local
   int seccion;         //Seccion
   string casilla;//Casilla p.ej.:B, C1, B, ..., C4, B, C1.
+  bool haReportadoalPREP;//Para indicar si la casilla ya ha 
+                         //reportado al PREP
 };//End class Casilla
 
 /**
@@ -54,7 +56,7 @@ class Casilla{
  * un arreglo bidimensional de objetos de clase Casilla. Las 
  * dimensiones del arreglo deberan ser 15 filas por 8 columnas.
  * No estoy seguro de que este sea el mejor lugar para declarar 
- * este arreglo. Pero por ahora aqui lo pondrei como extern.
+ * este arreglo. Pero por ahora aqui lo pondre como extern.
  */
 /* Usar como arreglo de 15 filas x 8 columnas */
 extern Casilla **BIN; 
@@ -63,4 +65,8 @@ extern Casilla **BIN;
 
 void inic_bins();
 
+void proccess_commands(Casilla **bin);
+void proccess_salir();
+
+void proccess_show_reported_casillas(Casilla **bin);
 #endif /* MODELO_H */

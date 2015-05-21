@@ -7,6 +7,7 @@
 int main(int argc, char *argv[]){
   printf("Conteos dinamicos y conteos rapidos\n");
   inic_bins();
+  proccess_commands(BIN);
   
 
   return 0;
