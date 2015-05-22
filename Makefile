@@ -2,7 +2,7 @@ INCLUDE_DIRS:= include/
 SOURCE_DIRS:=  src/
 
 CFILES:= main.cpp modelo.cpp
-TARGET = conteosrapidos
+TARGET = conteosdinamicos
 INCLUDE_FLAGS:=$(patsubst %,-I%,$(INCLUDE_DIRS))
 
 CC=g++

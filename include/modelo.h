@@ -40,33 +40,55 @@ $\vdots$&$\vdots$&$\vdots$&$\vdots$\\\hline
  */
 #include <iostream>
 using namespace std;
-#define TAMMAX	20; //Ya no se usa (2015.05.19.21:07)
+#define TAMMAX	20;		//Ya no se usa (2015.05.19.21:07)
 
-class Casilla{
-  int numDCasilla;     //Numero de Casilla
-  int distElectLocal;  //Distrito Electoral Local
-  int seccion;         //Seccion
-  string casilla;//Casilla p.ej.:B, C1, B, ..., C4, B, C1.
-  bool haReportadoalPREP;//Para indicar si la casilla ya ha 
-                         //reportado al PREP
-};//End class Casilla
+class Casilla {
+	int numDCasilla;	//Numero de Casilla
+	int distElectLocal;	//Distrito Electoral Local
+	int seccion;		//Seccion
+	string casilla;		//Casilla p.ej.:B, C1, B, ..., C4, B, C1.
+	bool reportadaAlPREP;	//Para indicar si la casilla ya ha 
+	//reportado al PREP
+ public:
+         int get_numDCasilla();
+	 bool yaReportadaAlPREP();
+         void set_numDCasilla(int N);
+         void set_reportadaAlPREP(bool b);
+};				//End class Casilla
 
 /**
- * Entonces una primera propuesta para modelar los bin's es usar 
+ * Entonces una primera propuesta para modelar los bin's era usar 
  * un arreglo bidimensional de objetos de clase Casilla. Las 
  * dimensiones del arreglo deberan ser 15 filas por 8 columnas.
  * No estoy seguro de que este sea el mejor lugar para declarar 
  * este arreglo. Pero por ahora aqui lo pondre como extern.
+ * 2015.05.21
+ * En realidad tuve que usar este apuntador para representar 
+ * las 120 casillas y creo que modelare los bins con una 
+ * estructura * que contendra un entero N que indicara cuantas 
+ * casillas * contiene el bin y con un apuntador a entero 
+ * apuntare a los * numeros de las casillas del bin.
  */
+
 /* Usar como arreglo de 15 filas x 8 columnas */
-extern Casilla **BIN; 
+extern Casilla **CAS;
+
 #define NUMDFILAS	15
 #define NUMDCOLUMNAS	8
 
+/* Para modelar los bins */
+struct bin{
+  int N;    //cantidad de Casillas contenidas en el bin.
+  int *p;   //apunta a N enteros correspondientes a los 
+            //numeros de casillas contenidas en el bin de que se trate.
+};
+extern struct bin *B[NUMDFILAS];//Arreglo de NUMDFILAS apuntadores a
+                                //struct bin
+
 void inic_bins();
 
-void proccess_commands(Casilla **bin);
+void proccess_commands();
 void proccess_salir();
 
-void proccess_show_reported_casillas(Casilla **bin);
-#endif /* MODELO_H */
+void proccess_show_reported_casillas();
+#endif				/* MODELO_H */

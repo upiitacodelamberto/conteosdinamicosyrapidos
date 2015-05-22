@@ -4,11 +4,11 @@
 #include <stdio.h>
 #include "modelo.h"
 
-int main(int argc, char *argv[]){
-  printf("Conteos dinamicos y conteos rapidos\n");
-  inic_bins();
-  proccess_commands(BIN);
-  
+int main(int argc, char *argv[])
+{
+	printf("Conteos dinamicos y conteos rapidos\n");
+	inic_bins();
+	proccess_commands();
 
-  return 0;
+	return 0;
 }
