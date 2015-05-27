@@ -133,7 +133,11 @@ void proccess_commands()
 				proccess_show_reported_casillas();
 				break;
 			}
-		case 1:{
+                case 1:{
+                                proccess_show_cantdcasillas_por_bin();
+                                break;
+                        }
+		case 2:{
 				proccess_salir();
 				break;
 			}
@@ -150,8 +154,13 @@ void proccess_show_reported_casillas()
   for(int i = 0; i < NUMDFILAS; i++){
     cout << "Bin " << i + 1 << ": ";
     for(int j = 0; j < B[i]->N; j++){
-      m = (*(B[i]->p + j) - 1) / NUMDCOLUMNAS;
-      n = (*(B[i]->p + j) - 1) % NUMDCOLUMNAS;
+      m = (*(B[i]->p + j) - 1) / NUMDCOLUMNAS; //Con estas dos formulas se calcula a partir 
+      n = (*(B[i]->p + j) - 1) % NUMDCOLUMNAS; //de los indices i y j se calculan los indices
+                                               //m y n adecuados para su uso en el arreglo CAS.
+                                               //Es decir, a partir de el numero de casilla 
+                                               //*(B[i]->p + j) se calculan las cordenadas m y n
+                                               //con que se obtiene la Casilla correspondiente en 
+                                               //el arreglo bidimensional de Casillas CAS.
       if(CAS[m][n].yaReportadaAlPREP()){
         cout << CAS[m][n].get_numDCasilla() << "\t";
       }
@@ -180,4 +189,23 @@ void Casilla::set_reportadaAlPREP(bool b){
 
 void Casilla::set_numDCasilla(int N){
   numDCasilla = N;
+}
+
+void proccess_show_cantdcasillas_por_bin(){
+  int m, n, count = 0;
+  for(int i = 0; i < NUMDFILAS; i++){
+    for(int j = 0; j < B[i]->N; j++){
+      m = (*(B[i]->p + j) - 1) / NUMDCOLUMNAS; 
+      n = (*(B[i]->p + j) - 1) % NUMDCOLUMNAS;
+      if(CAS[m][n].yaReportadaAlPREP()){
+         count++;
+      }
+    }
+    B[i]->cantDCRep = count;
+    count = 0;
+  }
+  for(int i = 0; i < NUMDFILAS; i++){
+    cout << "Bin " << i + 1 << ": " << B[i]->cantDCRep;
+    cout << endl;
+  }
 }

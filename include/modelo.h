@@ -79,6 +79,7 @@ extern Casilla **CAS;
 /* Para modelar los bins */
 struct bin{
   int N;    //cantidad de Casillas contenidas en el bin.
+  int cantDCRep;//Cantidad de casillas reportadas al PREP.
   int *p;   //apunta a N enteros correspondientes a los 
             //numeros de casillas contenidas en el bin de que se trate.
 };
@@ -91,4 +92,5 @@ void proccess_commands();
 void proccess_salir();
 
 void proccess_show_reported_casillas();
+void proccess_show_cantdcasillas_por_bin();
 #endif				/* MODELO_H */
