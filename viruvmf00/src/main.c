@@ -127,16 +127,62 @@ int main(int nargs, char* args[]){
 
 
 /*
-      // si requerimos un analisis
-      // detallado de la particion,
-      // usamos este segmento de codigo...
-      cerr << "Entidad: " << ent
-           << "Participan, " << P.size()
-           << " de " << tamprep << ", " << P.size()/double(tamprep)
-           << endl;
+           // si requerimos un analisis
+           // detallado de la particion,
+           // usamos este segmento de codigo...
+           cerr << "Entidad: " << ent
+                << "Participan, " << P.size()
+                << " de " << tamprep << ", " << P.size()/double(tamprep)
+                << endl;
+           cerr << P;
+           cerr << endl;
 */
+
+           // si la particion tiene clases vacias, se intenta 
+           // hacer el "ancho" de las clases mas grande.
+           // i.e. se reduce el numero de clases y con esto 
+           // se calcula una nueva particion, con la cual se intenta...
+           paso=double(casins)/double(numclases);
+           Particion Q(numclases, paso, P);
+           P=Q;
+           continue;
           }
+//        Asi, si sabemos ya que el numero de clases es >4
+//        y la particion no tiene clases vacias, verificamos
+//        si la particion cumple con Xi cuadrada de de las tablas.
+
+
+          h= double(P.size())/double(numclases);
+          Xi=P.Xi(h);
+          if(Xi >= XiMax(numclases)){//Eliminacion de casillas por 
+            P.ajuste(h);             //encima de la altura maxima
+            casviv=P.size();         //se actualiza el numero de 
+                                     //casillas "vivas"
+            numclases= Log2(casviv); //se recalcula la particion
+            paso= double(casins)/double(numclases);
+            Particion Q(numclases, paso, P);
+            P=Q;
+          }
+          else
+            Pmal=false;       //en este punto, tenemos una 
+                              //particion adecuada para el conteo...
         }
+
+        if(Pmal){//se reportan fallas...
+          cerr << "Falla conteo: Xi=" << Xi << " XiMax=" << XiMax(numclases) << endl;
+          continue;
+        }
+//      una vez encontrada la muestra, se procesa.
+        out << endl << endl;
+//      reporte de la particion que va a ser usada.
+        out << "Entidad," << ent << ", conteo, " << n << "num casillas " << casins << endl;
+        out << "Participan " << P.size() << " casillas de " << tamprep << ',' 
+            << P.size()/double(tamprep) << endl;
+        out << "Altura: " << h << " Xi2 " << Xi << endl;
+        out << P;
+        out endl;
+
+//      calculo de las sumas de la particion (conteo dinamico)
       }
     }
 }// End of main()
