@@ -183,6 +183,128 @@ int main(int nargs, char* args[]){
         out endl;
 
 //      calculo de las sumas de la particion (conteo dinamico)
+        for(int t=P.begin(); t>=0; t=++P){
+          inv[ent][t].suma(coal[ent]);
+          sum[n]+=inv[ent][t];
+        }
+        caspart[n]=P.size();
+        sumavot[n]=sum[n].suma(coal[ent]);
+
+//      calculo de promedios...
+        double prom[MAX];
+        for(int p=0; p<MAX; ++p){
+          prom[p]=0.0;
+        }
+        for(int t=P.begin(); t>=0; t=++P){
+          for(int p=0; p<MAX; ++p)
+            prom[p]+=inv[ent][t].pc(p);
+        } 
+        int nc=P.size();
+        for(int p=0; p<MAX; ++p)
+          prom[p]/=nc;
+
+//      calculo de sus desviaciones...
+        double dvst[MAX];
+        for(int p=0; p<MAX; ++p)
+          dvst[p]=0.0;
+        for(int t=P.begin(); t>=0; t=++P){
+          for(int p=0; p<MAX; ++p){
+            double s=inv[ent][t].pc(p)-prom[p];
+            dvst[p]+=s*s;
+          }
+        }
+        for(int p=0; p<MAX; ++p)
+          pords[n][p]=sqrt(dvst[p]/nc);
+
+//      el conteo pudo hacerse, se cuenta.
+        ++n;
+      }
+
+// reporte de los conteos
+      if(n==0)// si no pudieron hacerse conteos, se reporta.
+        cerr << "ERROR: La entidad= " << ent << "no genera conteos\n";
+      else{
+        out << endl;
+        out << "Sumas, Entidad= " << ent << endl;
+        out << "No. de Suma, No. Cas.,";
+        
+        for(int p=1; p<MAX; ++p)
+          out << ',' << nombrep[p];
+        out << endl;
+
+        for(int conteo=0; conteo<n; ++conteo){
+          out << conteo << ',' << caspart[conteo] << ','
+              << sum[conteo];
+          out << ",,";
+          for(int p=1; p<MAX; ++p)
+            out << ',' << pords[conteo][p];
+          out << endl;
+        }
+        out << endl;
+
+// por ulltimo se hacen algunos calculos estadisticos sobre los 
+// conteos: promedios, desviaciones, maximos, minimos.
+        double dat[MAXCON];
+        double ma[MAX],maxcas;
+        double mi[MAX],mincas;
+        double pr[MAX],procas;
+        double sd[MAX],sdvcas;
+
+        out << "Conteos " << n << endl;
+        out << "Entidad " << ent << endl;
+
+        for(int p=0; p<MAX; ++p){
+          for(int conteo=0; conteo<n; ++conteo)
+            dat[conteo]=sum[conteo][p]/double(sumavot[conteo]);
+          pr[p]=prom(n,dat);
+          sd[p]=sdev(n,dat);
+          ma[p]=max(n,dat);
+          mi[p]=min(n,dat);
+        }
+
+        for(int conteo=0; conteo<n; ++conteo)
+          dat[conteo]=caspart[conteo];
+
+        procas=prom(n,dat);
+        sdvcas=sdev(n,dat);
+        maxcas=max(n,dat);
+        mincas=min(n,dat);
+
+        out << "Promedio " << procas << ',';
+        for(int p=1; p<MAX; ++p)
+          out << ',' << pr[p];
+        out << ",,";
+
+        for(int p=1; p<MAX; ++p){
+          for(int conteo=0; conteo<n; ++conteo)
+            dat[conteo]=pords[conteo][p];
+          out << ',' << prom(n,dat);
+        }
+        out << endl;
+
+//      reporte del conteo dinamico.
+        out << "Desv Est." << sdvcas << ',';
+        for(int p=1; p<MAX; ++p)
+          out << ',' << sd[p];
+        out << ',' << sd[0];
+        out << endl;
+
+        out << "Maximos, ";
+        out << maxcas << ',';
+        for(int p=1; p<MAX; ++p)
+          out << ',' << ma[p];
+        out << ",," << ma[0];
+        out << endl;
+
+        out << "Minimos, ";
+        out << mincas << ',';
+        for(int p=1; p<MAX; ++p)
+          out << ',' << mi[p];
+        out << ",," << mi[0];
+        out << endl;
       }
     }
+
+    out.close();
+    return EXIT_SUCCESS;
 }// End of main()
