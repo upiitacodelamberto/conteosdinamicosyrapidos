@@ -1,3 +1,4 @@
+#include "contdin.cpp"
 /*
   La funcion main de la aplicacion de conteos dinamicos
   y rapidos.

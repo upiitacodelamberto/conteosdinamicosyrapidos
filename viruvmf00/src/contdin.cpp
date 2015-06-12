@@ -1,7 +1,7 @@
 /* Codigo fuente de los Conteos Dinamicos
  */
 #include <iostream>
-#inlcude <cstdlib>
+#include <cstdlib>
 #include <string>
 #include <map>
 #include <vector>
@@ -15,7 +15,7 @@
 #include "particion.h"
 #include <math.h>
 
-
+#define DIPUTADOS                      // 2015.06.11
 #ifdef DIPUTADOS
   #define Base	BaseDip
   #define Voto	VotoDip
@@ -199,7 +199,7 @@ double XiMax(int n){
 
 double prom(int n, double* dat){
   double pr=0;
-  for(int k=0, k<n; ++k)
+  for(int k=0; k<n; ++k)
     pr+=dat[k];
   return pr/n;
 }
