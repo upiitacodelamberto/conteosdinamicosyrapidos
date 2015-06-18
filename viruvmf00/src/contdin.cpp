@@ -32,7 +32,7 @@
   #define BaseNom	"base_delegacion.txt"
   #define NUMENT	20
   #define pref	"JD" /* Jefe Delegacional */
-  #define Candidadto_comun	"Candidato_comun_jd.txt"
+  #define Candidato_comun	"Candidato_comun_jd.txt"
 
 #endif /* DELEGADOS */
 

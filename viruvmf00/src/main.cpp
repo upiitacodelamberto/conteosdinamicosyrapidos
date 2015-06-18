@@ -31,7 +31,7 @@ int main(int nargs, char* args[]){
   vector<Votos>   inv[NUMENT];// votos de cada casilla.
 
   int coal[NUMENT];        // candidato comun por cada entidad.
-  LeerCoal(coal, NUMENT, candidado_comun);  //lectura del archivo de Candidato_comunes
+  LeerCoal(coal, NUMENT, Candidato_comun);  //lectura del archivo de Candidato_comunes
 
   while(!f.eof()){// lectura de la base de datos de las casillas (proporcionada por
     string linea; // el instituto electoral)
@@ -86,7 +86,7 @@ int main(int nargs, char* args[]){
 
 
   for(int ent=0; ent<NUMENT; ++ent)// se hace conteo por cada entidad...
-    if(!caspar[ent].empy()){
+    if(!caspar[ent].empty()){
       double emin;
       vector<int> Par;
       int tamprep=caspar[ent].size();
@@ -99,7 +99,7 @@ int main(int nargs, char* args[]){
 
 
       Votos sum[MAXCON];
-      double pords[MAXCON]MAX[];
+      double pords[MAXCON][MAX];
       int caspart[MAXCON];
       int sumvot[MAXCON];
       int n=0;     // numero conteos que pudieron realizarse
@@ -181,10 +181,11 @@ int main(int nargs, char* args[]){
             << P.size()/double(tamprep) << endl;
         out << "Altura: " << h << " Xi2 " << Xi << endl;
         out << P;
-        out endl;
+        out << endl;
 
 //      calculo de las sumas de la particion (conteo dinamico)
-        for(int t=P.begin(); t>=0; t=++P){
+        //for(int t=P.begin(); t>=0; t=++P){
+		for(int t=P.iter.begin(); t>=0; t=++P.iter){
           inv[ent][t].suma(coal[ent]);
           sum[n]+=inv[ent][t];
         }
