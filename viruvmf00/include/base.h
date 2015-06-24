@@ -10,6 +10,7 @@ class Base {
            string casilla;
        public:
            Base(string c)  { casilla= c; }
+           Base();
            virtual int    Entidad(void) = 0;
            virtual string Casilla(void) = 0;
       };

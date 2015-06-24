@@ -1,7 +1,8 @@
 INCLUDE_DIRS:= ./include
 SOURCE_DIRS:= ./src
 
-CFILESCOMMON:= main.cpp contdin.cpp
+#CFILESCOMMON:= main.cpp contdin.cpp
+CFILESCOMMON:= contdin.cpp votos.cpp base.cpp particion.cpp
 CFILESMYIMPL:= circuitosintegradosanalogicos.cpp
 #CFILESSIGNALSANDSYSTEMS:= signalsandsystems.cpp
 #ASM_FILES:= startup_ARMCM4.S
@@ -25,18 +26,18 @@ CFLAGS=-g -Wall
 
 #CPPFLAGS= $(INCLUDE_FLAGS) -D$(TCHIP)
 #CPPFLAGS= $(INCLUDE_FLAGS) -D__AVR_LIBC_DEPRECATED_ENABLE__
-CPPFLAGS= $(INCLUDE_FLAGS)
+CPPFLAGS= $(INCLUDE_FLAGS) -DDIPUTADOS 
 vpath %.h $(INCLUDE_DIRS)
 vpath %.cpp *.o $(SOURCE_DIRS)
 #vpath %.S device/source
 #vpath %.o objects
 
 COBJECTSCOMMON:= $(patsubst %.cpp,%.o,$(CFILESCOMMON))
-COBJECTSCIRCINTAN:= $(patsubst %.cpp,%.o,$(CFILESCIRCINTAN))
-COBJECTSSIGNALSANDSYSTEMS:= $(patsubst %.cpp,%.o,$(CFILESSIGNALSANDSYSTEMS))
+#COBJECTSCIRCINTAN:= $(patsubst %.cpp,%.o,$(CFILESCIRCINTAN))
+#COBJECTSSIGNALSANDSYSTEMS:= $(patsubst %.cpp,%.o,$(CFILESSIGNALSANDSYSTEMS))
 #ASMOBJECTS:= $(patsubst %.S,%.o,$(ASM_FILES))
 
-all:  circintan.out 
+all:  conteosdinamicos.out 
 #all: circintan.out signalsandsystems.out
 
 #objects:
@@ -44,29 +45,31 @@ all:  circintan.out
 $(COBJECTSCOMMON):  %.o: %.cpp
 	mkdir -p objectscommon
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o objectscommon/$@
-$(COBJECTSCIRCINTAN): circuitosintegradosanalogicos.cpp
-	mkdir -p objectscircuitosintegradosanalogicos
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o objectscircuitosintegradosanalogicos/$@
-$(COBJECTSSIGNALSANDSYSTEMS): signalsandsystems.cpp
-	mkdir -p objectssignalsandsystems
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o objectssignalsandsystems/$@
+#$(COBJECTSCIRCINTAN): circuitosintegradosanalogicos.cpp
+#	mkdir -p objectscircuitosintegradosanalogicos
+#	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o objectscircuitosintegradosanalogicos/$@
+#$(COBJECTSSIGNALSANDSYSTEMS): signalsandsystems.cpp
+#	mkdir -p objectssignalsandsystems
+#	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o objectssignalsandsystems/$@
 
 
-circintan.out: $(COBJECTSCOMMON) $(COBJECTSCIRCINTAN)
+#circintan.out: $(COBJECTSCOMMON) $(COBJECTSCIRCINTAN)
+conteosdinamicos.out: $(COBJECTSCOMMON)
 	mkdir -p bin
-	$(CC) objectscommon/*.o objectscircuitosintegradosanalogicos/*.o -o bin/$@
-signalsandsystems.out: $(COBJECTSCOMMON) $(COBJECTSSIGNALSANDSYSTEMS)
-	$(CC) objectscommon/*.o objectssignalsandsystems/*.o -o bin/$@
+#	$(CC) objectscommon/*.o objectscircuitosintegradosanalogicos/*.o -o bin/$@
+	$(CC) objectscommon/*.o -lm -o bin/$@
+#signalsandsystems.out: $(COBJECTSCOMMON) $(COBJECTSSIGNALSANDSYSTEMS)
+#	$(CC) objectscommon/*.o objectssignalsandsystems/*.o -o bin/$@
 
 
 .PHONY: clean rebuild 
 clean:
 	rm -fv bin/*
 #	rm -frv objectscommon/*.o objectssotr/*.o objectsprogavanzada/*.o
-	rm -frv objectscommon/*.o objectscircuitosintegradosanalogicos/*.o 
-	rm -frv objectssignalsandsystems/*.o
-	rm -rv objectscommon/ objectscircuitosintegradosanalogicos/
-	rm -rv objectssignalsandsystems/
+	rm -frv objectscommon/*.o  
+#	rm -frv objectssignalsandsystems/*.o
+#	rm -rv objectscommon/ objectscircuitosintegradosanalogicos/
+#	rm -rv objectssignalsandsystems/
 
 rebuild: clean all
 

@@ -1,4 +1,17 @@
-#include "contdin.cpp"
+#include <iostream> /* cerr */
+#include <cstdlib>
+#include <string>
+#include <map>
+#include <vector>
+#include <fstream>
+#include <sstream>
+#include <set>
+#include "votos.h"
+#include "voto.h"
+#include "base.h"
+#include "particion.h"
+#include <math.h>
+using namespace std;
 /*
   La funcion main de la aplicacion de conteos dinamicos
   y rapidos.
@@ -87,7 +100,7 @@ int main(int nargs, char* args[]){
 
   for(int ent=0; ent<NUMENT; ++ent)// se hace conteo por cada entidad...
     if(!caspar[ent].empty()){
-      double emin;
+//      double emin;//(2015.06.18)
       vector<int> Par;
       int tamprep=caspar[ent].size();
 
@@ -101,7 +114,7 @@ int main(int nargs, char* args[]){
       Votos sum[MAXCON];
       double pords[MAXCON][MAX];
       int caspart[MAXCON];
-      int sumvot[MAXCON];
+      int sumavot[MAXCON];
       int n=0;     // numero conteos que pudieron realizarse
 
 
@@ -156,7 +169,8 @@ int main(int nargs, char* args[]){
           h= double(P.size())/double(numclases);
           Xi=P.Xi(h);
           if(Xi >= XiMax(numclases)){//Eliminacion de casillas por 
-            P.ajuste(h);             //encima de la altura maxima
+//            P.ajuste(h);             //encima de la altura maxima
+            P.Ajuste(h);             //encima de la altura maxima
             casviv=P.size();         //se actualiza el numero de 
                                      //casillas "vivas"
             numclases= Log2(casviv); //se recalcula la particion
@@ -184,8 +198,8 @@ int main(int nargs, char* args[]){
         out << endl;
 
 //      calculo de las sumas de la particion (conteo dinamico)
-        //for(int t=P.begin(); t>=0; t=++P){
-		for(int t=P.iter.begin(); t>=0; t=++P.iter){
+//	for(int t=P.begin(); t>=0; t=++P){//(2015.06.18)
+	for(int t=0; t<P.size(); ++t){
           inv[ent][t].suma(coal[ent]);
           sum[n]+=inv[ent][t];
         }
@@ -197,7 +211,8 @@ int main(int nargs, char* args[]){
         for(int p=0; p<MAX; ++p){
           prom[p]=0.0;
         }
-        for(int t=P.begin(); t>=0; t=++P){
+//        for(int t=P.begin(); t>=0; t=++P){
+	for(int t=0; t<P.size(); ++t){
           for(int p=0; p<MAX; ++p)
             prom[p]+=inv[ent][t].pc(p);
         } 
@@ -209,7 +224,8 @@ int main(int nargs, char* args[]){
         double dvst[MAX];
         for(int p=0; p<MAX; ++p)
           dvst[p]=0.0;
-        for(int t=P.begin(); t>=0; t=++P){
+//        for(int t=P.begin(); t>=0; t=++P){
+	for(int t=0; t<P.size(); ++t){
           for(int p=0; p<MAX; ++p){
             double s=inv[ent][t].pc(p)-prom[p];
             dvst[p]+=s*s;
