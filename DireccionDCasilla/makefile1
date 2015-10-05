@@ -1,0 +1,7 @@
+all:AppTestDdC.exe
+CPP=g++.exe
+AppTestDdC.exe:TestDdCasilla.o
+	${CPP} -o $@ TestDdCasilla.o
+
+clean:
+	rm -v *.o AppTestDdC.exe
