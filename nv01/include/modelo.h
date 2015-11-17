@@ -39,21 +39,30 @@ $\vdots$&$\vdots$&$\vdots$&$\vdots$\\\hline
  * con ocho casillas electorales instaladas cada una (N = 120)
  */
 #include <iostream>
+#include <string>
 using namespace std;
 #define TAMMAX	20;		//Ya no se usa (2015.05.19.21:07)
 
 class Casilla {
-	int numDCasilla;	//Numero de Casilla
-	int distElectLocal;	//Distrito Electoral Local
-	int seccion;		//Seccion
-	string casilla;		//Casilla p.ej.:B, C1, B, ..., C4, B, C1.
-	bool reportadaAlPREP;	//Para indicar si la casilla ya ha 
+	string distrito;	//segun parece siempre es un entero
+	string seccion;	        //tambien parece ser siempre un entero
+	string casilla;		//Casilla p.ej.:"B", "C1", "B", ..., "C4", "B", "C1".
+        string delegacion;      //Delegacion donde se ubica la casilla
+        string tipo;            //Tipo p. ej. "JD", "DM".
+//	bool reportadaAlPREP;	//Para indicar si la casilla ya ha 
                                 //reportado al PREP
  public:
-         int get_numDCasilla();
-	 bool yaReportadaAlPREP();
-         void set_numDCasilla(int N);
-         void set_reportadaAlPREP(bool b);
+         string get_distrito();
+	 string get_seccion();
+         string get_casilla();
+         string get_delegacion();
+         string get_tipo();
+//         void set_numDCasilla(int N);
+//         void set_reportadaAlPREP(bool b);
+         //Constructores
+         Casilla(){             //Por ahora vacio 2015.11.17
+         } 
+         Casilla(string dis, string sec, string cas, string deleg, string tip);
 };//End class Casilla
 
 /**
@@ -71,7 +80,8 @@ class Casilla {
  */
 
 /* Usar como arreglo de 15 filas x 8 columnas */
-extern Casilla **CAS;
+//extern Casilla **CAS;
+extern vector <Casilla*>CAS;
 
 #define NUMDFILAS	15
 #define NUMDCOLUMNAS	8
@@ -93,4 +103,4 @@ void proccess_salir();
 
 void proccess_show_reported_casillas();
 void proccess_show_cantdcasillas_por_bin();
-#endif				/* MODELO_H */
+#endif /* MODELO_H */
