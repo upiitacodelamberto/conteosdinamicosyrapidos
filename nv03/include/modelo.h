@@ -67,6 +67,7 @@ class Casilla {
          string get_tipo();
 //         void set_numDCasilla(int N);
 //         void set_reportadaAlPREP(bool b);
+         void set_tipo(string);
          //Constructores
          Casilla(){             //Por ahora vacio 2015.11.17
          } 

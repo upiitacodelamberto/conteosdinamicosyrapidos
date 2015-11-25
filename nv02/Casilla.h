@@ -44,14 +44,17 @@ using namespace std;
 #define TAMMAX	20;		//Ya no se usa (2015.05.19.21:07)
 
 typedef struct CasiCasilla{
+//  int distrito;
   string distrito;
-  CasiCasilla():distrito("") {}
-  bool operator==(CasiCasilla &cc) const {
-    return (distrito==cc.distrito);
+  bool isValid;
+  CasiCasilla() : distrito(""), isValid(false) {}
+  bool operator==(CasiCasilla &ls) const {
+    return (distrito==ls.distrito);
   }
 }CasiCasilla;
 
 class Casilla {
+	//static int distrito;	//segun parece siempre es un entero
 	static string distrito;	//segun parece siempre es un entero
 	string seccion;	        //tambien parece ser siempre un entero
 	string casilla;		//Casilla p.ej.:"B", "C1", "B", ..., "C4", "B", "C1".
@@ -60,23 +63,46 @@ class Casilla {
 //	bool reportadaAlPREP;	//Para indicar si la casilla ya ha 
                                 //reportado al PREP
  public:
-         static string get_distrito();
-	 string get_seccion();
-         string get_casilla();
-         string get_delegacion();
-         string get_tipo();
+//         static int get_distrito(){
+         static string get_distrito(){
+           return distrito;
+         }
+//	 string get_seccion();
+	 string get_seccion(){
+  return seccion;
+         }
+//         string get_casilla();
+         string get_casilla(){
+  return casilla;
+         }
+//         string get_delegacion();
+         string get_delegacion(){
+  return delegacion;
+         }
+//         string get_tipo();
+         string get_tipo(){
+  return tipo;
+         }
 //         void set_numDCasilla(int N);
-//         void set_reportadaAlPREP(bool b);
-         //Constructores
-         Casilla(){             //Por ahora vacio 2015.11.17
-         } 
-         Casilla(string dis, string sec, string cas, string deleg, string tip);
-  static CasiCasilla get_CasiCas(){
-    CasiCasilla CC;
-    CC.distrito=distrito;
-    return CC;
-  }
-  virtual ~Casilla() {}
+         void set_reportadaAlPREP(bool b);
+       //Constructores
+       Casilla(){             //Por ahora vacio 2015.11.17
+       } 
+//         Casilla(string dis, string sec, string cas, string deleg, string tip);
+//         Casilla(string dis, string sec, string cas, string deleg, string tip):
+//distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){ }
+public:
+//Casilla(int dis){
+Casilla(string dis){
+  distrito=dis;
+}
+public:
+static CasiCasilla getCasiCas(){
+  CasiCasilla CC;
+  CC.distrito=distrito;
+  return CC;
+}
+virtual ~Casilla() {}
 };//End class Casilla
 
 /**
@@ -94,27 +120,27 @@ class Casilla {
  */
 
 /* Usar como arreglo de 15 filas x 8 columnas */
-//extern Casilla **CAS;
-extern vector <Casilla*>CAS;
+////extern Casilla **CAS;
+//extern vector <Casilla*>CAS;
 
 #define NUMDFILAS	15
 #define NUMDCOLUMNAS	8
 
 /* Para modelar los bins */
-struct bin{
-  int N;    //cantidad de Casillas contenidas en el bin.
-  int cantDCRep;//Cantidad de casillas reportadas al PREP.
-  int *p;   //apunta a N enteros correspondientes a los 
-            //numeros de casillas contenidas en el bin de que se trate.
-};
-extern struct bin *B[NUMDFILAS];//Arreglo de NUMDFILAS apuntadores a
+//struct bin{
+//  int N;    //cantidad de Casillas contenidas en el bin.
+//  int cantDCRep;//Cantidad de casillas reportadas al PREP.
+//  int *p;   //apunta a N enteros correspondientes a los 
+//            //numeros de casillas contenidas en el bin de que se trate.
+//};
+//extern struct bin *B[NUMDFILAS];//Arreglo de NUMDFILAS apuntadores a
                                 //struct bin
 
-void inic_bins();
+//void inic_bins();
 
-void proccess_commands();
-void proccess_salir();
+//void proccess_commands();
+//void proccess_salir();
 
-void proccess_show_reported_casillas();
-void proccess_show_cantdcasillas_por_bin();
+//void proccess_show_reported_casillas();
+//void proccess_show_cantdcasillas_por_bin();
 #endif /* MODELO_H */

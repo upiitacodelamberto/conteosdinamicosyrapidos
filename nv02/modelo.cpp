@@ -137,5 +137,4 @@ string Casilla::get_tipo(){
 }
 
 Casilla::Casilla(string dis, string sec, string cas, string deleg, string tip):
-//distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){ }
-seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){distrito=dis;}
+distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){ }
