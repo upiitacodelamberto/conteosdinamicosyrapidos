@@ -5,10 +5,13 @@
 #include <cppunit/TestCaller.h>
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestCase.h>
+#include <fstream>
 
 #include "modelo.h"
+#include "String_Tokenizer.h"
 
 using namespace std;
+string archivo="1 Resultados_secciones.csv";
 
 class TestCasilla : public CppUnit::TestFixture {
 //  CPPUNIT_TEST_SUITE(TestCasilla);
@@ -27,6 +30,8 @@ class TestCasilla : public CppUnit::TestFixture {
    CppUnit::TestSuite *suiteOfTests=new CppUnit::TestSuite("PruebaCasilla");
     suiteOfTests->addTest(new CppUnit::TestCaller<TestCasilla>
       ("Test 1 - Crear Casilla.", &TestCasilla::testCreacionDeUnaCasilla));
+    suiteOfTests->addTest(new CppUnit::TestCaller<TestCasilla>
+      ("Test2 - Detectar Casilla sin votos para partido, candidato, o coalicion. Por ahora solo busca revisar si el primer partido no tiene votos.", &TestCasilla::testDiscriminaCasillaConsideradaComoNoReportada));
     /* Aqui se pueden agregar mas tests */
     return suiteOfTests;
   }
@@ -81,5 +86,38 @@ class TestCasilla : public CppUnit::TestFixture {
     proporcionarle al constructor de la case Casilla la cadena "".
    */
   void testDiscriminaCasillaConsideradaComoNoReportada(){
+    CasiCasilla CCasill;
+    Casilla *ap;
+    int k;
+    string cadvacia="";
+    //crear una cadena de entrada para ese archivo
+    vector<string> arr;
+    arr.push_back("");arr.push_back("");arr.push_back("");
+    arr.push_back("");arr.push_back("");arr.push_back("");
+    ifstream in(archivo.c_str());
+    if(in){//el stream existe
+      string linea;
+      int line_num=0, tokcount=0;
+     // for(k=0; k<3; ++k){
+      while(getline(in, linea)){
+        line_num++;
+        String_Tokenizer tokenizer(linea, ",");
+        while(tokenizer.has_more_tokens()){
+          arr[tokcount]=tokenizer.next_token();
+          tokcount++;
+          if(tokcount==6){
+            //add(arr);
+            CCasill.distrito=arr[0];CCasill.seccion=arr[1];CCasill.casilla=arr[2];
+            CCasill.distrito=arr[3];CCasill.seccion=arr[4];CCasill.casilla=arr[5];
+            ap=new Casilla(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]);
+            tokcount=0;
+            if(line_num==3){
+              CPPUNIT_ASSERT_EQUAL(ap->get_PartCandCoal(),cadvacia);
+            }
+            break;
+          }
+        }
+      }
+    }
   }
 };//end class TestCasilla

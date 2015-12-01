@@ -5,7 +5,7 @@ DEBUG = -g
 
 #CFILES:= main.cpp modelo.cpp String_Tokenizer.cpp prueba.cpp hacerPruebas.cpp
 #CFILES:= modelo.cpp String_Tokenizer.cpp prueba.cpp hacerPruebas.cpp
-CFILES:= modelo.cpp hacerPruebas.cpp
+CFILES:= modelo.cpp hacerPruebas.cpp String_Tokenizer.cpp
 #TARGET = conteosdinamicos
 TARGET = pruebas
 INCLUDE_FLAGS:=$(patsubst %,-I%,$(INCLUDE_DIRS))

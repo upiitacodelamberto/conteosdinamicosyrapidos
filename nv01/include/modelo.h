@@ -43,6 +43,22 @@ $\vdots$&$\vdots$&$\vdots$&$\vdots$\\\hline
 using namespace std;
 #define TAMMAX	20;		//Ya no se usa (2015.05.19.21:07)
 
+typedef struct CasiCasilla{
+  string distrito;
+  string seccion;
+  string casilla;
+  string delegacion;
+  string tipo;
+  string PartCandCoal;  /* Partido, Candidato o Coalicion */
+  int indexPrimSinVotos;
+  CasiCasilla():distrito(""),seccion(""),casilla(""),delegacion(""),
+                tipo(""),PartCandCoal(0) {}
+  bool operator==(CasiCasilla& CCas)const{
+    //return (distrito==CCas.distrito&&casilla==CCas.casilla&&);
+    return (indexPrimSinVotos==CCas.indexPrimSinVotos);
+  }
+}CasiCasilla;
+
 /**
  Las columnas del documento ``1 Resulatdos secciones.csv'' i
  indican lo siguiente: (O usando sintaxis \LaTeX el codigo seria:)
@@ -63,7 +79,11 @@ class Casilla {
         string tipo;            //Tipo p. ej. "JD", "DM".
 //	bool reportadaAlPREP;	//Para indicar si la casilla ya ha 
                                 //reportado al PREP
+  string PartCandCoal;  /* Partido, Candidato o Coalicion */
+        
  public:
+  string get_PartCandCoal(){return PartCandCoal;}
+  static int indexPrimSinVotos;
          string get_distrito();
 	 string get_seccion();
          string get_casilla();
@@ -75,6 +95,8 @@ class Casilla {
          Casilla(){             //Por ahora vacio 2015.11.17
          } 
          Casilla(string dis, string sec, string cas, string deleg, string tip);
+  Casilla(string dis, string sec, string cas, string deleg, string tip, string PCC);
+  static int index_primera_sin_votos();
 };//End class Casilla
 
 /**

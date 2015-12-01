@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 //	proccess_commands();
 
 	return 0;
-}
+}//end main()
 
 void load_data_CAS(string& source_name){
   source_file=source_name; //recordar nombre de archivo de datos.
@@ -41,7 +41,6 @@ void load_data_CAS(string& source_name){
       line_num++;
       String_Tokenizer tokenizer(linea, ",");
       while(tokenizer.has_more_tokens()){
-//        arr[tokcount]=tokenizer.next_token();
         arr[tokcount]=tokenizer.next_token();
         tokcount++;
         if(tokcount==5){
