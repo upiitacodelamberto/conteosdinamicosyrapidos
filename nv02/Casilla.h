@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 //#ifndef MODELO_H
 //#define MODELO_H
+=======
+#ifndef MODELO_H
+#define MODELO_H
+>>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695
 /**
  * La adecuada operacion de conteos dinamicos requiere del 
  * desarrollo de dos fases: una primera consistente en el 
@@ -44,15 +49,23 @@ using namespace std;
 #define TAMMAX	20;		//Ya no se usa (2015.05.19.21:07)
 
 typedef struct CasiCasilla{
+<<<<<<< HEAD
   int distrito;
   bool isValid;
   CasiCasilla() : distrito(0), isValid(false) {}
+=======
+//  int distrito;
+  string distrito;
+  bool isValid;
+  CasiCasilla() : distrito(""), isValid(false) {}
+>>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695
   bool operator==(CasiCasilla &ls) const {
     return (distrito==ls.distrito);
   }
 }CasiCasilla;
 
 class Casilla {
+<<<<<<< HEAD
 	//static string distrito;	//segun parece siempre es un entero
 	static int distrito;	//segun parece siempre es un entero
 //	string seccion;	        //tambien parece ser siempre un entero
@@ -92,6 +105,48 @@ class Casilla {
 //distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){ }
 public:
 Casilla(int dis){
+=======
+	//static int distrito;	//segun parece siempre es un entero
+	static string distrito;	//segun parece siempre es un entero
+	string seccion;	        //tambien parece ser siempre un entero
+	string casilla;		//Casilla p.ej.:"B", "C1", "B", ..., "C4", "B", "C1".
+        string delegacion;      //Delegacion donde se ubica la casilla
+        string tipo;            //Tipo p. ej. "JD", "DM".
+//	bool reportadaAlPREP;	//Para indicar si la casilla ya ha 
+                                //reportado al PREP
+ public:
+//         static int get_distrito(){
+         static string get_distrito(){
+           return distrito;
+         }
+//	 string get_seccion();
+	 string get_seccion(){
+  return seccion;
+         }
+//         string get_casilla();
+         string get_casilla(){
+  return casilla;
+         }
+//         string get_delegacion();
+         string get_delegacion(){
+  return delegacion;
+         }
+//         string get_tipo();
+         string get_tipo(){
+  return tipo;
+         }
+//         void set_numDCasilla(int N);
+         void set_reportadaAlPREP(bool b);
+       //Constructores
+       Casilla(){             //Por ahora vacio 2015.11.17
+       } 
+//         Casilla(string dis, string sec, string cas, string deleg, string tip);
+//         Casilla(string dis, string sec, string cas, string deleg, string tip):
+//distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){ }
+public:
+//Casilla(int dis){
+Casilla(string dis){
+>>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695
   distrito=dis;
 }
 public:
@@ -141,4 +196,8 @@ virtual ~Casilla() {}
 
 //void proccess_show_reported_casillas();
 //void proccess_show_cantdcasillas_por_bin();
+<<<<<<< HEAD
 //#endif /* MODELO_H */
+=======
+#endif /* MODELO_H */
+>>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695

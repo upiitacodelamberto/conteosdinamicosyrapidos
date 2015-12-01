@@ -43,20 +43,6 @@ $\vdots$&$\vdots$&$\vdots$&$\vdots$\\\hline
 using namespace std;
 #define TAMMAX	20;		//Ya no se usa (2015.05.19.21:07)
 
-<<<<<<< HEAD
-/**
- Las columnas del documento ``1 Resulatdos secciones.csv'' i
- indican lo siguiente: (O usando sintaxis \LaTeX el codigo seria:)
- \begin{tabular}{ccccc}
- ``La primera esta vacia''&SECCION&CASILLA&DELEGACION&TIPO&PAN&PRI&PRD&
- PVEM&PT&MC&NA&MORENA&PH&ES&ALEJANDRO VINAY&NAZARIO NORBERTO&ARNE SIDNEY&
- JORGE RIVERA&JUAN DAVID&OSCAR ANTONIO&ROSARIO ERIKA&JUDITH BARRIOS&
- EFRAIN MORALES&EDGAR MONTERO&PATRICIO DEL VALLE&PRI-PVEM&PRD-PT-NA&PRD-PT&
- PRD-NA&PT-NA&VOTOS NULOS&NO REGISTRADOS\\
- \end{tabular}
- 
- */
-=======
 typedef struct CasiCasilla{
   string distrito;
   CasiCasilla():distrito("") {}
@@ -65,7 +51,6 @@ typedef struct CasiCasilla{
   }
 }CasiCasilla;
 
->>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695
 class Casilla {
 	static string distrito;	//segun parece siempre es un entero
 	string seccion;	        //tambien parece ser siempre un entero
@@ -82,6 +67,7 @@ class Casilla {
          string get_tipo();
 //         void set_numDCasilla(int N);
 //         void set_reportadaAlPREP(bool b);
+         void set_tipo(string);
          //Constructores
          Casilla(){             //Por ahora vacio 2015.11.17
          } 
