@@ -45,4 +45,5 @@ $(COBJECTS): %.o: %.cpp
 .PHONY:  
 clean:
 	rm -frv objects
+#	rm $(TARGET).out
 	

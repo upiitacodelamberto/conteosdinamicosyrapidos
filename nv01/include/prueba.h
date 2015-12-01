@@ -26,11 +26,7 @@ class TestCasilla : public CppUnit::TestFixture {
   static CppUnit::Test *suite(){
    CppUnit::TestSuite *suiteOfTests=new CppUnit::TestSuite("PruebaCasilla");
     suiteOfTests->addTest(new CppUnit::TestCaller<TestCasilla>
-<<<<<<< HEAD
       ("Test 1 - Crear Casilla.", &TestCasilla::testCreacionDeUnaCasilla));
-=======
-      ("Test 1 - Crear Casilla.", &TestCasilla::testUnaCasillaCreate));
->>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695
     /* Aqui se pueden agregar mas tests */
     return suiteOfTests;
   }
@@ -43,17 +39,12 @@ class TestCasilla : public CppUnit::TestFixture {
 
   protected:
   //void testUnaCasillaCreate();
-<<<<<<< HEAD
   void testCreacionDeUnaCasilla(){
-=======
-  void testUnaCasillaCreate(){
->>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695
     string distrito="1";
     string seccion="918";
     string casilla="B";
     string delegacion="GUSTAVO A. MADERO";
     string tipo="JD";
-<<<<<<< HEAD
     Casilla CAS(distrito, seccion, casilla, delegacion, tipo);
     /* Con esto se revisa si los string usados para cada 
        atributo de un objeto casilla efectivamente tienen 
@@ -90,17 +81,5 @@ class TestCasilla : public CppUnit::TestFixture {
     proporcionarle al constructor de la case Casilla la cadena "".
    */
   void testDiscriminaCasillaConsideradaComoNoReportada(){
-=======
-    Casilla UnaCasilla(distrito, seccion, casilla, delegacion, tipo);
-    CasiCasilla CAS;
-    CAS.distrito="1";
-    CasiCasilla CASCAS=Casilla::get_CasiCas();
-    CPPUNIT_ASSERT_EQUAL(UnaCasilla.get_distrito(), distrito);
-//    CPPUNIT_ASSERT(CAS==CASCAS);
-    CPPUNIT_ASSERT_EQUAL(UnaCasilla.get_seccion(), seccion);
-    CPPUNIT_ASSERT_EQUAL(UnaCasilla.get_delegacion(), delegacion);
-    CPPUNIT_ASSERT_EQUAL(UnaCasilla.get_tipo(), tipo);
-    CPPUNIT_ASSERT(UnaCasilla.get_delegacion()==delegacion);
->>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695
   }
 };//end class TestCasilla

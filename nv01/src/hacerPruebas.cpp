@@ -8,7 +8,6 @@
 #include "prueba.h"
 
 using namespace std;
-<<<<<<< HEAD
 
 int main(){
   //Agregar esta suite de prueba a la lista de pruebas a ejecutarse.
@@ -16,24 +15,6 @@ int main(){
   cout<<"Creando suite de pruebas..."<<endl;
   runner.addTest(TestCasilla::suite());
 
-=======
-//string Casilla::distrito="HOY 2015.11.24";
-string Casilla::distrito="1";
-
-int main(){
-  //Obtener la prueba, suite del registro
-  //CppUnit::Test *suite=CppUnit::TestFactoryRegistry::getRegistry().makeTest();
-
-  //Agregar esta suite de prueba a la lista de pruebas a ejecutarse.
-  CppUnit::TextUi::TestRunner runner;
-  //runner.addTest(suite);
-  cout<<"Creando suite de pruebas..."<<endl;
-  runner.addTest(TestCasilla::suite());
-
-  ////Colocar el emisor de resultados
-  //runner.setOutputter(new CppUnit::CompilerOutputter(&runner.result(), std::cerr));
-
->>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695
   //Correr pruebas
   cout<<"Corriendo pruebas de unidad..."<<endl;
   bool wasSuccessfull=runner.run();

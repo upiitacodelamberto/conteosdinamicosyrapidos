@@ -43,7 +43,6 @@ $\vdots$&$\vdots$&$\vdots$&$\vdots$\\\hline
 using namespace std;
 #define TAMMAX	20;		//Ya no se usa (2015.05.19.21:07)
 
-<<<<<<< HEAD
 /**
  Las columnas del documento ``1 Resulatdos secciones.csv'' i
  indican lo siguiente: (O usando sintaxis \LaTeX el codigo seria:)
@@ -56,18 +55,8 @@ using namespace std;
  \end{tabular}
  
  */
-=======
-typedef struct CasiCasilla{
-  string distrito;
-  CasiCasilla():distrito("") {}
-  bool operator==(CasiCasilla &cc) const {
-    return (distrito==cc.distrito);
-  }
-}CasiCasilla;
-
->>>>>>> ed84b239faf9213c538c5c338a1130a1c04a7695
 class Casilla {
-	static string distrito;	//segun parece siempre es un entero
+	string distrito;	//segun parece siempre es un entero
 	string seccion;	        //tambien parece ser siempre un entero
 	string casilla;		//Casilla p.ej.:"B", "C1", "B", ..., "C4", "B", "C1".
         string delegacion;      //Delegacion donde se ubica la casilla
@@ -75,7 +64,7 @@ class Casilla {
 //	bool reportadaAlPREP;	//Para indicar si la casilla ya ha 
                                 //reportado al PREP
  public:
-         static string get_distrito();
+         string get_distrito();
 	 string get_seccion();
          string get_casilla();
          string get_delegacion();
@@ -86,12 +75,6 @@ class Casilla {
          Casilla(){             //Por ahora vacio 2015.11.17
          } 
          Casilla(string dis, string sec, string cas, string deleg, string tip);
-  static CasiCasilla get_CasiCas(){
-    CasiCasilla CC;
-    CC.distrito=distrito;
-    return CC;
-  }
-  virtual ~Casilla() {}
 };//End class Casilla
 
 /**
