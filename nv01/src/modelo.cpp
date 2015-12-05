@@ -141,3 +141,5 @@ distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){ }
 
 Casilla::Casilla(string dis, string sec, string cas, string deleg, string tip, string PCC):
 distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip), PartCandCoal(PCC){ }
+
+

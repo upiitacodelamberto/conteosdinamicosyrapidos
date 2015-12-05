@@ -31,7 +31,7 @@ void load_data_CAS(string& source_name){
   //crear una cadena de entrada para ese archivo
   vector<string> arr;
   arr.push_back("");arr.push_back("");arr.push_back("");
-  arr.push_back("");arr.push_back("");
+  arr.push_back("");arr.push_back("");arr.push_back("");arr.push_back("");
   ifstream in(source_name.c_str());
   if(in){//el stream existe
     string linea;
@@ -43,14 +43,14 @@ void load_data_CAS(string& source_name){
       while(tokenizer.has_more_tokens()){
         arr[tokcount]=tokenizer.next_token();
         tokcount++;
-        if(tokcount==5){
+        if(tokcount==7){
           add(arr);
           tokcount=0;
           break;
         }
       }
-      cout<<arr[0]<<" "<<arr[1]<<" "<<arr[2]<<" "<<arr[3]<<" "<<arr[4]<<"\n";
-//      if(line_num==3) break;
+      cout<<arr[0]<<" "<<arr[1]<<" "<<arr[2]<<" "<<arr[3]<<" "
+          <<arr[4]<<"#"<<arr[5]<<"#"<<arr[6]<<"\n";
     }
     in.close();  //cerrar el archivo
   } 

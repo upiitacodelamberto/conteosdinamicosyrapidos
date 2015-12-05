@@ -52,7 +52,7 @@ typedef struct CasiCasilla{
   string PartCandCoal;  /* Partido, Candidato o Coalicion */
   int indexPrimSinVotos;
   CasiCasilla():distrito(""),seccion(""),casilla(""),delegacion(""),
-                tipo(""),PartCandCoal(0) {}
+                tipo(""),PartCandCoal("") {}
   bool operator==(CasiCasilla& CCas)const{
     //return (distrito==CCas.distrito&&casilla==CCas.casilla&&);
     return (indexPrimSinVotos==CCas.indexPrimSinVotos);

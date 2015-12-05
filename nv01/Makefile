@@ -23,7 +23,7 @@ COBJECTS:= $(patsubst %.cpp,%.o,$(CFILES))
 #ASMOBJECTS:= $(patsubst %.S,%.o,$(ASM_FILES))
 
 #all: $(TARGET).out 
-all: $(TARGET)
+all: $(TARGET) dummprueba mmain
 #all:  pruebas
 objects:
 	mkdir objects
@@ -41,9 +41,14 @@ $(COBJECTS): %.o: %.cpp
 #pruebas:src/hacerPruebas.cpp src/prueba.cpp
 #	$(CC) $(CPPFLAGS) $? -o pruebas
 
+dummprueba:src/dummdriver.cpp src/String_Tokenizer.cpp src/modelo.cpp
+	$(CC) -I./include $^ -o $@
+
+mmain:src/main.cpp src/String_Tokenizer.cpp src/modelo.cpp
+	$(CC) -I./include $^ -o $@
 
 .PHONY:  
 clean:
-	rm -frv objects
+	rm -frv objects pruebas dummprueba
 #	rm $(TARGET).out
 	
