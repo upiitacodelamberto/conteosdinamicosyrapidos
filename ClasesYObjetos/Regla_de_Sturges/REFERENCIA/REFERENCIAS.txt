@@ -1,0 +1,3 @@
+https://es.wikipedia.org/wiki/Regla_de_Sturges
+
+http://robjhyndman.com/papers/sturges.pdf

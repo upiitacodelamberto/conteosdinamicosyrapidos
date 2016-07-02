@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage[total={18cm,24cm},top=2cm,left=2cm]{geometry}
+\begin{document}
+\section*{Comentarios sobre la elaboraci\'on del programa}
+El programa se empieza a desarrollar utilizando los datos del 
+archivo 
+$$
+\mbox{\tt 1 Resultados$\_$secciones.csv} 
+$$
+(incluido en este mismo directorio).
+\section*{Regla de Sturges}
+La {\bf regla de Sturges}, propuesta por Herbert Sturges en 1926, es una 
+regla pr\'actica acerca del n\'umero de clases que se deben considerar 
+al elaborar un histograma. El n\'umero est\'a dado por la siguiente 
+expresi\'on
+$$
+c=1+\mbox{log}_{2}M\mbox{, donde $M$ es el tama\~no de la muestra.}
+$$
+Que puede pasarse a logaritmo de base 10 de la siguiente forma:
+$$
+c=1+3.322\cdot\mbox{log}_{10}n
+$$
+siendo $n$ la cantidad de datos.\\
+El valor de $c$ (n\'umero de clases) es com\'un redondearlo al entero 
+m\'as cercano.
+\section*{Determinaci\'on del n\'umero de clases}
+Con el programa se obtuvo la siguiente informaci\'on:
+\begin{verbatim}
+Conteos din'amicos
+Leyendo datos del archivo 1 Resultados_secciones.csv
+Casilla  1  1	918	Votos=204
+Casilla  2  1	918	Votos=204
+Casilla  3  2	936	Votos=0
+Casilla  4  2	936	Votos=0
+Casilla  5  3	134	Votos=176
+Casilla  6  3	134	Votos=176
+Casilla  7  4	1506	Votos=162
+Casilla  8  4	1506	Votos=162
+Casilla  9  4	1548	Votos=218
+Casilla 10  4	1548	Votos=213
+Casilla 11  4	1551	Votos=177
+Casilla 12  4	1551	Votos=177
+Casilla 13  4	1552	Votos=234
+Casilla 14  4	1552	Votos=234
+Casilla 15  4	1239	Votos=233
+Casilla 16  4	1519	Votos=244
+Casilla 17  4	1519	Votos=244
+Casilla 18  5	7	Votos=153
+Casilla 19  5	7	Votos=153
+Casilla 20  5	331	Votos=180
+Casilla 21  5	331	Votos=181
+Casilla 22  7	1300	Votos=213
+Casilla 23  7	1300	Votos=212
+Casilla 24  9	4690	Votos=257
+Casilla 25  13	4546	Votos=154
+Casilla 26  20	5536	Votos=207
+Casilla 27  20	5546	Votos=207
+Casilla 28  20	5546	Votos=207
+Casilla 29  23	3531	Votos=71
+Casilla 30  23	3531	Votos=72
+Casilla 31  23	3551	Votos=184
+Casilla 32  23	3551	Votos=184
+Casilla 33  24	2497	Votos=204
+Casilla 34  24	2497	Votos=204
+Casilla 35  27	2809	Votos=261
+Casilla 36  27	2809	Votos=261
+Casilla 37  27	2809	Votos=251
+Casilla 38  39	5545	Votos=8
+Casilla 39  39	5545	Votos=8
+\end{verbatim}
+Como en el archivo {\tt 1 Resultados$\_$secciones.csv} hay informaci\'on de 39 casillas, 
+el n\'umero de datos disponibles usando este archivo es de $n=39$. Por lo que se obtiene
+$$
+c=1+3.322\cdot\mbox{log}_{10}(39)=6.28\approx 6
+$$
+As\'i que se usar\'an 6 clases o bins. Como tenemos 39 casillas, y
+$$
+39=6\times 6 + 3
+$$
+Inicialmente se considerar\'an las clases 
+conformadas por las casillas que se muestran a continuaci\'on
+\begin{verbatim}
+Clase       Casillas
+  1          1 --  7
+  2          8 -- 14
+  3         15 -- 21 
+  4         22 -- 28
+  5         29 -- 35
+  6         36 -- 39
+\end{verbatim}
+
+\end{document}
