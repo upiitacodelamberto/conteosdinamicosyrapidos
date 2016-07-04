@@ -1,6 +1,9 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 \usepackage[total={18cm,24cm},top=2cm,left=2cm]{geometry}
+\title{Implementaci\'on de Conteos Din\'amicos}
+\date{4/Julio/2016}
 \begin{document}
+\maketitle
 \section*{Comentarios sobre la elaboraci\'on del programa}
 El programa se empieza a desarrollar utilizando los datos del 
 archivo 
@@ -73,9 +76,9 @@ el n\'umero de datos disponibles usando este archivo es de $n=39$. Por lo que se
 $$
 c=1+3.322\cdot\mbox{log}_{10}(39)=6.28\approx 6
 $$
-As\'i que se usar\'an 6 clases o bins. Como tenemos 39 casillas, y
+As\'i que se usar\'an 6 clases o bins. Como tenemos 39 casillas; $39=6\times 6 + 3$ y
 $$
-39=6\times 6 + 3
+39=5\times 7 + 4
 $$
 Inicialmente se considerar\'an las clases 
 conformadas por las casillas que se muestran a continuaci\'on
@@ -88,5 +91,24 @@ Clase       Casillas
   5         29 -- 35
   6         36 -- 39
 \end{verbatim}
+\section*{M\'as datos obtenidos con el programa}
+Se ``repartir\'an'' las 39 casillas en clases o bins que contendr\'an 7 casillas: 
+5 bins de 7 casillas ``consecutivas" y 1 bin de 4 casillas.
+\begin{verbatim}
+Los bins considerados inicalmente:
+Clase/bin No. 1 Casillas: 1 2 3 4 5 6 7 
+Clase/bin No. 2 Casillas: 8 9 10 11 12 13 14 
+Clase/bin No. 3 Casillas: 15 16 17 18 19 20 21 
+Clase/bin No. 4 Casillas: 22 23 24 25 26 27 28 
+Clase/bin No. 5 Casillas: 29 30 31 32 33 34 35 
+Clase/bin No. 6 Casillas: 36 37 38 39 
 
+Los votos en los bins:
+Clase/bin No. 1 votos: 922
+Clase/bin No. 2 votos: 1415
+Clase/bin No. 3 votos: 1388
+Clase/bin No. 4 votos: 1457
+Clase/bin No. 5 votos: 1180
+Clase/bin No. 6 votos: 528
+\end{verbatim}
 \end{document}

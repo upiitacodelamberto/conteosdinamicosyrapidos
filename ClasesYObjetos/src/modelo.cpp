@@ -137,6 +137,10 @@ string Casilla::get_tipo(){
   return tipo;
 }
 
+int Casilla::get_cdvotos(){
+  return cdvotos;
+}
+
 Casilla::Casilla(string dis, string sec, string cas, string deleg, string tip):
 distrito(dis), seccion(sec), casilla(cas), delegacion(deleg), tipo(tip){
 }
@@ -178,7 +182,7 @@ operator<<(ostream& out,Casilla& c)
 }
 
 /*
- A partir del numero de bin hay que determinar 
+ A partir del numero de bin (1, 2, 3, ..., Num. de bins) hay que determinar 
  cual sera la cantidad de casillas que estaran contenidas 
  en ese bin en particular.
  Inicialmente (al menos) voy a suponer que las casillas correspondientes 
@@ -186,7 +190,7 @@ operator<<(ostream& out,Casilla& c)
  para el caso de 39 casillas, la regla de sturges nos da como resultado 
  c=1+3.322*log10(39)=6.28\approx 6
  Ahora bien, dado que 39 = 6 * 6 + 3 = 5 * 7 + 4
- voy a suponer que  los bins les corresponderan las casillas indicadas 
+ voy a suponer que  a los bins les corresponderan las casillas indicadas 
  en la siguiente tabla
  Num de Clase/bin   Casillas    Cant de casillas 
   1                  1 --  7        7
@@ -224,4 +228,20 @@ inic_clbin(bin *b,int candcas,int inicio)
     *(b->p+i)=inicio;
     inicio++;
   }
+}
+
+/**
+ El tamanio de bin (tamdbin) se determina usando la cantidad (c) de clases (bins) 
+ a utilizar y el total de datos disponibles (Total, en este caso Total=39). De 
+ la siguiente forma:
+ tamdbin=Total/(c-1)     (esta division debe ser calculada como division de dos int)
+ Por ejemplo, para Total=39, c=6: tamdbin=39/(6-1)=39/5=7,
+ De esta forma, como 5*7+4=39 nos dice que usaremos 5 clases de 7 casillas y una de 
+ 4 casillas, con lo que tendremos las 6 clases que nos indica la regla de Sturges.
+ @pre c>1
+ */
+int
+tamanio_dbin(int Total,int c)
+{
+  return Total/(c-1);
 }

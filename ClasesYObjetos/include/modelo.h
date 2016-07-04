@@ -121,6 +121,7 @@ PRI-PVEM & PRD-PT-NA & PRD-PT & PRD-NA & PT-NA & VOTOS NULOS & NO REGISTRADOS \\
     variable de objeto int cdvotos.
   */
   void contar_votos();
+  int get_cdvotos();
   //Constructores
   Casilla(){             //Por ahora vacio 2015.11.17
   } 
@@ -163,9 +164,19 @@ struct bin{
   int cantDCRep;//Cantidad de casillas reportadas al PREP.
   int *p;   //apunta a N enteros correspondientes a los 
             //numeros de casillas contenidas en el bin de que se trate.
+            //En este caso los numeros de casilla se empiezan a partir 
+            //de 1.
+  friend ostream& operator<<(ostream& out,struct bin& sb){
+    out<<"Casillas: ";
+    for(int i=0;i<sb.N;i++)
+      out<<*(sb.p+i)<<" ";
+    return out;
+  }
 }bin;
 extern struct bin *B[NUMDFILAS];//Arreglo de NUMDFILAS apuntadores a
                                 //struct bin
+extern bin *binPt;              //Arreglo de struct bin, el tamanio del 
+                                //arreglo se calcula en main()
 
 void inic_bins();
 
