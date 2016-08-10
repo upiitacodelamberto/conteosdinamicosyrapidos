@@ -1,0 +1,26 @@
+\item Revisar los archivos del ``PREP'' para determinar si es que tengo 
+``alguno'' que tenga ``todas'' las casillas de ``la eleci\'on''.
+\item Una vez que encuentre tal archivo, la cantidad de casillas 
+contenidas en \'el ser\'a el tama\~no del espacio muestral $N$.
+\item Despu\'es, la regla de Sturges
+\begin{equation}
+c = 1 + log10(n)
+\label{Sturges}
+\end{equation}
+se usar\'a para $n$ igual a la cantidad de casillas en los archivos ``PREP''
+que se ``van recibiendo'' a medida que (o seg\'un) se van recibiendo.
+Si por ejemplo, tenemos $N=600$, y la ecuaci\'on (\ref{Sturges}) nos da como 
+resultado $c=6$ para el primer archivo del ``PREP'', es decir, la f\'ormula 
+(\ref{Sturges}) con $n$ igual a la cantidad de casillas reportadas en ese primer 
+archivo del ``PREP'' da como rsultado $c\approx 6$. Entonces se construir\'an 6 
+clases de tama\~no 6 como se indica a continuaci\'on:
+Clase              Casillas\footnote{referidas por un identificador \'unico asignado por nosotros}
+  0                 0 --  99
+  1               100 -- 199
+  2               200 -- 299
+  3               300 -- 399
+  4               400 -- 499
+  5               500 -- 599
+
+
+
