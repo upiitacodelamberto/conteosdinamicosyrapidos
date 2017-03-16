@@ -1,0 +1,10 @@
+PARA descargar el repositorio
+$ git clone https://github.com/upiitacodelamberto/conteosdinamicosyrapidos.git
+
+Se edita localmente el repositorio
+
+PARA Agregar los cambios y hacer commit y despues push.
+$ git add --all
+$ git commit
+$ git push origin master
+Durante la ejecución de este último comando nos pide el nombre de usuario en github y contraseña.
