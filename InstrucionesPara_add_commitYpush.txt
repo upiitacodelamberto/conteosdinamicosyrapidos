@@ -3,7 +3,9 @@ $ git clone https://github.com/upiitacodelamberto/conteosdinamicosyrapidos.git
 
 Se edita localmente el repositorio
 
-PARA Agregar los cambios y hacer commit y despues push.
+PARA Agregar los cambios y hacer commit y despues push. Los siguientes 
+comandos deben ejecutarse desde el directorio/repositorio local
+$ cd conteosdinamicosyrapidos
 $ git add --all
 $ git commit
 $ git push origin master
