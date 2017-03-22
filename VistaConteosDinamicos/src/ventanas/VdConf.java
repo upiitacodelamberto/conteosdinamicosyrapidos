@@ -17,9 +17,9 @@ import javax.swing.JSplitPane;
 
 public class VdConf implements WindowListener,ActionListener{//2/5 WindowListener, ActionListener
 	Dialog D;
-	JButton  boton1,boton2,boton3,boton4,boton5;
+	JButton  Boton0,boton1,boton2,boton3,boton4,boton5,Boton6;
 	List LW,LE;//listW y listE se usan en la clase PanelDividido
-	JButton BGT,BGTGT,BLT,BLTLT,BCreaCoa;
+	JButton Banterior,BGT,BGTGT,BLT,BLTLT,BCreaCoa,Bsiguiente;
 //	Button BVacio;
 	private JLabel label;
 	public VdConf(Frame f,String imNames[ ]) {//public SplitPaneDemo2()	
@@ -49,6 +49,8 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
         label = new JLabel("Click on an image name in the list.",
                            JLabel.CENTER);
         JButton  boton1,boton2,boton3,boton4,boton5;
+        Banterior=new JButton("Anterior");
+        Banterior.addActionListener(this);//3/5 ActionListener
 //    	boton1=new JButton("  >  ");
         BGT=new JButton("  >  ");
     	BGT.addActionListener(this);//3/5 ActionListener
@@ -63,8 +65,10 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
     	BLTLT.addActionListener(this);
     	BCreaCoa=new JButton("Crear coalición");
     	BCreaCoa.addActionListener(this);//3/5 ActionListener
-//    	PanelConBotones PCB=new PanelConBotones(boton1,boton2,boton3,boton4,boton5);
-        PanelConBotones PCB=new PanelConBotones(BGT,BGTGT,BLT,BLTLT,BCreaCoa);
+    	Bsiguiente=new JButton("Siguiente");
+        Bsiguiente.addActionListener(this);//3/5 ActionListener
+    	
+        PanelConBotones PCB=new PanelConBotones(Banterior,BGT,BGTGT,BLT,BLTLT,BCreaCoa,Bsiguiente);
         JPanel down=PCB.getJPanel();
         //down.setBorder(null);
 
@@ -100,34 +104,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 	}
 	@Override
 	public void windowClosing(WindowEvent arg0) {//4/5 WindowListener
-		switch(JOptionPane.showConfirmDialog(null, "Confirma que ha terminado la Configuración?")){// 5/5 WindowListener
-		case 0:{ 
-			//AQUI  HAY QUE PONER COALICIONES Y PARTIDOS EN EL AREA DE TEXTO DE ContD
-			System.gc();//execute the garbage colector
-			String sta=ContD.TA.getText();
-			for(int i=0;i<ContD.COAL.size();i++){
-				sta+="\n"+"COALICION "+ContD.COAL.get(i).toString();
-			}
-			ContD.TA.setText(sta);
-			List partido=new List();
-			String a[ ]=LW.getItems();
-			for(int i=0;i<a.length;i++){
-				partido.add(a[i]);
-				ContD.PARTIDO.add(new Coalicion("PARTIDO",partido));
-				partido=new List();
-			}
-			sta=ContD.TA.getText();
-			for(int i=0;i<ContD.PARTIDO.size();i++){
-				sta+="\n"+ContD.PARTIDO.get(i).toString();
-			}
-			ContD.TA.setText(sta);
-			D.dispose();break;//Cerrar Dialogo (clic en Si)
-			
-			}
-		case 1:{break;}//DO NOTHING (clic en No)
-		case 2:{break;}//DO NOTHING (clic en Cancel)
-		default://DO NOTHING (clic en X)
-		}
+		terminaConfiguracion();
 	}//end windowClosing()
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {//4/5 WindowListener
@@ -220,16 +197,53 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 			}//end while()
 		}
 		if(e.getSource().equals(BCreaCoa)){
-			String nomDCoal;
+			String nomDCoal=null;
 			List partido=new List();
 			String a[ ]=LE.getItems();
 			for(int i=0;i<a.length;i++){
 				partido.add(a[i]);
 			}
+			//QUE DEVUELVE JOptionPane.showInputDialog("str") cuando se presiona Cancel????????
+			//RESPUESTA=Si se presiona Cancel nomDCoal sera null
 			nomDCoal=JOptionPane.showInputDialog("Nombre de la coalición: ");
-			ContD.COAL.add(new Coalicion(nomDCoal,partido));
-			LE.removeAll();
+			if(nomDCoal!=null){//no se puede usar !(nomDCoal.equals(null)), ya que seproduce excepcion
+				ContD.COAL.add(new Coalicion(nomDCoal,partido));
+				LE.removeAll();
+			}
+		}
+		if(e.getSource().equals(Bsiguiente)){
+			terminaConfiguracion();
 		}
 	}//end actionPerformed()
+	void terminaConfiguracion(){
+		switch(JOptionPane.showConfirmDialog(null, "Confirma que ha terminado la Configuración?")){// 5/5 WindowListener
+		case 0:{ 
+			//AQUI  HAY QUE PONER COALICIONES Y PARTIDOS EN EL AREA DE TEXTO DE ContD
+			System.gc();//execute the garbage colector
+			String sta=ContD.TA.getText();
+			for(int i=0;i<ContD.COAL.size();i++){
+				sta+="\n"+"COALICION "+ContD.COAL.get(i).toString();
+			}
+			ContD.TA.setText(sta);
+			List partido=new List();
+			String a[ ]=LW.getItems();
+			for(int i=0;i<a.length;i++){
+				partido.add(a[i]);
+				ContD.PARTIDO.add(new Coalicion("PARTIDO",partido));
+				partido=new List();
+			}
+			sta=ContD.TA.getText();
+			for(int i=0;i<ContD.PARTIDO.size();i++){
+				sta+="\n"+ContD.PARTIDO.get(i).toString();
+			}
+			ContD.TA.setText(sta);
+			D.dispose();break;//Cerrar Dialogo (clic en Si)
+			
+			}//end case 0:
+		case 1:{break;}//DO NOTHING (clic en No)
+		case 2:{break;}//DO NOTHING (clic en Cancel)
+		default://DO NOTHING (clic en X)
+		}		
+	}
 }//end class VdConf
  
