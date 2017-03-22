@@ -102,7 +102,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 	public void windowClosing(WindowEvent arg0) {//4/5 WindowListener
 		switch(JOptionPane.showConfirmDialog(null, "Confirma que ha terminado la Configuración?")){// 5/5 WindowListener
 		case 0:{ 
-			//AQUI  HAY QUE PONER COALICIONES Y PARTIDOS ENEL AREA DE TEXTO DE ContD
+			//AQUI  HAY QUE PONER COALICIONES Y PARTIDOS EN EL AREA DE TEXTO DE ContD
 			System.gc();//execute the garbage colector
 			String sta=ContD.TA.getText();
 			for(int i=0;i<ContD.COAL.size();i++){
@@ -122,6 +122,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 			}
 			ContD.TA.setText(sta);
 			D.dispose();break;//Cerrar Dialogo (clic en Si)
+			
 			}
 		case 1:{break;}//DO NOTHING (clic en No)
 		case 2:{break;}//DO NOTHING (clic en Cancel)
@@ -173,7 +174,9 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+            	ContD contd=new ContD();
                 createAndShowGUI();
+                contd.F.setVisible(true);
             }
         });
     }

@@ -15,11 +15,13 @@ public class ContD implements ActionListener{ //2/5 ActionListener
 	Frame F;
 	MenuBar MB;
 	static TextArea TA;
-	Menu M;
+	Menu M,MCasillas,MPREP;
  	MenuItem MIconfiguracion;
 	MenuItem MIcargarEleccion;
 	MenuItem MIeditarEleccion;
 	MenuItem MIguardarEleccion;
+	
+	MenuItem MIcargarCasillas;
 //	static List nombDCoalicion;
 	static ArrayList<Coalicion> COAL;
 	static ArrayList<Coalicion> PARTIDO;
@@ -65,6 +67,12 @@ public class ContD implements ActionListener{ //2/5 ActionListener
 		MIguardarEleccion.addActionListener(this);// 3/5 ActionListener
 		M.add(MIguardarEleccion);
 		
+		MCasillas=new Menu("CASILLAS");
+		MB.add(MCasillas);
+		
+		MPREP=new Menu("PREP");
+		MB.add(MPREP);
+		
 		F.setSize(800, 300);
 		//F.setLocationRelativeTo(null);
 		F.setResizable(false);
@@ -75,7 +83,7 @@ public class ContD implements ActionListener{ //2/5 ActionListener
 		if(e.getSource().equals(MIconfiguracion)){// 5/5 ActionListener
 			String tmp=ContD.TA.getText();
 			tmp+=JOptionPane.showInputDialog("Nombre de la elección");
-			ContD.TA.setText(tmp);
+			ContD.TA.setText("NOMBRE DE ELECCION: "+tmp);
 			AgregaPartidos ap=new AgregaPartidos(F);
 			Dialog dialogo=ap.D;
 			//dialogo.pack();
