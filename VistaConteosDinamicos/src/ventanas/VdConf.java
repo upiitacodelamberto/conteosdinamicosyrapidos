@@ -16,15 +16,16 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 
 public class VdConf implements WindowListener,ActionListener{//2/5 WindowListener, ActionListener
-	Dialog D;
+	Dialog D,Dant;
 	JButton  Boton0,boton1,boton2,boton3,boton4,boton5,Boton6;
 	List LW,LE;//listW y listE se usan en la clase PanelDividido
 	JButton Banterior,BGT,BGTGT,BLT,BLTLT,BCreaCoa,Bsiguiente;
 //	Button BVacio;
 	private JLabel label;
-	public VdConf(Frame f,String imNames[ ]) {//public SplitPaneDemo2()	
+	public VdConf(Frame f,String imNames[ ],Dialog d) {//public SplitPaneDemo2()	
+		Dant=d;
 		//Se crea un Dialogo modal
-		D=new Dialog(f,"CONFIGURACION INICIAL",true);//No existe constructor de Dialog sin argumentos
+		D=new Dialog(f,"CONFIGURACION DE COALICIONES",true);//No existe constructor de Dialog sin argumentos
 //		String imageNames[ ]={"Partido 1","Partido 2","Partido 3","Partido 4","Partido 5",
 //			"Partido 6","Partido 7","Partido 8","Partido 9","Partido 10"};
 
@@ -65,6 +66,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
     	BLTLT.addActionListener(this);
     	BCreaCoa=new JButton("Crear coalición");
     	BCreaCoa.addActionListener(this);//3/5 ActionListener
+    	BCreaCoa.setEnabled(false);
     	Bsiguiente=new JButton("Siguiente");
         Bsiguiente.addActionListener(this);//3/5 ActionListener
     	
@@ -104,7 +106,12 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 	}
 	@Override
 	public void windowClosing(WindowEvent arg0) {//4/5 WindowListener
-		terminaConfiguracion();
+		if(LE.getItemCount()>0){
+			JOptionPane.showMessageDialog(null, "NO SE HA TERMINADO DE CREAR UNA COALICION!");
+		}else{
+			terminaConfiguracion();
+			Dant.dispose();
+		}
 	}//end windowClosing()
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {//4/5 WindowListener
@@ -134,7 +141,8 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
         //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		String imageNames[ ]={"Partido 1","Partido 2","Partido 3","Partido 4","Partido 5",
 		"Partido 6","Partido 7","Partido 8","Partido 9","Partido 10"};
-    	VdConf VDC=new VdConf(new Frame(),imageNames);
+		Frame frame=new Frame();
+    	VdConf VDC=new VdConf(frame,imageNames,new Dialog(frame));
     	Dialog dialogo=VDC.D;
     	//dialogo.addWindowListener(VDC);
     	
@@ -163,13 +171,16 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 		String s;
 		int idx;
 		if(e.getSource().equals(BGT)){//5/5 ActionListener
+			Bsiguiente.setEnabled(false);
 			//if no item is selected, or if multiple items are selected, -1 is returned
 			if((idx=LW.getSelectedIndex())!=-1){
 				LE.add(LW.getSelectedItem());
 				LW.remove(idx);
 			}
+			BCreaCoa.setEnabled(true);
 		}
 		if(e.getSource().equals(BGTGT)){
+			Bsiguiente.setEnabled(false);
 			while(LW.getItemCount()>0){
 				LW.select(0);
 				//if no item is selected, or if multiple items are selected, -1 is returned
@@ -178,6 +189,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 					LW.remove(idx);
 				}
 			}//end while()
+			BCreaCoa.setEnabled(true);
 		}
 		if(e.getSource().equals(BLT)){//5/5 ActionListener
 			//if no item is selected, or if multiple items are selected, -1 is returned
@@ -195,6 +207,8 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 					LE.remove(idx);
 				}
 			}//end while()
+			BCreaCoa.setEnabled(false);
+			Bsiguiente.setEnabled(true);
 		}
 		if(e.getSource().equals(BCreaCoa)){
 			String nomDCoal=null;
@@ -210,9 +224,19 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 				ContD.COAL.add(new Coalicion(nomDCoal,partido));
 				LE.removeAll();
 			}
+			BCreaCoa.setEnabled(false);
+			Bsiguiente.setEnabled(true);
 		}
 		if(e.getSource().equals(Bsiguiente)){
+			
 			terminaConfiguracion();
+			Dant.dispose();
+		}
+		if(e.getSource().equals(Banterior)){
+			D.dispose();
+			ContD.COAL.clear();
+			ContD.PARTIDO.clear();
+			Dant.setVisible(true);
 		}
 	}//end actionPerformed()
 	void terminaConfiguracion(){
@@ -238,7 +262,6 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 			}
 			ContD.TA.setText(sta);
 			D.dispose();break;//Cerrar Dialogo (clic en Si)
-			
 			}//end case 0:
 		case 1:{break;}//DO NOTHING (clic en No)
 		case 2:{break;}//DO NOTHING (clic en Cancel)

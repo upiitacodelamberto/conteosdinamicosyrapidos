@@ -81,15 +81,25 @@ public class ContD implements ActionListener{ //2/5 ActionListener
 	
 	public void actionPerformed(ActionEvent e){// 4/5 ActionListener
 		if(e.getSource().equals(MIconfiguracion)){// 5/5 ActionListener
-			String tmp=ContD.TA.getText();
-			tmp+=JOptionPane.showInputDialog("Nombre de la elección");
-			ContD.TA.setText("NOMBRE DE ELECCION: "+tmp);
-			AgregaPartidos ap=new AgregaPartidos(F);
-			Dialog dialogo=ap.D;
-			//dialogo.pack();
-			dialogo.setSize(800, 300);
-			dialogo.setLocationRelativeTo(null);
-			dialogo.setVisible(true);
+//			String tmp=ContD.TA.getText();
+			ContD.TA.setText("");
+			ContD.COAL.clear();
+			ContD.PARTIDO.clear();
+			JOptionPane.showMessageDialog(null, "POR AHORA SOLO ESTOY BORRANDO "
+					+ "EL TEXTO EN ContD.TA, Cont.COAL.clear(), ContD.PARTIDO.clear(), PERO "
+					+ "SEGURO HABRA QUE HACER ALGO DIFERENTE!!!");
+			String nombdelec=JOptionPane.showInputDialog("Nombre de la elección");
+			if(nombdelec!=null){
+//				tmp+=nombdelec;
+//				ContD.TA.setText("NOMBRE DE ELECCION: "+tmp);
+				ContD.TA.setText("NOMBRE DE ELECCION: "+nombdelec);
+				AgregaPartidos ap=new AgregaPartidos(F);
+				Dialog dialogo=ap.D;
+				//dialogo.pack();
+				dialogo.setSize(800, 300);
+				dialogo.setLocationRelativeTo(null);
+				dialogo.setVisible(true);
+			}
 			//ap.TFPartido.requestFocus();
 		}
 	}

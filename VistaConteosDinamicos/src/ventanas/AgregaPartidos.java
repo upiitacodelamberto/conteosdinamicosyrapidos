@@ -29,7 +29,7 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 	//public AgregaPartidos(ContD cd) {
 		this.f=f;
 		// Se crea un Dialogo modal
-		D = new Dialog(f, "CONFIGURACION INICIAL", true);// No existe
+		D = new Dialog(f, "AGREGAR PARTIDOS", true);// No existe
 															// constructor de
 															// Dialog sin
 															// argumentos
@@ -109,7 +109,7 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		case 0: {
 			if(JCBhayCoaliciones.isSelected()){
 				String imNam[ ]=L.getItems();
-				Dialog dialogo=new VdConf(f,imNam).D;
+				Dialog dialogo=new VdConf(f,imNam,D).D;
 				D.dispose();
 				dialogo.pack();
 		    	dialogo.setLocationRelativeTo(null);
@@ -171,17 +171,48 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		if(e.getSource().equals(BSiguiente)){
 			if(JCBhayCoaliciones.isSelected()){
 				String imNam[ ]=L.getItems();
-				Dialog dialogo=new VdConf(f,imNam).D;
-				D.dispose();
+				Dialog dialogo=new VdConf(f,imNam,D).D;
+				//D.dispose();
 				dialogo.pack();
 		    	dialogo.setLocationRelativeTo(null);
 		    	dialogo.setVisible(true);
 			}else{
 				//ADEMAS DE CERRAR EL DIALOGO DE AgregarPartidos AQUI HAY QUE HACER ALGO MAS
-				D.dispose();
+				terminaConfiguracion();
+				//D.dispose();
 			}
 		}
 	}// end actionPerformed()
+	void terminaConfiguracion(){
+		switch(JOptionPane.showConfirmDialog(null, "Confirma que no hay coaliciones en esta elección?")){// 5/5 WindowListener
+		case 0:{ 
+			//AQUI  HAY QUE PONER COALICIONES Y PARTIDOS EN EL AREA DE TEXTO DE ContD
+//			System.gc();//execute the garbage colector
+//			String sta=ContD.TA.getText();
+//			for(int i=0;i<ContD.COAL.size();i++){
+//				sta+="\n"+"COALICION "+ContD.COAL.get(i).toString();
+//			}
+//			ContD.TA.setText(sta);
+			String sta;
+			List partido=new List();
+			String a[ ]=L.getItems();
+			for(int i=0;i<a.length;i++){
+				partido.add(a[i]);
+				ContD.PARTIDO.add(new Coalicion("PARTIDO",partido));
+				partido=new List();
+			}
+			sta=ContD.TA.getText();
+			for(int i=0;i<ContD.PARTIDO.size();i++){
+				sta+="\n"+ContD.PARTIDO.get(i).toString();
+			}
+			ContD.TA.setText(sta);
+			D.dispose();break;//Cerrar Dialogo (clic en Si)
+			}//end case 0:
+		case 1:{break;}//DO NOTHING (clic en No)
+		case 2:{break;}//DO NOTHING (clic en Cancel)
+		default://DO NOTHING (clic en X)
+		}		
+	}
 
 	private static void createAndShowGUI() {
 		//AgregaPartidos AP = new AgregaPartidos(new ContD());
