@@ -107,7 +107,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 	@Override
 	public void windowClosing(WindowEvent arg0) {//4/5 WindowListener
 		if(LE.getItemCount()>0){
-			JOptionPane.showMessageDialog(null, "NO SE HA TERMINADO DE CREAR UNA COALICION!");
+			JOptionPane.showMessageDialog(null, "NO SE HA TERMINADO DE CREAR UNA COALICION");
 		}else{
 			terminaConfiguracion();
 			Dant.dispose();
