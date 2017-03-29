@@ -1,0 +1,2 @@
+INDEX VERSION 1.129+C:\Users\Toshiba\conteosdinamicosyrapidos\.metadata\.plugins\org.eclipse.jdt.core
+1525087677.index
