@@ -15,7 +15,7 @@ public class ContD implements ActionListener{ //2/5 ActionListener
 	Frame F;
 	MenuBar MB;
 	static TextArea TA;
-	Menu M,MCasillas,MPREP;/*Menus M, MenuCasillas, MenuPREP*/
+	Menu M,MCasillas,MPREP;
  	MenuItem MIconfiguracion;
 	MenuItem MIcargarEleccion;
 	MenuItem MIeditarEleccion;
