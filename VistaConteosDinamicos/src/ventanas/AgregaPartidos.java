@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;//1/5 ActionListener, ActionEvent
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -19,7 +20,8 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 	JPanel JP; // ANTES DE USAR JPANEL, INTENTAR USAR EL GridBagLayout
 				// DIRECTO sobre este Dialog D. SE USO GridBagLayout sobre Dialog OK.
 	JLabel LPartido;
-	TextField TFPartido;
+	//TextField TFPartido;
+	JComboBox partidosJCB;
 	List L;
 	JButton BAgregar, BQuitar, BSiguiente;// Se recibiran como argumento en el
 											// constructor
@@ -29,7 +31,7 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 	//public AgregaPartidos(ContD cd) {
 		this.f=f;
 		// Se crea un Dialogo modal
-		D = new Dialog(f, "CONFIGURACION INICIAL", true);// No existe
+		D = new Dialog(f, "AGREGAR PARTIDOS", true);// No existe
 															// constructor de
 															// Dialog sin
 															// argumentos
@@ -52,14 +54,24 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		C.gridwidth = C.gridheight = 1;
 		D.add(LPartido, C);
 
-		TFPartido = new TextField(50);
+		//TFPartido = new TextField(50);
+		String partido[]={
+				"MORENA","PAN","PANAL","PES","PRD","PRI","PVEM","PT"
+		};
+		partidosJCB=new JComboBox(partido);
+		partidosJCB.setEditable(true);
+		partidosJCB.addActionListener(this);
+		
 		C.gridx = 1; // Columna 1 debe estirarse, le ponemos el weightx
 		C.gridy = 1; // Fila 1 no no necesita estirarse, no ponemos weighty
 		C.gridwidth = C.gridheight = 1;
 		C.weightx = 1.0;
 		C.fill = GridBagConstraints.HORIZONTAL;
-		D.add(TFPartido, C);
+		//D.add(TFPartido, C);
+		partidosJCB.setAlignmentX(Component.LEFT_ALIGNMENT);
+		D.add(partidosJCB, C);
 		C.weightx = 0.0;// Restauramos el valor por defecto
+		
 
 		BAgregar = new JButton("Agregar");
 		BAgregar.addActionListener(this);// 3/5 ActionListener
@@ -109,7 +121,7 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		case 0: {
 			if(JCBhayCoaliciones.isSelected()){
 				String imNam[ ]=L.getItems();
-				Dialog dialogo=new VdConf(f,imNam).D;
+				Dialog dialogo=new VdConf(f,imNam,D).D;
 				D.dispose();
 				dialogo.pack();
 		    	dialogo.setLocationRelativeTo(null);
@@ -156,32 +168,66 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		String s;
 		int idx;
 		if (e.getSource().equals(BAgregar)) {// 5/5 ActionListener
-			s = TFPartido.getText();
+			//s = TFPartido.getText();
+			s=(String)partidosJCB.getSelectedItem();
 			L.add(s);
-			TFPartido.setText("");
-			TFPartido.requestFocus();
+			//TFPartido.setText("");
+			//TFPartido.requestFocus();
+			partidosJCB.requestFocus();
 		}
 		if(e.getSource().equals(BQuitar)){
 			//if no item is selected, or if multiple items are selected, -1 is returned
 			if((idx=L.getSelectedIndex())!=-1){
 				L.remove(idx);
 			}
-			TFPartido.requestFocus();
+			//TFPartido.requestFocus();
+			partidosJCB.requestFocus();
 		}
 		if(e.getSource().equals(BSiguiente)){
 			if(JCBhayCoaliciones.isSelected()){
 				String imNam[ ]=L.getItems();
-				Dialog dialogo=new VdConf(f,imNam).D;
-				D.dispose();
+				Dialog dialogo=new VdConf(f,imNam,D).D;
+				//D.dispose();
 				dialogo.pack();
 		    	dialogo.setLocationRelativeTo(null);
 		    	dialogo.setVisible(true);
 			}else{
 				//ADEMAS DE CERRAR EL DIALOGO DE AgregarPartidos AQUI HAY QUE HACER ALGO MAS
-				D.dispose();
+				terminaConfiguracion();
+				//D.dispose();
 			}
 		}
 	}// end actionPerformed()
+	void terminaConfiguracion(){
+		switch(JOptionPane.showConfirmDialog(null, "Confirma que no hay coaliciones en esta elección?")){// 5/5 WindowListener
+		case 0:{ 
+			//AQUI  HAY QUE PONER COALICIONES Y PARTIDOS EN EL AREA DE TEXTO DE ContD
+//			System.gc();//execute the garbage colector
+//			String sta=ContD.TA.getText();
+//			for(int i=0;i<ContD.COAL.size();i++){
+//				sta+="\n"+"COALICION "+ContD.COAL.get(i).toString();
+//			}
+//			ContD.TA.setText(sta);
+			String sta;
+			List partido=new List();
+			String a[ ]=L.getItems();
+			for(int i=0;i<a.length;i++){
+				partido.add(a[i]);
+				ContD.PARTIDO.add(new Coalicion("PARTIDO",partido));
+				partido=new List();
+			}
+			sta=ContD.TA.getText();
+			for(int i=0;i<ContD.PARTIDO.size();i++){
+				sta+="\n"+ContD.PARTIDO.get(i).toString();
+			}
+			ContD.TA.setText(sta);
+			D.dispose();break;//Cerrar Dialogo (clic en Si)
+			}//end case 0:
+		case 1:{break;}//DO NOTHING (clic en No)
+		case 2:{break;}//DO NOTHING (clic en Cancel)
+		default://DO NOTHING (clic en X)
+		}		
+	}
 
 	private static void createAndShowGUI() {
 		//AgregaPartidos AP = new AgregaPartidos(new ContD());
