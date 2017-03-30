@@ -67,11 +67,8 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		C.gridwidth = C.gridheight = 1;
 		C.weightx = 1.0;
 		C.fill = GridBagConstraints.HORIZONTAL;
-		//D.add(TFPartido, C);
-		partidosJCB.setAlignmentX(Component.LEFT_ALIGNMENT);
-		D.add(partidosJCB, C);
+		D.add(TFPartido, C);
 		C.weightx = 0.0;// Restauramos el valor por defecto
-		
 
 		BAgregar = new JButton("Agregar");
 		BAgregar.addActionListener(this);// 3/5 ActionListener
@@ -168,20 +165,17 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		String s;
 		int idx;
 		if (e.getSource().equals(BAgregar)) {// 5/5 ActionListener
-			//s = TFPartido.getText();
-			s=(String)partidosJCB.getSelectedItem();
+			s = TFPartido.getText();
 			L.add(s);
-			//TFPartido.setText("");
-			//TFPartido.requestFocus();
-			partidosJCB.requestFocus();
+			TFPartido.setText("");
+			TFPartido.requestFocus();
 		}
 		if(e.getSource().equals(BQuitar)){
 			//if no item is selected, or if multiple items are selected, -1 is returned
 			if((idx=L.getSelectedIndex())!=-1){
 				L.remove(idx);
 			}
-			//TFPartido.requestFocus();
-			partidosJCB.requestFocus();
+			TFPartido.requestFocus();
 		}
 		if(e.getSource().equals(BSiguiente)){
 			if(JCBhayCoaliciones.isSelected()){

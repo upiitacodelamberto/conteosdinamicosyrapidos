@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import components.FileChooserDemo;
@@ -53,9 +52,7 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 		// F.setFont(new Font("Arial",Font.PLAIN,20));
 		F.setLayout(new BorderLayout());
 		TA = new JTextArea();
-		JScrollPane TAScrollPane=new JScrollPane(TA);
-		//F.add(TA, BorderLayout.CENTER);
-		F.add(TAScrollPane, BorderLayout.CENTER);
+		F.add(TA, BorderLayout.CENTER);
 		F.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent we) {
 				switch (JOptionPane.showConfirmDialog(null, "Confirma que desea salir de la Aplicación?")) {

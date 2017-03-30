@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.*;//1/5 ActionListener, ActionEvent
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -20,8 +19,7 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 	JPanel JP; // ANTES DE USAR JPANEL, INTENTAR USAR EL GridBagLayout
 				// DIRECTO sobre este Dialog D. SE USO GridBagLayout sobre Dialog OK.
 	JLabel LPartido;
-	//TextField TFPartido;
-	JComboBox partidosJCB;
+	TextField TFPartido;
 	List L;
 	JButton BAgregar, BQuitar, BSiguiente;// Se recibiran como argumento en el
 											// constructor
@@ -54,24 +52,14 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		C.gridwidth = C.gridheight = 1;
 		D.add(LPartido, C);
 
-		//TFPartido = new TextField(50);
-		String partido[]={
-				"MORENA","PAN","PANAL","PES","PRD","PRI","PVEM","PT"
-		};
-		partidosJCB=new JComboBox(partido);
-		partidosJCB.setEditable(true);
-		partidosJCB.addActionListener(this);
-		
+		TFPartido = new TextField(50);
 		C.gridx = 1; // Columna 1 debe estirarse, le ponemos el weightx
 		C.gridy = 1; // Fila 1 no no necesita estirarse, no ponemos weighty
 		C.gridwidth = C.gridheight = 1;
 		C.weightx = 1.0;
 		C.fill = GridBagConstraints.HORIZONTAL;
-		//D.add(TFPartido, C);
-		partidosJCB.setAlignmentX(Component.LEFT_ALIGNMENT);
-		D.add(partidosJCB, C);
+		D.add(TFPartido, C);
 		C.weightx = 0.0;// Restauramos el valor por defecto
-		
 
 		BAgregar = new JButton("Agregar");
 		BAgregar.addActionListener(this);// 3/5 ActionListener
@@ -168,20 +156,17 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		String s;
 		int idx;
 		if (e.getSource().equals(BAgregar)) {// 5/5 ActionListener
-			//s = TFPartido.getText();
-			s=(String)partidosJCB.getSelectedItem();
+			s = TFPartido.getText();
 			L.add(s);
-			//TFPartido.setText("");
-			//TFPartido.requestFocus();
-			partidosJCB.requestFocus();
+			TFPartido.setText("");
+			TFPartido.requestFocus();
 		}
 		if(e.getSource().equals(BQuitar)){
 			//if no item is selected, or if multiple items are selected, -1 is returned
 			if((idx=L.getSelectedIndex())!=-1){
 				L.remove(idx);
 			}
-			//TFPartido.requestFocus();
-			partidosJCB.requestFocus();
+			TFPartido.requestFocus();
 		}
 		if(e.getSource().equals(BSiguiente)){
 			if(JCBhayCoaliciones.isSelected()){

@@ -240,7 +240,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 		}
 	}//end actionPerformed()
 	void terminaConfiguracion(){
-		switch(JOptionPane.showConfirmDialog(null, "Confirma que ha terminado la Configuración de Coaliciones?")){// 5/5 WindowListener
+		switch(JOptionPane.showConfirmDialog(null, "Confirma que ha terminado la Configuración?")){// 5/5 WindowListener
 		case 0:{ 
 			//AQUI  HAY QUE PONER COALICIONES Y PARTIDOS EN EL AREA DE TEXTO DE ContD
 			System.gc();//execute the garbage colector

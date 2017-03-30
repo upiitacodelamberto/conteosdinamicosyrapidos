@@ -180,8 +180,7 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 			if((idx=L.getSelectedIndex())!=-1){
 				L.remove(idx);
 			}
-			//TFPartido.requestFocus();
-			partidosJCB.requestFocus();
+			TFPartido.requestFocus();
 		}
 		if(e.getSource().equals(BSiguiente)){
 			if(JCBhayCoaliciones.isSelected()){
