@@ -11,8 +11,12 @@ $ git commit
 $ git push origin master
 Durante la ejecución de este último comando nos pide el nombre de usuario en github y contraseña.
 (2017.04.01.22.58)
+Primero se crea la en el repositorio remoto, por ejemplo branch2
 Descargar repositorio 
 $ git clone https://github.com/upiitacodelamberto/conteosdinamicosyrapidos.git
-Revisar las branches
+Obtener las branches
 $ cd conteosdinamicosyrapidos
-$ git branch
+Obtener la branch2
+$ git checkout branch2
+Despues de esto ya nos encontraremos en la branch2, lo cual podemos comprobar:
+$git branch
