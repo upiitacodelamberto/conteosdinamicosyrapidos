@@ -10,3 +10,9 @@ $ git add --all
 $ git commit
 $ git push origin master
 Durante la ejecución de este último comando nos pide el nombre de usuario en github y contraseña.
+(2017.04.01.22.58)
+Descargar repositorio 
+$ git clone https://github.com/upiitacodelamberto/conteosdinamicosyrapidos.git
+Revisar las branches
+$ cd conteosdinamicosyrapidos
+$ git branch
