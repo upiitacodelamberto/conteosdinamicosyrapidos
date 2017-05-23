@@ -17,7 +17,7 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 																		//// ActionListener
 	Frame f;
 	Dialog D;
-	JPanel JP; // ANTES DE USAR JPANEL, INTENTAR USAR EL GridBagLayout
+//	JPanel JP; // ANTES DE USAR JPANEL, INTENTAR USAR EL GridBagLayout
 				// DIRECTO sobre este Dialog D. SE USO GridBagLayout sobre Dialog OK.
 	JLabel LPartido;
 	//TextField TFPartido;
@@ -116,7 +116,8 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 
 	@Override
 	public void windowClosing(WindowEvent arg0) {// 4/5 WindowListener
-		switch (JOptionPane.showConfirmDialog(null, "Confirma que ha terminado de agregar partidos?")) {// 5/5
+		switch (JOptionPane.showConfirmDialog(null, 
+				"Confirma que ha terminado de agregar partidos?")) {// 5/5
 																										// WindowListener
 		case 0: {
 			if(JCBhayCoaliciones.isSelected()){

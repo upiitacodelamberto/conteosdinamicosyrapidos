@@ -15,14 +15,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import components.FileChooserDemo;
 
 public class ContD implements ActionListener { // 2/5 ActionListener
 	Frame F;
@@ -38,14 +40,22 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 	// static List nombDCoalicion;
 	static ArrayList<Coalicion> COAL;
 	static ArrayList<Coalicion> PARTIDO;
-
+	PanelPartidOCoalicion ppc[];
+	static ArrayList<String> PartCand;
+//	ArrayList<String> PartCand;
+	static String NombDEleccion;
+	
 	static private final String newline = "\n";
 	JFileChooser JFC;
+	static String LogoDPartOCoal[]={
+			"images/middle.gif","images/middle.gif"
+	};
 
 	public ContD() {
 		// nombDCoalicion=new List();
 		COAL = new ArrayList<Coalicion>();
 		PARTIDO = new ArrayList<Coalicion>();
+		PartCand=new ArrayList<String>();
 		F = new Frame("CONTEOS DINAMICOS");
 		MB = new MenuBar();
 		// MB.setFont(new Font("Arial",Font.PLAIN,20));
@@ -109,6 +119,12 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 	}// end ContD()
 
 	public void actionPerformed(ActionEvent e) {// 4/5 ActionListener
+		String LogoPartCand[]; //Array de tamanio 3:
+		                       //Indice a Logotipo de Part/Coal,
+		                       //Nombre de Part/Coal, Nombre de Candidato(a)
+		ImageIcon ImagIcon;
+		JButton Boton;
+		StringTokenizer ST;
 		if (e.getSource().equals(MIconfiguracion)) {// 5/5 ActionListener
 			// String tmp=ContD.TA.getText();
 			ContD.TA.setText("");
@@ -136,6 +152,8 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 		if (e.getSource() == MIcargarEleccion) {// 5/5 ActionListener
 			// int returnVal = JFC.showOpenDialog(FileChooserDemo.this);
 			int returnVal = JFC.showOpenDialog(F);
+			LogoPartCand=new String[3];
+			PartCand.clear();
 
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File file = JFC.getSelectedFile();
@@ -146,9 +164,41 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 					BufferedReader BR = new BufferedReader(FR);
 					String linea;
 					TA.setText("");
+					NombDEleccion=BR.readLine();//La primera linea del archivo 
+					                            //en el que se guarda una eleccion
+					                            //debe contener el nombre de la eleccion.
+					TA.append(NombDEleccion + "\n");
 					while ((linea = BR.readLine()) != null) {
 						TA.append(linea + "\n");
-					} // end while()
+						PartCand.add(linea);//En este ArrayList estoy guardando las lineas (a 
+						//partir de la segunda) del archivo que contiene la eleccion. El 
+						//formato en que deberan estar ``escritas'' estas lineas es:
+						//<LogoDPartidoIndex>&<Nombre de Partido/Coalicion>&Nombre de Candidato
+					}   // end while()
+System.out.println("PartCand.size()="+PartCand.size());
+					ppc=new PanelPartidOCoalicion[PartCand.size()];
+					for(int i=0;i<ppc.length;i++){
+						ST=new StringTokenizer(PartCand.get(i),"&");
+						LogoPartCand[0]=ST.nextToken();
+						LogoPartCand[1]=ST.nextToken();
+						LogoPartCand[2]=ST.nextToken();
+						ImagIcon=PanelPartidOCoalicion.createImageIcon(LogoDPartOCoal[0]);
+						           //POR AHORA AQUI 
+						           //DEJO FIJO EL INDEX 0, DESPUES SE 
+						           //LEERA DE LA PRIMERA 
+						           //ENTRADA DEL ARREGLO DE String LogoPartCand
+						Boton=new JButton(ImagIcon);
+						ppc[i]=new PanelPartidOCoalicion(Boton,LogoPartCand[1],
+								LogoPartCand[2],PanelPartidOCoalicion.LONGI);
+					}
+					MostrandoElec MosElec=new MostrandoElec(F,NombDEleccion,ppc);
+					//POR FIN, AHORA HAY QUE CREAR UN ARCHIVO DE ELECCION CON 
+					//EL FORMATO IMPLICITAMENTE AQUI ARRIBA DEFINIDO PARA PROBAR
+					//(2017.05.16.17.11)
+					Dialog dialogo=MosElec.getDialog();
+					dialogo.pack();
+					dialogo.setLocationRelativeTo(null);
+					dialogo.setVisible(true);
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -213,9 +263,12 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 	// 16 delegaciones
 	// 1 jefatura de gobierno de la CDMX
 	// En Edo. Mex. candidatos al gobierno del estado:
-	// PRI: Alfredo Del Mazo Maza
-	// MORENA: Delfina Gomez
+	// PRI-PVEM-PANAL-PES: Alfredo Del Mazo Maza
+	// MORENA: Delfina Gomez Alvarez
 	// PAN: Josefina Vazquez Mota
+	// PT: Oscar Gonzalez
+	// PRD: Juan Zepeda
+	// Candidata Independiente: Teresa Castel
 	// En cada eleccion se sabra con semanas de anticipacion
 	// Cuantos partidos politicos, cuales partidos politicos, cuantas
 	// coaliciones y los partidos integrantes de las
