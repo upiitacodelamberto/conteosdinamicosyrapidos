@@ -20,7 +20,7 @@ public class PanelPartidOCoalicion {
 	JPanel JP;
 	JLabel DL;
 	static int gr=0;
-	public static int LONGI=10;//Se usa aqui en createAndShowGUI() y en la clase 
+	public static int LONGI=12;//Se usa aqui en createAndShowGUI() y en la clase 
 								//MostrandoElec en createAndShowGUI()
 	
 	public PanelPartidOCoalicion(JButton Banterior,

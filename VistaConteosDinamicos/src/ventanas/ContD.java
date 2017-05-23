@@ -48,7 +48,10 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 	static private final String newline = "\n";
 	JFileChooser JFC;
 	static String LogoDPartOCoal[]={
-			"images/middle.gif","images/middle.gif"
+			"images/coalicion_1_1.gif","images/teresa_1_1.gif",
+//			"images/middle.gif","images/teresa.gif",
+			"images/morena_1_1.gif","images/pan_1_1.gif",
+			"images/prd_1_1.gif","images/pt_1_1.gif"
 	};
 
 	public ContD() {
@@ -175,19 +178,17 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 						//formato en que deberan estar ``escritas'' estas lineas es:
 						//<LogoDPartidoIndex>&<Nombre de Partido/Coalicion>&Nombre de Candidato
 					}   // end while()
-System.out.println("PartCand.size()="+PartCand.size());
+//System.out.println("PartCand.size()="+PartCand.size());
 					ppc=new PanelPartidOCoalicion[PartCand.size()];
 					for(int i=0;i<ppc.length;i++){
 						ST=new StringTokenizer(PartCand.get(i),"&");
 						LogoPartCand[0]=ST.nextToken();
 						LogoPartCand[1]=ST.nextToken();
 						LogoPartCand[2]=ST.nextToken();
-						ImagIcon=PanelPartidOCoalicion.createImageIcon(LogoDPartOCoal[0]);
-						           //POR AHORA AQUI 
-						           //DEJO FIJO EL INDEX 0, DESPUES SE 
-						           //LEERA DE LA PRIMERA 
-						           //ENTRADA DEL ARREGLO DE String LogoPartCand
+						ImagIcon=PanelPartidOCoalicion.createImageIcon(LogoDPartOCoal[i]);
+//System.out.println(ImagIcon.getIconWidth()+" x "+ImagIcon.getIconHeight());
 						Boton=new JButton(ImagIcon);
+//						Boton.setSize(100, 100);
 						ppc[i]=new PanelPartidOCoalicion(Boton,LogoPartCand[1],
 								LogoPartCand[2],PanelPartidOCoalicion.LONGI);
 					}

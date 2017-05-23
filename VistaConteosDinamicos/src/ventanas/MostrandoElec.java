@@ -18,7 +18,7 @@ import sun.awt.WindowClosingListener;
 import sun.awt.WindowClosingSupport;
 import sun.awt.AWTAccessor.WindowAccessor;
 import ventanas.AgregaPartidos;
-import ventanas.PanelPartidOCoalicion;
+//import ventanas.PanelPartidOCoalicion;
 
 //public class MostrandoElec implements WindowListener, ActionListener {//// 2/5
 public class MostrandoElec implements WindowListener, ActionListener {//// 2/5
