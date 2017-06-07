@@ -20,6 +20,7 @@ import java.util.StringTokenizer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -37,6 +38,8 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 	MenuItem MIguardarEleccion;
 
 	MenuItem MIcargarCasillas;
+	
+	MenuItem MIcargarPREP;
 	// static List nombDCoalicion;
 	static ArrayList<Coalicion> COAL;
 	static ArrayList<Coalicion> PARTIDO;
@@ -114,6 +117,10 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 
 		MPREP = new Menu("PREP");
 		MB.add(MPREP);
+		MIcargarPREP=new MenuItem("CARGAR PREP");
+		MIcargarPREP.addActionListener(this);//3/5 ActionListener
+		MPREP.addSeparator();
+		MPREP.add(MIcargarPREP);
 
 		F.setSize(800, 300);
 		// F.setLocationRelativeTo(null);
@@ -235,7 +242,34 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 			}
 			TA.setCaretPosition(TA.getDocument().getLength());
 		}
-	}
+		if(e.getSource() == MIcargarPREP){
+//			JFrame ventana = new JFrame("Un Archivo PREP");
+//			ventana.addWindowListener(new WindowAdapter() {
+//				public void windowClosing(WindowEvent evt) {
+//					System.exit(0);
+//				}
+//			});
+			int retVal = JFC.showOpenDialog(F);
+			if (retVal == JFileChooser.APPROVE_OPTION) {
+				File file = JFC.getSelectedFile();
+//				System.out.println(file.toString());
+				MostrandoPREP mp=new MostrandoPREP(file,F);
+				//SOMETHING --SEE main method in MostrandoPREP class
+//				ventana.getContentPane().add(mp.JP,BorderLayout.CENTER );
+//			    ventana.setSize( 900,600 );
+//			    ventana.setLocationRelativeTo(null);
+//			    
+//			    ventana.setVisible( true );
+				Dialog dialogo=mp.D;
+				dialogo.setSize(900,600);
+				dialogo.setLocationRelativeTo(null);
+				dialogo.setVisible(true);
+			}
+//			JOptionPane.showMessageDialog(null, "AQUI HAY QUE PROGRAMAR LO DE "
+//					+"CARGAR Y MOSTRAR UN ARCHIVO DEL PREP EN UNA TABLA!!!");
+//			HECHO 20170607
+		}
+	}//end void actionPerformed()
 
 	/**
 	 * Create the GUI and show it. For thread safety, this method should be
