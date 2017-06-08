@@ -42,7 +42,7 @@ public class MostrandoElec implements WindowListener, ActionListener {//// 2/5
 		D=new Dialog(f,nombDEleccion, true);
 		D.setLayout(new FlowLayout());
 //		D.setLayout(new GridLayout(1,2));
-System.out.println("Se recibieron "+ppc.length+" PanelPartidOCoalicion");
+//System.out.println("Se recibieron "+ppc.length+" PanelPartidOCoalicion");
 		for(int i=0;i<ppc.length;i++){
 			D.add(ppc[i].getJPanel());
 		}

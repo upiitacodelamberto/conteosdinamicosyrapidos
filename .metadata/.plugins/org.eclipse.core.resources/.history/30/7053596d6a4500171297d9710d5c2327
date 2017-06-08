@@ -1,7 +1,0 @@
-package ventanas;
-
-public class MostrandoPREP {
-
-	public static void main(String[] args) {
-	}
-}//end class MostrandoPREP

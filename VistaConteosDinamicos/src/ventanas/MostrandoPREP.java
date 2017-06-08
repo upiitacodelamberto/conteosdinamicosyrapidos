@@ -11,7 +11,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class MostrandoPREP  implements WindowListener {//2/5
+public class MostrandoPREP implements WindowListener {//2/5
 	private JTable tabla;
 	private JScrollPane panelScroll;
 	private String titColumna[];
@@ -31,14 +31,13 @@ public class MostrandoPREP  implements WindowListener {//2/5
 		JP.setLayout(new BorderLayout());
 		D=new Dialog(f,"Un archivo PREP",true);
 		try {
-//			FR=new FileReader(file);
-//			BR = new BufferedReader(FR);
+//	FR=new FileReader(file);//Esto se esta haciendo en el meth CreaColumnas()
+//	BR = new BufferedReader(FR);//y los meths ContarLineasFile(), CargaDatos()   
 			CreaColumnas(file);
 			ContarLineasFile(file);
 			BR=new BufferedReader(FR);
 			CargaDatos(file);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		tabla = new JTable(datoColumna, titColumna);

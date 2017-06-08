@@ -28,7 +28,7 @@ import javax.swing.JTextArea;
 
 
 public class ContD implements ActionListener { // 2/5 ActionListener
-	Frame F;
+	static Frame F;
 	MenuBar MB;
 	static JTextArea TA;
 	Menu M, MCasillas, MPREP;/* Menus M, MenuCasillas, MenuPREP */
@@ -100,11 +100,11 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 		MIconfiguracion.addActionListener(this);// 3/5 ActionListener
 		M.add(MIconfiguracion);
 		M.addSeparator();
-		MIcargarEleccion = new MenuItem("CARGAR ELECCION");
+		MIcargarEleccion = new MenuItem("CARGAR Y MOSTAR LOGOS DE ELECCION");
 		MIcargarEleccion.addActionListener(this);// 3/5 ActionListener
 		M.add(MIcargarEleccion);
 		M.addSeparator();
-		MIeditarEleccion = new MenuItem("EDITAR ELECCION");
+		MIeditarEleccion = new MenuItem("MOSTRAR ESTATUS DE ELECCION");
 		MIeditarEleccion.addActionListener(this);// 3/5 ActionListener
 		M.add(MIeditarEleccion);
 		M.addSeparator();
@@ -242,7 +242,7 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 			}
 			TA.setCaretPosition(TA.getDocument().getLength());
 		}
-		if(e.getSource() == MIcargarPREP){
+		if(e.getSource() == MIcargarPREP){// 5/5 ActionListener
 //			JFrame ventana = new JFrame("Un Archivo PREP");
 //			ventana.addWindowListener(new WindowAdapter() {
 //				public void windowClosing(WindowEvent evt) {
@@ -269,7 +269,32 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 //					+"CARGAR Y MOSTRAR UN ARCHIVO DEL PREP EN UNA TABLA!!!");
 //			HECHO 20170607
 		}
+		if(e.getSource() == MIeditarEleccion){// 5/5 ActionListener
+			int retV = JFC.showOpenDialog(F);
+			if (retV == JFileChooser.APPROVE_OPTION) {
+				File file = JFC.getSelectedFile();
+//				MostrandoSTATUSDELEC msde=new MostrandoSTATUSDELEC(file,F);
+//				Dialog dialogo=msde.D;
+//				dialogo.setSize(400,200);
+//				dialogo.setLocationRelativeTo(null);
+//				dialogo.setVisible(true);
+				mostrarDialogoEstatusDEleccion(file,F);
+			}
+
+		}
 	}//end void actionPerformed()
+	static private void mostrarDialogoEstatusDEleccion(File file,Frame F){
+		JFileChooser JFC1=new JFileChooser();
+		int retV = JFC1.showOpenDialog(F);
+//		if (retV == JFileChooser.APPROVE_OPTION) {
+//			File file = JFC.getSelectedFile();
+			MostrandoSTATUSDELEC msde=new MostrandoSTATUSDELEC(file,F);
+			Dialog dialogo=msde.D;
+			dialogo.setSize(400,200);
+			dialogo.setLocationRelativeTo(null);
+			dialogo.setVisible(true);
+//		}
+	}
 
 	/**
 	 * Create the GUI and show it. For thread safety, this method should be
@@ -281,6 +306,13 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 		// contd.F.pack();
 		contd.F.setLocationRelativeTo(null);
 		contd.F.setVisible(true);
+		
+//		mostrarDialogoEstatusDEleccion();
+		MostrandoSTATUSDELEC msde=new MostrandoSTATUSDELEC(F);
+		Dialog dialogo=msde.D;
+		dialogo.setSize(400,200);
+		dialogo.setLocationRelativeTo(null);
+		dialogo.setVisible(true);
 	}// end createAndShowGUI()
 
 	public static void main(String[] args) {
@@ -301,9 +333,9 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 	// PRI-PVEM-PANAL-PES: Alfredo Del Mazo Maza
 	// MORENA: Delfina Gomez Alvarez
 	// PAN: Josefina Vazquez Mota
-	// PT: Oscar Gonzalez
-	// PRD: Juan Zepeda
-	// Candidata Independiente: Teresa Castel
+	// PT: Oscar Gonzalez Yaniez
+	// PRD: Juan Zepeda Hernandez
+	// Candidata Independiente: Teresa Castel De Oro
 	// En cada eleccion se sabra con semanas de anticipacion
 	// Cuantos partidos politicos, cuales partidos politicos, cuantas
 	// coaliciones y los partidos integrantes de las
