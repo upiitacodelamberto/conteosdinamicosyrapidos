@@ -1,0 +1,177 @@
+﻿
+				Programa de Resultados Electorales Preliminares,
+				Estado de México 2017
+				_______________________________________________
+
+El PREP da inicio a las 18:00 horas del día 4 de Junio de 2017 y se podrá acceder a la información a través del sitio web en http://www.ieem.org.mx/
+
+
+A. El Programa de Resultados Electorales Preliminares permite la descarga de la base de datos mediante archivos zip que contienen archivos de texto plano csv, además de un catálogo de candidatos. Los archivos de descarga contienen información específica por acta y la información se puede obtener por partido o por candidato.
+
+B. Los archivos contienen información de todas las actas de la base de datos y se nombran como "MEX_GOB_2017.csv" o como "MEX_GOB_P_2017.csv", en el caso del primer archivo la información se presenta por candidato y en el segundo caso la información se presenta por Partido.
+
+C. La información en el archivo csv se divide en dos secciones:
+
+	a. Primera sección, encabezado:
+
+		i. Se presenta la hora y la fecha de la generación de reportes, éstas corresponden a las que aparece en los reportes HTML, ejemplo:
+
+	        04/6/2017 18:00 (UTC-5)
+
+		ii. Se presenta el estatus de las actas que se están incluyendo y el cálculo de sus respectivos porcentajes. Si al abrir el archivo la información se muestra como texto plano, los datos se encontrarán separados por comas, ejemplo:
+
+       La descripción de cada campo se muestra a continuación:
+
+ACTAS_ESPERADAS, ACTAS_FUERA_DE_CATALOGO, ACTAS_REGISTRADAS, ACTAS_CAPTURADAS, PORCENTAJE_ACTAS_CAPTURADAS, ACTAS_CONTABILIZADAS, PORCENTAJE_ACTAS_CONTABILIZADAS, PORCENTAJE_ACTAS_CON_INCONSISTENCIAS, ACTAS_NO_CONTABILIZADAS, PORCENTAJE_PARTICIPACION_CIUDADANA
+
+
+			1. ACTAS_ESPERADAS - Número de Actas PREP de todas las casillas aprobadas por el Consejo distrital federal que corresponda. Es un número constante por cargo de elección. Este conjunto de Actas PREP conforma el Catálogo de Actas Esperadas.
+
+			2. ACTAS_FUERA_DE_CATÁLOGO - Número de Actas PREP registradas en el sistema informático que corresponden a casillas no aprobadas, es decir, algún dato relacionado con la identificación de las actas de escrutinios y cómputo: entidad federativa, distrito electoral, sección, tipo y número de casilla (no aplica para casillas básicas); y, en su caso, municipio, no permite asociar el acta a una casilla aprobada. Estas Actas no se consideran en el cálculo del porcentaje de Actas con inconsistencias debido a que por definición, éstas no pertenecen al conjunto de Actas esperadas.
+
+			3. ACTAS_REGISTRADAS -  Número de Actas PREP que han sido acopiadas y asentadas en el sistema informático, al momento del corte de información, sean contabilizadas o no.
+
+			4. ACTAS_CAPTURADAS - Número de Actas PREP registradas en el sistema informático, al momento del corte de información, que se encuentran dentro del catálogo de actas esperadas, sean contabilizadas o no.
+
+			5. PORCENTAJE_ACTAS_CAPTURADAS - Porcentaje de Actas PREP capturadas al momento del corte de información, calculado respecto del total de actas esperadas. Los decimales son expresados a cuatro posiciones; el decimal de la cuarta posición es truncado y no redondeado.
+
+			6. ACTAS_CONTABILIZADAS - Número de Actas correspondientes a las casillas aprobadas, de las cuales se tiene su correspondiente Acta PREP, la suma total de votos no excede la lista nominal aprobada para la casilla de esa acta de escrutinio y cómputo, más el número de representantes de partidos o candidatos y no caen en cualquiera de los supuestos siguientes: todos los campos en los cuales asientan votos para un partido, para una coalición, para un candidato independiente, para candidatos no registrados y votos nulos son ilegibles, o todos ellos están vacíos. 
+
+			7. PORCENTAJE_ACTAS_CONTABILIZADAS - Porcentaje de Actas PREP, calculado respecto del total de actas esperadas, que al momento del corte de información, han sido contabilizadas. Los decimales son expresados a cuatro posiciones y el decimal de la cuarta posición es truncado y no redondeado. Los decimales son expresados a cuatro posiciones; el decimal de la cuarta posición es truncado y no redondeado.
+
+			8. PORCENTAJE_ACTAS_CON_INCONSISTENCIAS - Porcentaje de Actas PREP con inconsistencias, respecto al total de actas esperadas. No se toman en cuenta las actas que presenten las inconsistencias que se refieren a la divergencia entre la cantidad asentada en letra y número, descritas en el Anexo 13 del Reglamento de Elecciones, debido a que el criterio definido permite registrar una cantidad de votos en el sistema informático. Tampoco se toman en cuenta las actas que presenten la inconsistencia que se refiere a las actas fuera de catálogo debido a que el universo con base en el cual se calcula este porcentaje es el de las actas esperadas y, por definición, las actas fuera de catálogo no pertenecen al conjunto de actas esperadas. Los decimales son expresados a cuatro posiciones y el decimal de la cuarta posición es truncado y no redondeado. Los decimales son expresados a cuatro posiciones; el decimal de la cuarta posición es truncado y no redondeado.
+	
+			9. ACTAS_NO_CONTABILIZADAS - Total de Actas en las que los datos de identificación presentan alguna omisión, ilegibilidad o error en alguno de los campos correspondientes a la identificación del Acta PREP, en las que el cálculo de la suma de todos los votos asentados en el Acta PREP, excede el número de ciudadanos en la lista nominal, más los representantes de los partidos, coaliciones y candidatos independientes así como sus suplentes, así como aquellas que no contiene dato legible alguno o no contiene dato alguno.
+
+			10. PORCENTAJE_PARTICIPACION_CIUDADANA - Porcentaje de ciudadanos que votaron con base en la lista nominal agregada de las Actas PREP contabilizadas. Los decimales son expresados a cuatro posiciones; el decimal de la cuarta posición es truncado y no redondeado.
+
+
+	b. Segunda sección, datos del acta de escrutinio y cómputo. Corresponde a los datos extraídos de la base de datos, cada línea corresponde a un acta. Los datos son los siguientes:
+
+	ID_ESTADO, ESTADO, ID_DISTRITO_LOCAL, DISTRITO_LOCAL, SECCION, ID_CASILLA, TIPO_CASILLA, EXT_CONTIGUA, UBICACION_CASILLA, TIPO_ACTA, NUM_BOLETAS_SOBRANTES, TOTAL_CIUDADANOS_VOTARON, NUM_BOLETAS_EXTRAIDAS, PAN, PRI, PRD, PT, PVEM, NA, MORENA, ES, C_PRI_PVEM_NA_ES, C_PRI_PVEM_NA, C_PRI_PVEM_ES, C_PRI_NA_ES, C_PRI_PVEM, C_PRI_NA, C_PRI_ES, C_PVEM_NA_ES, C_PVEM_NA, C_PVEM_ES, C_NA_ES, CAND_IND, NO_REGISTRADOS, NULOS, TOTAL_VOTOS, LISTA_NOMINAL, OBSERVACIONES, CONTABILIZADA, MECANISMO_DE_TRASLADO, SHA, FECHA__HORA_ACOPIO, FECHA_HORA_CAPTURA, FECHA_HORA_REGISTRO
+
+
+    La descripción de cada campo se muestra a continuación:
+
+		1. ID_ESTADO - Número de la Entidad Federativa.
+	
+		2. ESTADO - Nombre de la Entidad Federativa.
+	
+		3. ID_DISTRITO_LOCAL - Número del distrito electoral de la entidad acorde al tipo de elección.
+	
+		4. DISTRITO_LOCAL - Nombre del distrito electoral o municipio de la entidad acorde al tipo de elección.
+
+		5. SECCION - Hace referencia a la sección de la cuál proviene el acta.
+
+		6. ID_CASILLA - Número identificador de la casilla. 
+
+		7. TIPO_CASILLA - Tipo de casilla; 
+			B.- Básica, 
+			C.- Contigua, 
+			E.- Extraordinaria, 
+			S.- Especial
+
+		8. EXT_CONTIGUA - Número de casilla contigua a una extraordinaria.
+
+		9. UBICACION_CASILLA - Identifica el tipo de casilla y toma los siguientes valores:
+			1. Urbana
+			2. No Urbana
+
+		10. TIPO_ACTA - Especifica el tipo de Acta el cual coincide con el número de acta impreso
+
+		11. NUM_BOLETAS_SOBRANTES - Total de boletas sobrantes 
+
+		12. TOTAL_CIUDADANOS_VOTARON - Total de ciudadanos que votaron
+
+		13. NUM_BOLETAS_EXTRAIDAS - Total de boletas sacadas de la urna
+
+		14. PAN - Número de votos para el Partido Acción Nacional
+
+		15. PRI - Número de votos para el Partido Revolucionario Institucional
+
+		16. PRD - Número de votos para el Partido de la Revolución Democrática
+
+		17. PT - Número de votos para el Partido del Trabajo
+
+		18. PVEM - Número de votos para el Partido Verde Ecologista de México
+
+		19. NA - Número de votos para Partido Nueva Alianza
+
+		20. MORENA - Número de votos para Partido Morena
+
+		21. ES - Número de votos para Partido Encuentro Social
+
+		22. C_PRI_PVEM_NA_ES - Número de votos para la coalición Partido Revolucionario Institucional - Partido Verde Ecologista de México - Partido Nueva Alianza - Partido Encuentro Social.
+
+		23. C_PRI_PVEM_NA - Número de votos para la coalición Partido Revolucionario Institucional - Partido Verde Ecologista de México - Partido Nueva Alianza.
+
+		24. C_PRI_PVEM_ES - Número de votos para la coalición Partido Revolucionario Institucional - Partido Verde Ecologista de México - Partido Encuentro Social.
+
+		25. C_PRI_NA_ES - Número de votos para la coalición Partido Revolucionario Institucional - Partido Nueva Alianza - Partido Encuentro Social.
+
+		26. C_PRI_PVEM - Número de votos para la coalición Partido Revolucionario Institucional - Partido Verde Ecologista de México.
+
+		27. C_PRI_NA - Número de votos para la coalición Partido Revolucionario Institucional - Partido Nueva Alianza.
+
+		28. C_PRI_ES - Número de votos para la coalición Partido Revolucionario Institucional - Partido Encuentro Social.
+
+		29. C_PVEM_NA_ES - Número de votos para la coalición Partido Verde Ecologista de México - Partido Nueva Alianza - Partido Encuentro Social.
+
+		30. C_PVEM_NA - Número de votos para la coalición Partido Verde Ecologista de México - Partido Nueva Alianza.
+
+		31. C_PVEM_ES - Número de votos para la coalición Partido Verde Ecologista de México - Partido Encuentro Social.
+
+		32. C_NA_ES - Número de votos para la coalición Partido Nueva Alianza - Partido Encuentro Social.
+
+		33. CAND_IND - Número de votos para María Teresa Castell de Oro Palacios.
+
+		34. NO_REGISTRADOS - Número de votos para candidatos no registrados
+
+		35. NULOS - Número de votos nulos
+
+		36. TOTAL_VOTOS - Suma total de votos calculados a partir de los datos asentados en las Actas PREP, para los partidos políticos y los candidatos, sean estos independientes, por partido político o por coalición, en cualquiera de sus combinaciones, según sea el caso, total de votos nulos y, en su caso, total de votos para candidatos no registrados.
+		*****La suma se realiza automáticamente por el sistema informático del PREP con el fin de evitar trasladar los errores de registro o aritméticos por parte de los funcionarios en las casillas a la base de datos del PREP.
+
+		37. LISTA_NOMINAL -  Número de ciudadanos con derecho a votar de acuerdo a la lista nominal.
+
+		38. OBSERVACIONES - Indica con la leyenda:
+
+			*Ilegible - La cantidad de votos es ilegible tanto en letra como en número en el Acta PREP -para un partido, coalición, candidato independiente, candidatos no registrados o votos nulos- entonces cada ocurrencia del Acta PREP se captura como "Ilegible" y el dato se contabiliza como cero. El Acta PREP se incluye dentro del grupo de actas contabilizadas, siempre y cuando exista al menos una cantidad legible, ya sea en letra o número; en caso contrario, si el acta no contiene dato legible alguno, deberá incluirse en el grupo de actas no contabilizadas.  
+
+			*Sin dato - La cantidad de votos no ha sido asentada ni en letra ni en número, en el Acta PREP -para un partido, coalición, candidato independiente, candidatos no registrados o votos nulos- entonces cada ocurrencia del Acta PREP se captura como "Sin dato" y el dato se contabiliza como cero. El Acta PREP se incluye dentro del grupo de actas contabilizadas, siempre y cuando exista al menos una cantidad, ya sea en letra o número; en caso contrario, si el acta no contiene dato alguno, se incluye en el grupo de actas no contabilizadas.
+
+			*Excede lista nominal - El cálculo de la suma de todos los votos asentados en el Acta PREP excede el número de ciudadanos de la Lista Nominal de Electores correspondiente a esa casilla electoral, incluido el número de representantes de partidos políticos y, en su caso, candidatos independientes acreditados, así como sus suplentes –ambos ya sean locales o federales- motivo por lo cual los votos asentados en el Acta PREP no se contabilizan y el Acta PREP se incluye dentro del grupo de actas no contabilizadas.
+
+			*Sin Acta (motivo) - Si el Acta PREP no llegó junto con el paquete electoral al CATD respectivo por alguno de los siguientes motivos:
+				1. Paquete no Entregado
+				2. Casilla no Instalada
+				3. Sin Sobre
+
+			*No identificada - El Acta PREP contiene una omisión, ilegibilidad o error en alguno de los campos correspondientes a la identificación del acta de escrutinio y cómputo(entidad federativa, distrito, sección, tipo de casilla y número de casilla - no aplica para casilla básica-), en dicho supuesto se muestra al final del listado de actas y no se contabiliza.
+
+		39. CONTABILIZADA -
+			-Obtiene el valor "1" cuando el Acta PREP es contabilizada
+			-Obtiene el valor "0" cuando el Acta PREP no es contabilizada. Si el acta no se contabiliza, se señala la razón en el campo de Observaciones.
+			
+		40. MECANISMO_TRASLADO -  Indica los mecanismos de traslado aprobados por los Consejos Distritales del INE aplicables para cada una de las Actas PREP, desde la casilla hasta el Consejo Municipal correspondiente. Dichos mecanismos de traslado se implementan cuando las condiciones geográficas, de infraestructura, sociopolíticas y/o meteorológicas dificultan significativamente el traslado directo al Consejo Municipal en tiempo y forma.
+
+		Toma los siguientes valores:
+		
+		F = Fijo                                     
+	    	D = Dat                                     
+	    	I = Itinerante   
+		
+		y sus posibles combinaciones, por ejemplo, F-D-I, F-I, D-I
+
+		41. SHA -  Identificador asociado al archivo del Acta PREP digitalizada generado a través de la función criptográfica hash denominada SHA256.
+
+		Es un valor o código de representación único, que permite identificar a cada imagen del Acta PREP digitalizada.
+		Bajo esa función hash, cualquier modificación a dicho archivo -en este caso, a la imagen del acta digitalizada- modifica también el identificador, asignando una cadena de caracteres completamente distinta a la original.
+
+	Para validar la autenticidad del Acta PREP digitalizada, se requiere de un software que permita obtener el código de integridad conforme al estándar SHA-256.
+
+		42. FECHA_HORA_ACOPIO - Fecha y hora (Tiempo del Centro) de recepción del Sobre PREP con el Acta PREP, en el Centro de Acopio y Transmisión de Datos (CATD).
+
+		43. FECHA_HORA_CAPTURA -  Fecha y hora de captura del Acta PREP en el CATD, la hora corresponde al Tiempo del Centro.
+
+		44. FECHA_HORA_REGISTRO - Fecha y hora de registro del Acta PREP en la base de datos, la hora corresponde al Tiempo del Centro.

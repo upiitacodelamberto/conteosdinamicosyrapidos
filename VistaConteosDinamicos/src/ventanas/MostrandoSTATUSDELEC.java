@@ -10,7 +10,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class MostrandoSTATUSDELEC implements WindowListener {//2/5
+public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5 WindowListener,ActionListener
 	Dialog D;
 	FileReader FR;
 	BufferedReader BR;
@@ -48,6 +48,8 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 			}else{
 				JCBcasillas=new JCheckBox("BASE DE CASILLAS CARGADA", false);
 			}
+			JCBcasillas.addActionListener(this);//3/5 ActionListener
+			
 			GBC.gridx=cordX;GBC.gridy=4;GBC.gridwidth=1;GBC.gridheight=1;
 			GBC.anchor=GridBagConstraints.WEST;
 			D.add(JCBcasillas, GBC);//CHECKBOX CASILLAS CARGADAS
@@ -57,6 +59,7 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 			D.add(DL,GBC);
 			
 			JBcargarBdCasillas=new JButton("Cargar Base de Casillas");
+			JBcargarBdCasillas.addActionListener(this);//3/5 ActionListener
 			GBC.gridx=cordX+2;GBC.gridy=4;GBC.gridwidth=1;GBC.gridheight=1;
 			D.add(JBcargarBdCasillas,GBC);
 			
@@ -71,11 +74,13 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 			}else{
 				JCBprep=new JCheckBox("PREP CARGADO", false);
 			}
+			JCBprep.addActionListener(this);//3/5 ActionListener
 			GBC.gridx=cordX;GBC.gridy=6;GBC.gridwidth=1;GBC.gridheight=1;
 			GBC.anchor=GridBagConstraints.WEST;
 			D.add(JCBprep, GBC);//CHECKBOX PREP CARGADO
 			
 			JBcargarPrep=new JButton("Cargar PREP");
+			JBcargarPrep.addActionListener(this);//3/5 ActionListener
 			GBC.gridx=cordX+2;GBC.gridy=6;GBC.gridwidth=1;GBC.gridheight=1;
 			GBC.anchor=GridBagConstraints.WEST;
 			D.add(JBcargarPrep,GBC);
@@ -89,13 +94,17 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 		JBconteodinamico=new JButton("REALIZAR CONTEO DINAMICO");
 		GBC.gridx=cordX;GBC.gridy=8;GBC.gridwidth=1;GBC.gridheight=1;
 		D.add(JBconteodinamico,GBC);
+		JBconteodinamico.addActionListener(this);//3/5 ActionListener
 		
 		DL=new JLabel(" ");
 		GBC.gridx=cordX;GBC.gridy=9;GBC.gridwidth=1;GBC.gridheight=1;
 		D.add(DL,GBC);//UN ESPACIO
 		
+		if((!JCBcasillas.isSelected())||(!JCBprep.isSelected())){
+			JBconteodinamico.setEnabled(false);
+		}
 		D.addWindowListener(this);// 3/5 WindowListener
-	}//end MostrandoESTATUSDELEC()
+	}//end MostrandoESTATUSDELEC(File,Frame)
 	
 	public MostrandoSTATUSDELEC(Frame f){
 		D=new Dialog(f,"MOSTRANDO STATUS DE ELECCION",true);
@@ -126,6 +135,7 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 //			}else{
 				JCBcasillas=new JCheckBox("BASE DE CASILLAS CARGADA", false);
 //			}
+			JCBcasillas.addActionListener(this);//3/5 ActionListener
 			GBC.gridx=cordX;GBC.gridy=4;GBC.gridwidth=1;GBC.gridheight=1;
 			GBC.anchor=GridBagConstraints.WEST;
 			D.add(JCBcasillas, GBC);//CHECKBOX CASILLAS CARGADAS
@@ -135,6 +145,7 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 			D.add(DL,GBC);
 			
 			JBcargarBdCasillas=new JButton("Cargar Base de Casillas");
+			JBcargarBdCasillas.addActionListener(this);//3/5 ActionListener
 			GBC.gridx=cordX+2;GBC.gridy=4;GBC.gridwidth=1;GBC.gridheight=1;
 			D.add(JBcargarBdCasillas,GBC);
 			
@@ -149,11 +160,13 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 //			}else{
 				JCBprep=new JCheckBox("PREP CARGADO", false);
 //			}
+			JCBprep.addActionListener(this);//3/5 ActionListener
 			GBC.gridx=cordX;GBC.gridy=6;GBC.gridwidth=1;GBC.gridheight=1;
 			GBC.anchor=GridBagConstraints.WEST;
 			D.add(JCBprep, GBC);//CHECKBOX PREP CARGADO
 			
 			JBcargarPrep=new JButton("Cargar PREP");
+			JBcargarPrep.addActionListener(this);//3/5 ActionListener
 			GBC.gridx=cordX+2;GBC.gridy=6;GBC.gridwidth=1;GBC.gridheight=1;
 			GBC.anchor=GridBagConstraints.WEST;
 			D.add(JBcargarPrep,GBC);
@@ -165,6 +178,7 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 		D.add(DL,GBC);//UN ESPACIO
 		
 		JBconteodinamico=new JButton("REALIZAR CONTEO DINAMICO");
+		JBconteodinamico.addActionListener(this);//3/5 ActionListener
 		GBC.gridx=cordX;GBC.gridy=8;GBC.gridwidth=1;GBC.gridheight=1;
 		D.add(JBconteodinamico,GBC);
 		
@@ -172,8 +186,13 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 		GBC.gridx=cordX;GBC.gridy=9;GBC.gridwidth=1;GBC.gridheight=1;
 		D.add(DL,GBC);//UN ESPACIO
 		
+		if((!JCBcasillas.isSelected())||(!JCBprep.isSelected())){
+			JBconteodinamico.setEnabled(false);
+		}
 		D.addWindowListener(this);// 3/5 WindowListener
-	}//end MostrandoESTATUSDELEC()
+	}//end MostrandoESTATUSDELEC(Frame)
+	
+	
 	@Override
 	public void windowActivated(WindowEvent arg0) {// 4/5 WindowListener
 		// TODO Auto-generated method stub
@@ -210,6 +229,53 @@ public class MostrandoSTATUSDELEC implements WindowListener {//2/5
 	public void windowOpened(WindowEvent arg0) {// 4/5 WindowListener
 		// TODO Auto-generated method stub
 	}
+	
+	public void actionPerformed(ActionEvent e){//4/5 ActionListener
+		if(e.getSource().equals(JBcargarBdCasillas)){//5/5 ActionListener
+			JCBcasillas.setSelected(true);//AQUI ANTES DE ESTO SE DEBERA CARGAR LA BASE DE CASILLAS
+			if((JCBcasillas.isSelected())&&(JCBprep.isSelected())){
+				JBconteodinamico.setEnabled(true);
+			}
+		}
+		if(e.getSource().equals(JBcargarPrep)){//5/5 ActionListener
+			JCBprep.setSelected(true);//AQUI ANTES DE ESTO SE DEBERA CARGAR LA BASE DEL CORTE DE PREP
+			if((JCBcasillas.isSelected())&&(JCBprep.isSelected())){
+				JBconteodinamico.setEnabled(true);
+			}
+		}
+		if(e.getSource().equals(JCBcasillas)){//5/5 ActionListener
+			if(!JCBcasillas.isSelected()){
+				JBconteodinamico.setEnabled(false);
+			}
+			if((JCBcasillas.isSelected())&&(JCBprep.isSelected())){
+				JBconteodinamico.setEnabled(true);
+			}
+		}
+		if(e.getSource().equals(JCBprep)){//5/5 ActionListener
+			if(!JCBprep.isSelected()){
+				JBconteodinamico.setEnabled(false);
+			}
+			if((JCBcasillas.isSelected())&&(JCBprep.isSelected())){
+				JBconteodinamico.setEnabled(true);
+			}
+		}
+		if(e.getSource().equals(JBconteodinamico)){//5/5 ActionListener
+			int A[]={1,2,3,4,5,6,7,8,9,10};
+			int B[]={1,5,2,4,2,4,4};
+//			System.out.print("A: ");
+//			utilitaria.print_array(A);
+//			System.out.print("B: ");
+//			utilitaria.print_array(B);
+//			System.out.println();
+			String C[][]=utilitaria.conca(A,B);
+			MostrandoPREP mp=new MostrandoPREP(C,new Frame());
+			
+			Dialog dialogo=mp.D;
+			dialogo.setSize(300,200);
+			dialogo.setLocationRelativeTo(null);
+			dialogo.setVisible(true);
+		}
+	}//end actionPerformed() 
 
 	public static void main(String[] args) {
 		JFileChooser JFC=new JFileChooser();

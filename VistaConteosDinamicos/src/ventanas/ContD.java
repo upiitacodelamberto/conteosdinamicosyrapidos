@@ -25,7 +25,9 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-
+// 20170608
+//DESCARGAR EL PREP DEL EDO MEX
+//(EN EXEL)
 
 public class ContD implements ActionListener { // 2/5 ActionListener
 	static Frame F;
@@ -268,7 +270,7 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 //			JOptionPane.showMessageDialog(null, "AQUI HAY QUE PROGRAMAR LO DE "
 //					+"CARGAR Y MOSTRAR UN ARCHIVO DEL PREP EN UNA TABLA!!!");
 //			HECHO 20170607
-		}
+		}//"MOSTRAR ESTATUS DE ELECCION"
 		if(e.getSource() == MIeditarEleccion){// 5/5 ActionListener
 			int retV = JFC.showOpenDialog(F);
 			if (retV == JFileChooser.APPROVE_OPTION) {
@@ -284,8 +286,8 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 		}
 	}//end void actionPerformed()
 	static private void mostrarDialogoEstatusDEleccion(File file,Frame F){
-		JFileChooser JFC1=new JFileChooser();
-		int retV = JFC1.showOpenDialog(F);
+//		JFileChooser JFC1=new JFileChooser();
+//		int retV = JFC1.showOpenDialog(F);
 //		if (retV == JFileChooser.APPROVE_OPTION) {
 //			File file = JFC.getSelectedFile();
 			MostrandoSTATUSDELEC msde=new MostrandoSTATUSDELEC(file,F);
