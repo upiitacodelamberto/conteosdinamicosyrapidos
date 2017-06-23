@@ -59,7 +59,7 @@ public class MostrandoPREP implements WindowListener {//2/5 WindowListener
 		D.addWindowListener(this);// 3/5 WindowListener
 	}//end MostrandoPREP(File,Frame)
 	
-	public MostrandoPREP(String ARR[][],Frame f){
+	public MostrandoPREP(String ARR[][],Frame f){		
 		JP = new JPanel();
 		JP.setLayout(new BorderLayout());
 		D=new Dialog(f,"ARCHIVO OBTENIDO A PARTIR DE CASILLA_00 y PREP_00",true);

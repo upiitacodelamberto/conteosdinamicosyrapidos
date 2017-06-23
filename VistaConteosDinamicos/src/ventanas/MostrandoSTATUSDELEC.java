@@ -20,7 +20,12 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 	JButton JBconteodinamico;
 	int cordX=0;
 	JButton JBcargarBdCasillas,JBcargarPrep;
+	Frame FdMSDE;
+	File FdCasillas;
+	File FdCortePREP;
+	String RutaAbsDFdC,RutaAbsDFdP;
 	public MostrandoSTATUSDELEC(File file,Frame f){
+		FdMSDE=f;
 		D=new Dialog(f,"MOSTRANDO STATUS DE ELECCION",true);
 		D.setLayout(new GridBagLayout());
 		GridBagConstraints GBC=new GridBagConstraints();
@@ -232,12 +237,20 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 	
 	public void actionPerformed(ActionEvent e){//4/5 ActionListener
 		if(e.getSource().equals(JBcargarBdCasillas)){//5/5 ActionListener
+//			new File("C:\\image\\img1.jpg");
+			//La ruta relativa desde el paquete ventanas 
+			FdCasillas=new File("../../ARCHIVOS_AUXILIARES/CASILLAS_00.csv");
+			RutaAbsDFdC="c:/Users/Toshiba/conteosdinamicosyrapidos/VistaConteosDinamicos/ARCHIVOS_AUXILIARES/CASILLAS_00.csv";
+//			"C:\Users\Toshiba\conteosdinamicosyrapidos\VistaConteosDinamicos\ARCHIVOS_AUXILIARES"
 			JCBcasillas.setSelected(true);//AQUI ANTES DE ESTO SE DEBERA CARGAR LA BASE DE CASILLAS
 			if((JCBcasillas.isSelected())&&(JCBprep.isSelected())){
 				JBconteodinamico.setEnabled(true);
 			}
 		}
 		if(e.getSource().equals(JBcargarPrep)){//5/5 ActionListener
+			//La ruta relativa desde el paquete ventanas
+			FdCortePREP=new File("../../ARCHIVOS_AUXILIARES/PREP_00.csv");
+			RutaAbsDFdP="c:/Users/Toshiba/conteosdinamicosyrapidos/VistaConteosDinamicos/ARCHIVOS_AUXILIARES/PREP_00.csv";
 			JCBprep.setSelected(true);//AQUI ANTES DE ESTO SE DEBERA CARGAR LA BASE DEL CORTE DE PREP
 			if((JCBcasillas.isSelected())&&(JCBprep.isSelected())){
 				JBconteodinamico.setEnabled(true);
@@ -260,22 +273,62 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 			}
 		}
 		if(e.getSource().equals(JBconteodinamico)){//5/5 ActionListener
-			int A[]={1,2,3,4,5,6,7,8,9,10};
-			int B[]={1,5,2,4,2,4,4};
-//			System.out.print("A: ");
-//			utilitaria.print_array(A);
-//			System.out.print("B: ");
-//			utilitaria.print_array(B);
-//			System.out.println();
+			int A[]={1,2,3,4,5,6,7,8,9,10};//en int A[] se tienen Ids de casillas? 
+			                               //o Ids de candidatos?
+			int B[]={1,5,2,4,2,4,4};//en int B[] se tienen Ids de casillas? o de 
+			                        //candidatos?
+//En lugar de usar estos arreglos, hay que obtenerlos de dos archivos csv:
+//Uno casillas_csv y otro corte_prep_csv
+			A=leerCasillas(RutaAbsDFdC);
+//			B=leerPREP(FdCortePREP);
+			B=leerCasillas(RutaAbsDFdP);
+			
 			String C[][]=utilitaria.conca(A,B);
-			MostrandoPREP mp=new MostrandoPREP(C,new Frame());
+			MostrandoPREP mp=new MostrandoPREP(C,FdMSDE);
 			
 			Dialog dialogo=mp.D;
-			dialogo.setSize(300,200);
+			dialogo.setSize(400,300);
 			dialogo.setLocationRelativeTo(null);
 			dialogo.setVisible(true);
 		}
 	}//end actionPerformed() 
+
+	int[] leerCasillas(String path){
+		int count=0,A[];
+		A=new int[1];
+		try {
+			FileReader fr=new FileReader(new File(path));
+			BufferedReader br=new BufferedReader(fr);
+			while(br.readLine()!=null){
+				count++;
+			}
+			//despues del while en el int count tenemos la cantidad de casillas
+			//(o de candidatos?). En esta prueba espero obtener count=50 y count=20
+//System.out.println("if(e.getSource().equal(JBconteodinamico)){: count="+count);
+			br.close();fr.close();
+			A=new int[count];
+			fr=new FileReader(new File(path));
+			br=new BufferedReader(fr);
+			for(int i=0;i<count;i++){
+				A[i]=Integer.parseInt(br.readLine());
+			}
+			br.close();fr.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return A;
+	}
+
+	int[] leePREP(File FdP){
+		int count=0,B[];
+		B=new int[1];
+		//AQUI VA A SER NECESARIO PROGRAMAR ALGO, AUN NO SE EXACATMENTE QUE.
+		return B;
+	}
 
 	public static void main(String[] args) {
 		JFileChooser JFC=new JFileChooser();
