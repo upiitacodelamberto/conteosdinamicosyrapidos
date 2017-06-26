@@ -24,6 +24,7 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 	File FdCasillas;
 	File FdCortePREP;
 	String RutaAbsDFdC,RutaAbsDFdP;
+	final static int RUTA_MANUAL=0;
 	public MostrandoSTATUSDELEC(File file,Frame f){
 		FdMSDE=f;
 		D=new Dialog(f,"MOSTRANDO STATUS DE ELECCION",true);
@@ -239,9 +240,23 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 		if(e.getSource().equals(JBcargarBdCasillas)){//5/5 ActionListener
 //			new File("C:\\image\\img1.jpg");
 			//La ruta relativa desde el paquete ventanas 
-			FdCasillas=new File("../../ARCHIVOS_AUXILIARES/CASILLAS_00.csv");
-			RutaAbsDFdC="c:/Users/Toshiba/conteosdinamicosyrapidos/VistaConteosDinamicos/ARCHIVOS_AUXILIARES/CASILLAS_00.csv";
-//			"C:\Users\Toshiba\conteosdinamicosyrapidos\VistaConteosDinamicos\ARCHIVOS_AUXILIARES"
+			switch(RUTA_MANUAL){
+				case 0:{ 
+//				FdCasillas=new File("../../ARCHIVOS_AUXILIARES/CASILLAS_00.csv");
+					JFileChooser jfc=new JFileChooser();
+					int rv=jfc.showOpenDialog(FdMSDE);
+					if(rv==JFileChooser.APPROVE_OPTION){
+						FdCasillas=jfc.getSelectedFile();
+						RutaAbsDFdC=FdCasillas.getAbsolutePath();
+					}
+					break;
+				}
+				case 1:{
+				RutaAbsDFdC="c:/Users/Toshiba/conteosdinamicosyrapidos/VistaConteosDinamicos/ARCHIVOS_AUXILIARES/CASILLAS_00.csv";
+//				"C:\Users\Toshiba\conteosdinamicosyrapidos\VistaConteosDinamicos\ARCHIVOS_AUXILIARES"
+				break;
+				}//case 1;
+			}//end switch()
 			JCBcasillas.setSelected(true);//AQUI ANTES DE ESTO SE DEBERA CARGAR LA BASE DE CASILLAS
 			if((JCBcasillas.isSelected())&&(JCBprep.isSelected())){
 				JBconteodinamico.setEnabled(true);
@@ -249,8 +264,22 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 		}
 		if(e.getSource().equals(JBcargarPrep)){//5/5 ActionListener
 			//La ruta relativa desde el paquete ventanas
-			FdCortePREP=new File("../../ARCHIVOS_AUXILIARES/PREP_00.csv");
-			RutaAbsDFdP="c:/Users/Toshiba/conteosdinamicosyrapidos/VistaConteosDinamicos/ARCHIVOS_AUXILIARES/PREP_00.csv";
+				switch(RUTA_MANUAL){
+				case 0:{
+//					FdCortePREP=new File("../../ARCHIVOS_AUXILIARES/PREP_00.csv");
+					JFileChooser jfc_prep=new JFileChooser();
+					int rv_prep=jfc_prep.showOpenDialog(FdMSDE);
+					if(rv_prep==JFileChooser.APPROVE_OPTION){
+						FdCortePREP=jfc_prep.getSelectedFile();
+						RutaAbsDFdP=FdCortePREP.getAbsolutePath();
+					}
+					break;
+				}//end case 0:
+				case 1:{
+					RutaAbsDFdP="c:/Users/Toshiba/conteosdinamicosyrapidos/VistaConteosDinamicos/ARCHIVOS_AUXILIARES/PREP_00.csv";
+					break;
+				}//end case 1:
+			}//end switch()
 			JCBprep.setSelected(true);//AQUI ANTES DE ESTO SE DEBERA CARGAR LA BASE DEL CORTE DE PREP
 			if((JCBcasillas.isSelected())&&(JCBprep.isSelected())){
 				JBconteodinamico.setEnabled(true);
@@ -279,10 +308,8 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 			                        //candidatos?
 //En lugar de usar estos arreglos, hay que obtenerlos de dos archivos csv:
 //Uno casillas_csv y otro corte_prep_csv
-			A=leerCasillas(RutaAbsDFdC);
-//			B=leerPREP(FdCortePREP);
-			B=leerCasillas(RutaAbsDFdP);
-			
+				A=leerCasillas(RutaAbsDFdC);
+				B=leerCasillas(RutaAbsDFdP);
 			String C[][]=utilitaria.conca(A,B);
 			MostrandoPREP mp=new MostrandoPREP(C,FdMSDE);
 			
