@@ -20,7 +20,6 @@ import sun.awt.AWTAccessor.WindowAccessor;
 import ventanas.AgregaPartidos;
 //import ventanas.PanelPartidOCoalicion;
 
-//public class MostrandoElec implements WindowListener, ActionListener {//// 2/5
 public class MostrandoElec implements WindowListener, ActionListener {//// 2/5
 	Frame f;
 	Dialog D;

@@ -24,7 +24,7 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 	File FdCasillas;
 	File FdCortePREP;
 	String RutaAbsDFdC,RutaAbsDFdP;
-	final static int RUTA_MANUAL=0;
+	final static int RUTA_MANUAL=0;/*1 prueba inicial, 0 prueba actual*/
 	public MostrandoSTATUSDELEC(File file,Frame f){
 		FdMSDE=f;
 		D=new Dialog(f,"MOSTRANDO STATUS DE ELECCION",true);
@@ -256,6 +256,9 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 //				"C:\Users\Toshiba\conteosdinamicosyrapidos\VistaConteosDinamicos\ARCHIVOS_AUXILIARES"
 				break;
 				}//case 1;
+				default:{
+					break;
+				}
 			}//end switch()
 			JCBcasillas.setSelected(true);//AQUI ANTES DE ESTO SE DEBERA CARGAR LA BASE DE CASILLAS
 			if((JCBcasillas.isSelected())&&(JCBprep.isSelected())){
@@ -308,8 +311,10 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 			                        //candidatos?
 //En lugar de usar estos arreglos, hay que obtenerlos de dos archivos csv:
 //Uno casillas_csv y otro corte_prep_csv
-				A=leerCasillas(RutaAbsDFdC);
-				B=leerCasillas(RutaAbsDFdP);
+//			A=leerCasillas(RutaAbsDFdC);
+			A=leerCasillas(RutaAbsDFdC,7);
+//			B=leerCasillas(RutaAbsDFdP);
+			B=leePREP(RutaAbsDFdP,7);
 			String C[][]=utilitaria.conca(A,B);
 			MostrandoPREP mp=new MostrandoPREP(C,FdMSDE);
 			
@@ -321,19 +326,23 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 	}//end actionPerformed() 
 
 	int[] leerCasillas(String path){
-		int count=0,A[];
+		long count=0;int A[];
 		A=new int[1];
 		try {
 			FileReader fr=new FileReader(new File(path));
 			BufferedReader br=new BufferedReader(fr);
-			while(br.readLine()!=null){
-				count++;
-			}
-			//despues del while en el int count tenemos la cantidad de casillas
-			//(o de candidatos?). En esta prueba espero obtener count=50 y count=20
+			//Tmb se puede instanciar un BufferedReader pasandole como 
+			//argumento 'new InputStreamReader(System.in)'
+//			while(br.readLine()!=null){
+//				count++;
+//			}
+//			//despues del while en el int count tenemos la cantidad de casillas
+//			//(o de candidatos?). En esta prueba espero obtener count=50 y count=20
+			count=br.lines().count();//Esta es otra forma de contar las lineas de un 
+									 //archivo de texto. 
 //System.out.println("if(e.getSource().equal(JBconteodinamico)){: count="+count);
 			br.close();fr.close();
-			A=new int[count];
+			A=new int[(int)count];
 			fr=new FileReader(new File(path));
 			br=new BufferedReader(fr);
 			for(int i=0;i<count;i++){
@@ -341,19 +350,138 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 			}
 			br.close();fr.close();
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return A;
-	}
+	}//end leerCasillas()
 
+	/**
+	 * Sobrecargo leerCasillas() (por comodidad) 
+	 * @param path
+	 * @param rowstoskip debe ser menor que la cantidad de lineas del archivo
+	 * @return
+	 */
+	int[] leerCasillas(String path,int rowstoskip){
+		String linea;
+		StringTokenizer st;
+		long count;
+		int A[]=new int[1];
+		//Este arreglo, con el tamanio adecuado y las entradas 
+		//adecuadas (1,2,3,4,5,...), se podra obtener a traves de la clase 
+		//ventanas.utilitaria una vez que se sepa cuantas casillas 
+		//se instalaron para la realizacion de una eleccion, lo cual se 
+		//procede a determinar a continuaion.
+		try{
+			FileReader fr=new FileReader(new File(path));
+			BufferedReader br=new BufferedReader(fr);
+			count=br.lines().count();
+			br.close();fr.close();
+			A=new int[(int)count-rowstoskip];
+			fr=new FileReader(path);br=new BufferedReader(fr);
+			for(int i=0;i<rowstoskip;i++){
+				br.readLine();
+			}//Ahora si el siguiente br.readLine() debe darnos la primera linea del
+			 //archivo que corresponde a una casilla registrada en el corte PREP.
+			int tamdarr=8;
+			String arr[]=new String[tamdarr];
+			int id=1;
+			while((linea=br.readLine())!=null){
+//				System.out.println(linea);
+				st=new StringTokenizer(linea, ",");
+//				if(id==1){
+//			System.out.println(linea);
+//			System.out.println("st.countTokens(): "+st.countTokens());
+//				}
+				for(int i=0;i<tamdarr;i++){
+					arr[i]=st.nextToken();
+				}
+				ContD.CASILLA.add(new Casilla(id,arr[0],
+						arr[1],arr[2],arr[3],arr[4],arr[5],
+						arr[6],arr[7]));
+				id++;
+			}//end while()
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}catch(IOException e){
+			e.printStackTrace();
+		}catch(NegativeArraySizeException e){
+			System.out.println("TAMANIO DE ARRAY NEGATIVO");
+		}
+		for(int i=0;i<5;i++){
+			System.out.println(ContD.CASILLA.get(i));
+		}
+		for(int i=1;i<=A.length;i++){
+			A[i-1]=i;
+		}
+		return A;
+	}
 	int[] leePREP(File FdP){
 		int count=0,B[];
 		B=new int[1];
 		//AQUI VA A SER NECESARIO PROGRAMAR ALGO, AUN NO SE EXACATMENTE QUE.
+		return B;
+	}
+	
+	/**
+	 * Sobrecargo leePREP() (por comodidad)
+	 * @param path
+	 * @param rowstoskip
+	 * @return
+	 */
+	int[] leePREP(String path,int rowstoskip){
+		String linea;
+		StringTokenizer st;
+		long count;
+		int B[]=new int[1];
+		Casilla cdp;/*Casilla de prueba*/
+		Casilla ce;/*Casilla encontrada*/
+		int cdenc=0;/*cuenta de encontradas*/
+		int cbusc=0;/*casillas buscadas*/
+		try{
+			FileReader fr=new FileReader(new File(path));
+			BufferedReader br=new BufferedReader(fr);
+			count=br.lines().count();
+			br.close();fr.close();
+			B=new int[(int)count-rowstoskip];
+			fr=new FileReader(path);br=new BufferedReader(fr);
+			for(int i=0;i<rowstoskip;i++){
+				br.readLine();
+			}
+			int tamdarr=8;
+			String arr[]=new String[tamdarr];
+			int id=0;
+			while((linea=br.readLine())!=null){
+				st=new StringTokenizer(linea, ",");
+				for(int i=0;i<tamdarr;i++){
+					arr[i]=st.nextToken();
+				}
+				cdp=new Casilla(id,arr[0],
+						arr[1],arr[2],arr[3],arr[4],arr[5],
+						arr[6],arr[7]);
+				cbusc++;
+				for(int i=0;i<ContD.CASILLA.size();i++){
+					ce=ContD.CASILLA.get(i);
+					if(cdp.comparar(ce)){
+						B[id]=ce.IdCasilla;
+						cdenc++;
+						break;
+					}
+				}//end for()
+				id++;
+			}//end while()
+			System.out.println("Tortal de casillas="+ContD.CASILLA.size());
+			System.out.println("Se buscaron "+cbusc+" de "+B.length+" casillas");
+			System.out.println("Se encontraron "+cdenc+" de "+B.length+" casillas");
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+		}catch(IOException e){
+			e.printStackTrace();
+		}catch(NegativeArraySizeException e){
+			System.out.println("TAMANIO DE ARRAY NEGATIVO");
+		}
+		
 		return B;
 	}
 

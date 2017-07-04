@@ -1,0 +1,26 @@
+package ventanas;
+
+public class Casilla {
+	int IdCasilla;
+	String id_estado;
+	String estado;
+	String id_distrito_local;
+	String distrito_local;
+	String seccion;
+	String id_casilla;
+	String tipo_Casilla;
+	public Casilla(){ }
+	public Casilla(int id,String id_e,String e,String id_d_l,
+			String d_l,String s,String id_c,String tip_c){
+		id_estado=id_e;
+		estado=e;
+		id_distrito_local=id_d_l;
+		distrito_local=d_l;
+		seccion=s;
+		id_casilla=id_c;
+		tipo_Casilla=tip_c;	
+	}
+	public String toString(){
+		String str=
+	}
+}//end class Casilla

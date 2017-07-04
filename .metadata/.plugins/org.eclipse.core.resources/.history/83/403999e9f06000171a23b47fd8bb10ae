@@ -1,0 +1,11 @@
+package ventanas;
+
+public class Casilla {
+	String id_estado;
+	String estado;
+	String id_distrito_local;
+	String distrito_local;
+	String seccion;
+	String id_casilla;
+	String tipo_Casilla;
+}

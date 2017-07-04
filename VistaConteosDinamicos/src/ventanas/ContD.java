@@ -47,6 +47,7 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 	static ArrayList<Coalicion> PARTIDO;
 	PanelPartidOCoalicion ppc[];
 	static ArrayList<String> PartCand;
+	static ArrayList<Casilla> CASILLA;/*2017.07.04*/
 //	ArrayList<String> PartCand;
 	static String NombDEleccion;
 	
@@ -64,6 +65,7 @@ public class ContD implements ActionListener { // 2/5 ActionListener
 		COAL = new ArrayList<Coalicion>();
 		PARTIDO = new ArrayList<Coalicion>();
 		PartCand=new ArrayList<String>();
+		CASILLA=new ArrayList<Casilla>();/*2017.07.04*/
 		F = new Frame("CONTEOS DINAMICOS");
 		MB = new MenuBar();
 		// MB.setFont(new Font("Arial",Font.PLAIN,20));
