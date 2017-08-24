@@ -1,7 +1,0 @@
-package ventanas;
-
-public class Casilla {
-	String id_estado;
-	String estado;
-	
-}

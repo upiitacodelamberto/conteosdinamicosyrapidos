@@ -244,7 +244,7 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 				case 0:{ 
 //				FdCasillas=new File("../../ARCHIVOS_AUXILIARES/CASILLAS_00.csv");
 					JFileChooser jfc=new JFileChooser();
-					int rv=jfc.showOpenDialog(FdMSDE);
+					int rv=jfc.showDialog(FdMSDE,"Cargar Base de Casillas");
 					if(rv==JFileChooser.APPROVE_OPTION){
 						FdCasillas=jfc.getSelectedFile();
 						RutaAbsDFdC=FdCasillas.getAbsolutePath();
@@ -271,7 +271,7 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 				case 0:{
 //					FdCortePREP=new File("../../ARCHIVOS_AUXILIARES/PREP_00.csv");
 					JFileChooser jfc_prep=new JFileChooser();
-					int rv_prep=jfc_prep.showOpenDialog(FdMSDE);
+					int rv_prep=jfc_prep.showDialog(FdMSDE,"Cargar PREP");
 					if(rv_prep==JFileChooser.APPROVE_OPTION){
 						FdCortePREP=jfc_prep.getSelectedFile();
 						RutaAbsDFdP=FdCortePREP.getAbsolutePath();
@@ -315,7 +315,39 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 			A=leerCasillas(RutaAbsDFdC,7);
 //			B=leerCasillas(RutaAbsDFdP);
 			B=leePREP(RutaAbsDFdP,7);
-			String C[][]=utilitaria.conca(A,B);
+			//En el arreglo A se tiene los identificadores de las casillas 
+			//asignados en leerCasillas() y ``guardadas'' en el 
+			// ArrayList<ventanas.Casilla> ContD.CASILLA. Y el tamanio del arreglo
+			//A es la cantidad total de casillas registradas en el PREP, esta 
+			//cantidad debe coincidir con ContD.CASILLA.size() 
+			//Procedo a calcular el numero de ``clases'' con la regla de Sturges
+			System.out.println("B.length="+B.length);
+//			System.out.println(ContD.CASILLA.size());
+			
+			int N=utilitaria.reglaSturges(B.length);
+			System.out.println("Cantidad de \"clases\" N="+N);
+			//Este numero es la cantidad de clases
+
+			ArrayList<Float>
+			LSinter=utilitaria.getLimSupInterv(ContD.CASILLA.size(),N);
+			utilitaria.print_array(LSinter);
+			
+			Object _lsinter[]=LSinter.toArray();
+			Float lsinter[]=new Float[_lsinter.length];
+			for(int i=0;i<_lsinter.length;i++){
+				lsinter[i]=(Float)_lsinter[i];
+			}
+			utilitaria.print_array(lsinter);
+
+			//Ahora hay que construir otro tipo de arreglo bidimensional 
+			//C[][] tal que la primera columna contenga intervalos liminf--limsup
+			//y la segunda columna contenga la cantidad de casillas presentes en 
+			//"el" corte PREP 
+			String C[][]=utilitaria.conca(lsinter, B);
+			System.out.println("MostrandoSTATUS utilitaria.print_array_dstr_bid(C):");
+			utilitaria.print_array_dstr_bid(C);
+//			System.exit(0);
+//			String C[][]=utilitaria.conca(A,B);
 			MostrandoPREP mp=new MostrandoPREP(C,FdMSDE);
 			
 			Dialog dialogo=mp.D;
@@ -471,9 +503,9 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 				}//end for()
 				id++;
 			}//end while()
-			System.out.println("Tortal de casillas="+ContD.CASILLA.size());
-			System.out.println("Se buscaron "+cbusc+" de "+B.length+" casillas");
-			System.out.println("Se encontraron "+cdenc+" de "+B.length+" casillas");
+			System.out.println("leePREP(): Total de casillas="+ContD.CASILLA.size());
+			System.out.println("leePREP(): Se buscaron "+cbusc+" de "+B.length+" casillas");
+			System.out.println("leePREP(): Se encontraron "+cdenc+" de "+B.length+" casillas");
 		}catch(FileNotFoundException e){
 			e.printStackTrace();
 		}catch(IOException e){
@@ -483,7 +515,7 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 		}
 		
 		return B;
-	}
+	}//end leePREP()
 
 	public static void main(String[] args) {
 		JFileChooser JFC=new JFileChooser();
