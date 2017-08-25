@@ -47,4 +47,5 @@
 <fullyQualifiedTypeName name="org.jfree.chart.plot.CategoryPlot"/>
 <fullyQualifiedTypeName name="org.jfree.chart.ChartPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JFileChooser"/>
+<fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
 </qualifiedTypeNameHistroy>

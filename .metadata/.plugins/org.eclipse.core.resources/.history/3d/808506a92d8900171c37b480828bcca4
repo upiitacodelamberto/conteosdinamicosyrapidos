@@ -1,0 +1,59 @@
+/**
+ * MostrarBins.java
+ */
+package miniconteosdin;
+import java.awt.*;
+import java.awt.event.*;//1/5 ActionListener,WindowListener
+public class MostrarBins extends Frame{
+	Rectangulo Bin[];
+	public static void main(String[] args) {
+		Rectangulo Bin[]=new Rectangulo[3];
+		Bin[0]=new Rectangulo(new Punto(0,0),new Punto(40,20));
+		Bin[1]=new Rectangulo(new Punto(40,0),new Punto(80,20));
+		Bin[2]=new Rectangulo(new Punto(80,0),new Punto(120,20));
+		new MostrarBins(Bin);
+	}
+	Frame f;
+	public MostrarBins(Rectangulo arr[]){
+		Bin=arr;
+		setTitle("MostrarBins.class");
+		addWindowListener(new WindowAdapter(){//2/5, 3/5 WindowListener
+			public void windowClosing(WindowEvent e){//4/5 WindowListener
+				System.exit(0);//5/5 WindowListener
+			}
+		});
+		setSize(120, 20);
+		setLocationRelativeTo(null);
+		setVisible(true);
+	}
+	public void paint(Graphics g){
+		for(int i=0;i<Bin.length;i++){
+			Bin[i].show(g);
+		}
+	}
+}//end class MostrarBins
+
+class Rectangulo{
+	private Punto PuntoSupIzq;
+	private Punto PuntoInfDer;
+//	public Rectangulo(){ }
+	public Rectangulo(Punto supizq,Punto infder){
+		PuntoSupIzq=supizq;
+		PuntoInfDer=infder;
+	}
+	public void show(Graphics g){
+		g.drawRect(PuntoSupIzq.intX, PuntoSupIzq.intY,
+				PuntoInfDer.intX-PuntoSupIzq.intX, PuntoInfDer.intY-PuntoSupIzq.intY);
+	}
+}//end class Rectangulo
+
+class Punto{
+	int intX;
+	int intY;
+	public Punto(){
+		intX=intY=0;
+	}
+	public Punto(int intAbsc,int intOrd){
+		intX=intAbsc;intY=intOrd;
+	}
+}//end class Punto
