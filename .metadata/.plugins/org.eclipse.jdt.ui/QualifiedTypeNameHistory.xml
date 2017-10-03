@@ -5,7 +5,6 @@
 <fullyQualifiedTypeName name="java.awt.event.ActionEvent"/>
 <fullyQualifiedTypeName name="javax.swing.ImageIcon"/>
 <fullyQualifiedTypeName name="components.MostrandoElec"/>
-<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
 <fullyQualifiedTypeName name="components.PanelPartidOCoalicion"/>
 <fullyQualifiedTypeName name="sun.awt.WindowClosingListener"/>
 <fullyQualifiedTypeName name="sun.awt.WindowClosingSupport"/>
@@ -48,4 +47,5 @@
 <fullyQualifiedTypeName name="org.jfree.chart.ChartPanel"/>
 <fullyQualifiedTypeName name="javax.swing.JFileChooser"/>
 <fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
+<fullyQualifiedTypeName name="java.awt.FlowLayout"/>
 </qualifiedTypeNameHistroy>

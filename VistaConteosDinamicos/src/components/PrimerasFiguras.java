@@ -5,7 +5,7 @@ public class PrimerasFiguras extends Frame{
 	public static void main(String[] args) {
 		new PrimerasFiguras();
 	}
-	Frame f;
+//	Frame f;
 	public PrimerasFiguras(){//Constructor
 		setTitle("PrimerasFiguras.class");
 		addWindowListener(new WindowAdapter(){//3/5

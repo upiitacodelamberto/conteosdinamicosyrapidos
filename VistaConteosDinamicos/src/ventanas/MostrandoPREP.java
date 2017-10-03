@@ -11,6 +11,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
+
 public class MostrandoPREP implements WindowListener {//2/5 WindowListener
 	private JTable tabla;
 	private JScrollPane panelScroll;
@@ -24,6 +25,9 @@ public class MostrandoPREP implements WindowListener {//2/5 WindowListener
 	int NumDLinesMinOne;
 	Dialog D;
 	static final int OPC=1;
+//	private Barras B;
+//	private Tabla ventas;
+//	private int dato[];
 	
 	public MostrandoPREP(File file,Frame f){
 		JP = new JPanel();

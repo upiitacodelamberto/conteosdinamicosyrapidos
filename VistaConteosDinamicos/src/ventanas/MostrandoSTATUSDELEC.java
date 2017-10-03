@@ -348,12 +348,23 @@ public class MostrandoSTATUSDELEC implements WindowListener,ActionListener{//2/5
 			utilitaria.print_array_dstr_bid(C);
 //			System.exit(0);
 //			String C[][]=utilitaria.conca(A,B);
-			MostrandoPREP mp=new MostrandoPREP(C,FdMSDE);
 			
-			Dialog dialogo=mp.D;
-			dialogo.setSize(400,300);
-			dialogo.setLocationRelativeTo(null);
-			dialogo.setVisible(true);
+//			//ESTA PARTE FUNCIONA CON LOS ARCHIVOS:
+//			//MEX_GOB_2017_ordenado_00001_00500.csv y
+//			//MEX_GOB_2017.csv
+//			MostrandoPREP mp=new MostrandoPREP(C,FdMSDE);
+//			
+//			Dialog dialogo=mp.D;
+//			dialogo.setSize(400,300);
+//			dialogo.setLocationRelativeTo(null);
+//			dialogo.setVisible(true);
+//			//
+//			//
+			int tmp[]=new int[C.length];
+			for(int i=0;i<C.length;i++){
+				tmp[i]=Integer.parseInt(C[i][1]);
+			}
+			MyBarras MyB=new MyBarras(tmp,C);
 		}
 	}//end actionPerformed() 
 
