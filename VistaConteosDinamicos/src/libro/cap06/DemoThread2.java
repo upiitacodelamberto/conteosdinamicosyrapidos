@@ -25,9 +25,9 @@ public class DemoThread2 implements Runnable
 	
 	public static void main(String[] args)
 	{
-		Thread t1 = new Thread(new DemoThread("Pedro"));
-		Thread t2 = new Thread(new DemoThread("Pablo"));
-		Thread t3 = new Thread(new DemoThread("Juan"));
+		Thread t1 = new Thread(new DemoThread2("Pedro"));
+		Thread t2 = new Thread(new DemoThread2("Pablo"));
+		Thread t3 = new Thread(new DemoThread2("Juan"));
 		
 		t1.start();
 		t2.start();

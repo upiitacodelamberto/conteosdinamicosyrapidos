@@ -6,6 +6,7 @@ public class MyBarras extends Frame implements ActionListener,MouseListener{
 	private Tabla ventas;
 	private TextField valor;
 	private int dato[];			/* los datos a graficar */
+//	Frame dummyF;
 	
 	public static void main(String[] args) {
 		int arr[]={20,30,15,40,50,80,45};
@@ -17,17 +18,19 @@ public class MyBarras extends Frame implements ActionListener,MouseListener{
 		dato=data;
 		addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){//4/5 WindowListener 
-				System.exit(0);//5/5 WindowListener
+//				System.exit(0);//5/5 WindowListener
+				dispose();
 			}
 		});
 		B=new Barras();
-		
-		ventas=new Tabla(3,7);
-		Label L=new Label("Introduzca un número y haga clic en componente");
-		add(L);
-		valor=new TextField(8);
-		add(valor);
-		valor.addActionListener(this);//3/5 ActionListener
+//Martes 2017.10.03		
+//		ventas=new Tabla(3,7);
+//		Label L=new Label("Introduzca un número y haga clic en componente");
+//		add(L);
+//		valor=new TextField(8);
+//		add(valor);
+//		valor.addActionListener(this);//3/5 ActionListener
+//		Martes 2017.10.03
 		this.addMouseListener(this);//3/5 MouseListener
 		
 		setSize(600,350);
@@ -38,6 +41,10 @@ public class MyBarras extends Frame implements ActionListener,MouseListener{
 	public MyBarras(int data[],String StringArr[][]){
 		setTitle("MyBarras.class");
 		setLayout(new FlowLayout());
+		System.out.println("MostrandoSTATUSDELEC.java -- data = ");
+		utilitaria.print_array(data);
+		System.out.println("\nMostrandoSTATUSDELEC.java -- StringArr = ");
+		utilitaria.print_array_dstr_bid(StringArr);
 		dato=data;
 		addWindowListener(new WindowAdapter(){
 			public void windowClosing(WindowEvent e){//4/5 WindowListener 
@@ -45,8 +52,9 @@ public class MyBarras extends Frame implements ActionListener,MouseListener{
 			}
 		});
 		//B=new Barras();
-		
+System.out.println("MyBarras.java -- ANTES DE USAR EL CONSTRUCTOR Tabla");		
 		ventas=new Tabla(2,StringArr.length,StringArr);
+System.out.println("MyBarras.java -- DESPUES DE USAR EL CONSTRUCTOR Tabla");
 //		Label L=new Label("Introduzca un número y haga clic en componente");
 //		add(L);
 //		valor=new TextField(8);
@@ -61,8 +69,9 @@ public class MyBarras extends Frame implements ActionListener,MouseListener{
 	
 	public void paint(Graphics g){
 //		ventas.show(g);
-		ventas.mostrar(g);
-//		B.mostrarBarras(dato, g);
+//		ventas.mostrar(g);
+////		B.mostrarBarras(dato, g);
+		B.mostrarBarras(dato, g);
 	}
 	public void actionPerformed(ActionEvent event){//4/5 ActionLisnener
 		int nuevoValor=Integer.parseInt(valor.getText());//5/5 ActionListener
@@ -75,10 +84,10 @@ public class MyBarras extends Frame implements ActionListener,MouseListener{
 		ventas.seleccionarComponente(x, y);
 		repaint();
 	}
-	public void mouseReleased(MouseEvent e){ }//4/5 MouseListener
-	public void mousePressed(MouseEvent e){ }//4/5 MouseListener
-	public void mouseEntered(MouseEvent e){ }//4/5 MouseListener
-	public void mouseExited(MouseEvent e){ }//4/5 MouseListener
+	public void mouseReleased(MouseEvent e){ }//4/5 interface MouseListener
+	public void mousePressed(MouseEvent e){ }//4/5 interface MouseListener
+	public void mouseEntered(MouseEvent e){ }//4/5 interface MouseListener
+	public void mouseExited(MouseEvent e){ }//4/5 interface MouseListener
 }//end class MyBarras
 
 

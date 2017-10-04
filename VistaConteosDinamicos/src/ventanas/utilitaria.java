@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class utilitaria {
+	/**
+	 * DOCUMENTAR Martes 2017.10.03
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public static String[][] conca(int a[],int b[]){
 		int m=a.length,n;
 		int c[][]=new int[a.length][2];
@@ -28,6 +34,12 @@ public class utilitaria {
 //		System.out.println("SALIENDO DE conca()");
 		return r;
 	} 
+	/**
+	 * DOCUMENTAR Martes 2017.10.03
+	 * @param k
+	 * @param arr
+	 * @return
+	 */
 	static int contar(int k,int arr[]){
 		int count=0;
 		for(int i=0;i<arr.length;i++){
@@ -35,6 +47,11 @@ public class utilitaria {
 		}
 		return count;
 	}
+	/**
+	 * DOCUMENTAR Martes 2017.10.03
+	 * @param arr
+	 * @return
+	 */
 	static int max_incol_1(int arr[][]){
 		int max=arr[0][1];
 		for(int i=0;i<arr.length;i++){
@@ -43,24 +60,41 @@ public class utilitaria {
 		}
 		return max;
 	}
+	/**
+	 * print_array(): imprime "horizontalmente" los elementos de un arreglo de int 
+	 * @param arr: un arreglo de int
+	 */
 	static void print_array(int arr[]){
 		for(int i=0;i<arr.length;i++){
 			System.out.print(arr[i]+" ");
 		}
 		System.out.println();
 	}
+	/**
+	 * print_array(): imprime "horizontalmente" los elementos de un arreglo de float
+	 * @param arr: un arreglo de float
+	 */
 	static void print_array(Float arr[]){
 		for(int i=0;i<arr.length;i++){
 			System.out.print(arr[i]+" ");
 		}
 		System.out.println();
 	}
+	/**
+	 * print_array(): imprime "horizontalmente" los elementos de un ArrayList de float
+	 * @param arr: un ArrayList de float 
+	 */
 	static void print_array(ArrayList<Float> arr){
 		for(int i=0;i<arr.size();i++){
 			System.out.print(arr.get(i)+" ");
 		}
 		System.out.println();
 	}
+	/**
+	 * print_array_bid(): imprime "horizontalmente" los elementos de un 
+	 *                    arreglo bidimensional de int. 
+	 * @param arr: un arreglo bidimensional del int
+	 */
 	static void print_array_bid(int arr[][]){
 		for(int i=0;i<arr.length;i++){
 			for(int j=0;j<arr[0].length;j++){
@@ -70,6 +104,11 @@ public class utilitaria {
 		}
 		System.out.println();
 	}
+	/**
+	 * print_array_dstr_bid(): imprime "horizontalmente" los elementos de un 
+	 *                         arreglo bidimensional de String.
+	 * @param arr: arreglo bidimensional de String
+	 */
 	static void print_array_dstr_bid(String arr[][]){
 		for(int i=0;i<arr.length;i++){
 			for(int j=0;j<arr[0].length;j++){
@@ -108,7 +147,7 @@ public class utilitaria {
 		return (int)Math.round(d);
 	}
 	/**
-	 * 
+	 * getLimSupInterv():MEJORAR esta documentacion Martes 2017.10.03
 	 * @param Adotlength es la cantidad de casillas registradas en PREP 
 	 * @param N es la cantidad de ``clases'' obtenida con reglaSturges
 	 * @return
@@ -130,6 +169,12 @@ public class utilitaria {
 //		utilitaria.print_array(r);
 		return r;
 	}
+	/**
+	 * conca(): DOCUMENTAR 2017.10.03
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public static String[][] conca(Float a[],int b[]){
 		float liminf=0,limsup;
 		int frec[]=new int[a.length],count=0;
@@ -160,6 +205,10 @@ public class utilitaria {
 		}
 		return r;
 	}
+	/**
+	 * main(): Driver de prueba para algunos de los metodos de esta clase utilitaria.
+	 * @param arr
+	 */
 	public static void main(String arr[]){
 		int totdcas=30,regSturgRes=20;
 		ArrayList<Float> inters=utilitaria.getLimSupInterv(totdcas, regSturgRes);
