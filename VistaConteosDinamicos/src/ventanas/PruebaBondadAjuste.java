@@ -12,14 +12,16 @@ package ventanas;
  *
  */
 public class PruebaBondadAjuste {
-	float FE;		/*Frecuencia esperada (Distribucion Uniforme)*/
-	int FO[];		/*Frecuencias observadas*/
+	float FE;		/*Frecuencia Esperada (Distribucion Uniforme) o promedio de 
+					  Frecuencias Observadas*/
+	int FO[];		/*Frecuencias Observadas*/
 	int intNDIntrvs;/*Numero de Intervalos*/
 	double doubleJIcuad;		/*Estadistico de prueba X^{2}*/
 	int suma;
 	double difsCuads[];
-	boolean H0;
-	final static double TablaJIcuad[]= {
+	boolean H0;		/*hipotesis nula (frecs observadas corresponden una dist. uniforme)*/
+	boolean pruebaCompletada;	/*se pudo completar la prueba*/
+	final static double TablaJIcuad[]= {/*Tabal JI cuadrada para \alpha=0.05*/
 			/*0*/0,
 			/*1*/3.841,
 			/*2*/5.991,
@@ -57,10 +59,11 @@ public class PruebaBondadAjuste {
 			/*34*/48.602,
 			/*35*/49.802,
 			
-	};
+	};//end double TablaJIcuad[]
 	public PruebaBondadAjuste(int intArr[]) {
 		FO=intArr;
 		intNDIntrvs=intArr.length;
+System.out.println("Cantidad de clases="+intNDIntrvs);
 		difsCuads=new double[intArr.length];
 		suma=0;
 		/*Sumando frecuencias observadas*/
@@ -72,15 +75,29 @@ public class PruebaBondadAjuste {
 			difsCuads[i]=(Math.pow(resta(FO[i]),2))/FE;
 		}
 		doubleJIcuad=0;
+		/*Estadistico JI cuadrada*/
 		for(int i=0;i<intArr.length;i++) {
 			doubleJIcuad+=difsCuads[i];
 		}/*Ahora se procede a comparar el valor de X^{2} con la entrada correspondiente
 		   en la tabla <nombre de la tabla> usando como indices los grados de libertad 
 		   intNDIntrvs-1 y \alpha=0.05*/
-		
+		if(estaEnTablaJIcuad(intNDIntrvs-1)) {
+			H0=(doubleJIcuad<TablaJIcuad[intNDIntrvs-1])?true:false;
+			pruebaCompletada=true;
+		}else {
+			System.out.println("PruebaBondadAjuste: El numero de clases menos uno "
+					+ "utilizado no corresponde a ninguno de los grados de libertad "
+					+ "presentes en la tabla JI cuadrada que se esta utilizando!!!!");
+		}
 	}//PruebBondadAjuste()
 	private float resta(int fo) {
 		return fo-FE;
 	}
-	
+	private boolean estaEnTablaJIcuad(int index) {
+		if((index>0)&&(index<TablaJIcuad.length)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }//end class PruebBondadAjuste

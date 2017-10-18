@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 public class utilitaria {
-	/**
+	/** Este metodo utilitaria.conca() se escribio inicialmente para hacer pruebas 
+	 * con arreglos de int. 
 	 * DOCUMENTAR Martes 2017.10.03
 	 * @param a
 	 * @param b
@@ -33,7 +34,7 @@ public class utilitaria {
 		}
 //		System.out.println("SALIENDO DE conca()");
 		return r;
-	} 
+	}//end utilitaria.conca()
 	/**
 	 * DOCUMENTAR Martes 2017.10.03
 	 * @param k
@@ -170,19 +171,31 @@ public class utilitaria {
 		return r;
 	}
 	/**
+	 * ESTE ES EL METODO utilitaria.conca() QUE SE ESTA UTILIZANDO!!! //2017.10.10
 	 * conca(): DOCUMENTAR 2017.10.03
-	 * @param a
-	 * @param b
+	 * @param a: limites superiores de los intervalos de clase
+	 * @param b: identificadores de las casillas que se utilizaran para hacer la prueba 
+	 *           de bondad de ajuste.
 	 * @return
 	 */
 	public static String[][] conca(Float a[],int b[]){
+		String r[][]=new String[a.length][2];
 		float liminf=0,limsup;
 		int frec[]=new int[a.length],count=0;
 		for(int i=0;i<a.length;i++){
 			limsup=a[i];
 			for(int j=0;j<b.length;j++){
 				if((b[j]>=liminf)&&(b[j]<=limsup)){
-					count++;
+					count++;	/*se estan obteniendo las frecuencias observadas*/
+							/** //2017.10.10.19.57 Para hacer lo que se menciona en el 
+							 * comentario 2017.10.10.19.56:
+							 * COMO AQUI SE ESTA IDENTIFICANDO LAS CASILLAS QUE ESTAN 
+							 * EN LOS INTERVALOS DE CLASE CUYOS LIMITES SUPERIORES ESTAN 
+							 * EN Float a[], SE PUEDE UTILIZAR ESTA INFORMACION PARA 
+							 * AGREGAR IDENTIFICADORES DE CASILLA A LOS a.length OBJETOS 
+							 * DE CLASE MyBin QUE VOY A PASAR COMO ARGUMENTO EN UNA 
+							 * VERSION SOBRECARGADA DE ESTE METODO QUE VOY A ESCRIBIR. 
+							 * */
 				}
 			}
 			frec[i]=count;count=0;
@@ -194,8 +207,8 @@ public class utilitaria {
 			sum+=frec[i];
 		}
 		System.out.println("utilitaria.conca(Float[],int[]):Suma de "
-				+ "frecs relativas="+sum);
-		String r[][]=new String[a.length][2];
+				+ "frecs relativas observadas="+sum);
+		
 		liminf=0;
 		for(int i=0;i<a.length;i++){
 			limsup=a[i];
@@ -204,7 +217,69 @@ public class utilitaria {
 			liminf=a[i];
 		}
 		return r;
+	}//end utilitaria.conca()
+	
+	/**
+	 * pre: a.length==Bin.length debe ser true
+	 * Para reutilizar (somehow) el codigo del metodo utilitaria.conca(),
+	 * sobrecargo ese metodo una segunda vez. VEASE COMENTARIO 2017.10.10.19.56 en el 
+	 * archivo MostrandoSTATUSDELEC.java en este mismo package.
+	 * @param a: arreglo que contiene los limites superiores de los intervalos
+	 *           de clase.
+	 * @para b: arreglo que contiene los enteros con los que se realizara la prueba 
+	 *          de bondad de ajuste.
+	 */
+	public static String[][] conca(Float a[],int b[],MyBin Bin[]){
+		String r[][]=new String[a.length][2];
+		float liminf=0,limsup;
+		int frec[]=new int[a.length],count=0;
+//		System.out.println("utilitaria.conca(Float a[],int b[],MyBin Bin[])");
+		for(int i=0;i<a.length;i++){
+			limsup=a[i];
+			for(int j=0;j<b.length;j++){
+				if((b[j]>=liminf)&&(b[j]<=limsup)){
+					count++;	/*se estan obteniendo las frecuencias observadas*/
+								/** //2017.10.10 
+								 * COMO AQUI SE ESTA IDENTIFICANDO LAS CASILLAS QUE ESTAN 
+								 * EN LOS INTERVALOS DE CLASE CUYOS LIMITES SUPERIORES ESTAN 
+								 * EN Float a[], SE PUEDE UTILIZAR ESTA INFORMACION PARA 
+								 * AGREGAR IDENTIFICADORES DE CASILLA A LOS a.length OBJETOS 
+								 * DE CLASE MyBin QUE VOY A PASAR COMO ARGUMENTO EN UNA 
+								 * VERSION SOBRECARGADA DE ESTE METODO QUE VOY A ESCRIBIR. 
+								 * */
+					Bin[i].VectorDInt.add(b[j]);//guardar identificador de casilla en el
+												// bin correspondiente.
+				}
+			}
+//			System.out.println(Bin[i].VectorDInt.size());/*Frecuencia Observada*/
+			frec[i]=count;count=0;
+			liminf=a[i];
+		}
+		
+		int sum=0;
+		for(int i=0;i<frec.length;i++){
+			sum+=frec[i];
+		}
+		System.out.println("utilitaria.conca(Float[],int[]):Suma de "
+				+ "frecs relativas observadas="+sum);
+		
+		liminf=0;
+		for(int i=0;i<a.length;i++){
+			limsup=a[i];
+			r[i][0]=new String(liminf+"--"+a[i]);
+			r[i][1]=new String(""+frec[i]);
+			liminf=a[i];
+		}
+		return r;
+	}//end utilitaria.conca()
+	public static int totalDCasillasNBins(MyBin MBin[]) {
+		int sum=0;
+		for(int i=0;i<MBin.length;i++) {
+			sum+=MBin[i].VectorDInt.size();
+		}
+		return sum;
 	}
+	
 	/**
 	 * main(): Driver de prueba para algunos de los metodos de esta clase utilitaria.
 	 * @param arr
