@@ -1,6 +1,7 @@
 package ventanas;
 
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 import java.util.Vector;
 
 public class utilitaria {
@@ -227,7 +228,8 @@ public class utilitaria {
 	 * @param a: arreglo que contiene los limites superiores de los intervalos
 	 *           de clase.
 	 * @para b: arreglo que contiene los enteros con los que se realizara la prueba 
-	 *          de bondad de ajuste.
+	 *          de bondad de ajuste. REVISAR SI CONTIENE LOS IDENTIFICADORES DE CASILLAS QUE "QUEDAN" DEL PREP
+	 *          (VEASE COMENTARIO MostrandoSTATUSDELEC.java::2017.11.07.16.26)
 	 */
 	public static String[][] conca(Float a[],int b[],MyBin Bin[]){
 		String r[][]=new String[a.length][2];
@@ -260,8 +262,8 @@ public class utilitaria {
 		for(int i=0;i<frec.length;i++){
 			sum+=frec[i];
 		}
-		System.out.println("utilitaria.conca(Float[],int[]):Suma de "
-				+ "frecs relativas observadas="+sum);
+//		System.out.println("utilitaria.conca(Float[],int[]):Suma de "
+//				+ "frecs relativas observadas="+sum);
 		
 		liminf=0;
 		for(int i=0;i<a.length;i++){
@@ -271,7 +273,8 @@ public class utilitaria {
 			liminf=a[i];
 		}
 		return r;
-	}//end utilitaria.conca()
+	}//end utilitaria.conca(Float a[],int b[],MyBin Bin[])
+	
 	public static int totalDCasillasNBins(MyBin MBin[]) {
 		int sum=0;
 		for(int i=0;i<MBin.length;i++) {
@@ -280,6 +283,268 @@ public class utilitaria {
 		return sum;
 	}
 	
+	public static void showIds(MyBin MBin[]) {
+		int sum=0;
+		System.out.println("\nTenemos MBin.length="+MBin.length+" Bins, las casillas de estos son:");
+		for(int i=0;i<MBin.length;i++) {
+			sum+=MBin[i].VectorDInt.size();
+			System.out.println("\nMBin["+i+"].VectorDInt.size()="+
+								MBin[i].VectorDInt.size()+" Casillas acumuladas="+sum);
+			for(int j=0;j<MBin[i].VectorDInt.size();j++){
+				System.out.print(MBin[i].VectorDInt.get(j)+" ");
+				if(((j+1)%10)==0){
+					System.out.println();
+				}
+			}
+		}
+	}//end showIds()
+	/**
+	 * muestra los primeros intNDItems elementos de la casilla cuyo identificador es k 
+	 * @param ALdC ArrayList de Casillas 
+	 * @param k: la casilla a mostrar 
+	 * @param intNDItems: la cantidad de items a mostrar, debe ser menor o igual que 
+	 * ALdC.CASILLA.get(i).datosDCasilla.length
+	 */
+	public static void mostrar_casilla_yresult(ArrayList<Casilla> ALdC,int intNDCas,int intInicio,int intNDItems) {
+		System.out.println("INICIO: "+intInicio);
+		for(int i=intInicio;i<intInicio+intNDItems;i++) {
+//			System.out.print("token["+i+"]"+ALdC.get(intNDCas).datosDCasilla[i]+" ");
+			System.out.print("token["+i+"]"+ALdC.get(0).datosDCasilla[i].StringLineaDCasItem+" ");/*2017.11.28.18.14*/
+		}
+		System.out.println();
+		for(int i=intInicio;i<intInicio+intNDItems;i++) {
+//			System.out.print(ALdC.get(intNDCas).datosDCasilla[i]+" ");
+			System.out.print(ALdC.get(intNDCas).datosDCasilla[i].StringLineaDCasItem+" ");
+		}
+		System.out.println();
+	}
+	/**
+	 * Muestra una linea
+	 * @param linea: la linea a mostrar
+	 * @param intNumDL: el Numero de Linea/Identificador de casilla a mostrar
+	 * intItemDInicio + intNDItems DEBE SER MENOR O IGUAL a linea.toCharArray().length
+	 */
+	public static void show_line(String linea,int intNumDL,int intItemDInicio,int intNDItems) {
+		StringTokenizer ST=new StringTokenizer(linea, ",");
+		System.out.println("Num. de LINEA/Num. de Casilla/Id de casilla="+intNumDL
+				+" ST.countTokens()="+ST.countTokens()+"\n"+"IndexInicio: "+intItemDInicio+
+				" NumDItems: "+intNDItems);
+//		System.out.println(linea);
+		char cA[]=linea.toCharArray(),cA1[];
+		int k=0,sumDCommas=0,sumDCommas1=0,cantDChars=0,index=0;
+		while(sumDCommas<intItemDInicio) {
+			if(cA[k]==',') {
+				sumDCommas++;
+				if(sumDCommas==intItemDInicio) {
+					break;
+				}
+			}
+			k++;
+			if(k==cA.length) {
+				break;
+			}
+		}/*==============while()*/
+		if(cA.length-k>0) {
+			//Ahora procedo a contar los caracteres hasta juntar intNDItems comas
+			k++;
+			do {
+				if(cA[k+index]==',') {
+					sumDCommas1++;
+				}
+				cantDChars++;
+				index++;
+			}while((sumDCommas1<intNDItems)&&(k+index<cA.length));
+			cA1=new char[cantDChars];
+			for(int intInd=0;intInd<cA1.length;intInd++) {
+				cA1[intInd]=cA[k+intInd];
+			}			
+		}else {
+			String StringPError="ALGO SALIO MAL";
+			cA1=StringPError.toCharArray();
+		}
+		String StringToBePrinted=new String(cA1);
+		System.out.println(StringToBePrinted);
+	}//end show_line()
+	public static int[] get_intArray(String line) {
+		int i,r[],tamDr,cantDDComma=0;		/*tamanio del int r[], Cantidad De Dobles Commas*/
+		char charArr[]=line.toCharArray();
+		for(i=0;i<line.length()-1;i++) {
+			if((charArr[i]==',')&&(charArr[i+1]==',')){
+				cantDDComma++;
+			}
+		}
+		if(cantDDComma>0) {/*si hay al menos un par de comas juntas*/
+			r=new int[cantDDComma];r[0]=1;
+		}else {/*si no hay dos comas juntas*/
+			r=new int[1];
+			r[0]=-1;
+			return r;
+		}
+		/*ahora hay que colocar en el arreglo r las posiciones en charArr 
+		 * donde estan la primera de cada par de comas*/
+		return r;
+	}
+	
+	public static int 
+//	contar_votos(int intIndexPartido,char lineaH[128],
+//	char linea[],struct part *partPt)
+	contar_votos(int intNumDCoalicion,int intIndexPartido,char lineaH[],
+	char linea[],Coalicion partPt)
+	{
+	     int i=0,cantDComas=0, intQ=0,j;
+//	     char *charVotos,*charNomDPart;
+	     char charVotos[],charNomDPart[];
+	     charVotos=charNomDPart=new char[1];
+	     do{
+	       if(linea[i]==','){
+	         cantDComas++;
+	       }
+	       if(cantDComas==intIndexPartido){
+	         break;
+	       }
+	       i++;
+//	     }while(i<128);
+	     }while(i<linea.length);
+	     if((intIndexPartido<=cantDComas+1) && (intIndexPartido>=0))
+		{
+//	     printf("cantDComas=%d\n, i=%d, %s\n",cantDComas,i, linea);
+	     if (cantDComas==0){
+//	     	while(linea[i+intQ]!=','&&(i+intQ)<128){
+	     	while(linea[i+intQ]!=','&&(i+intQ)<linea.length){
+	     		intQ++;
+			 }
+//			charVotos=malloc(intQ*sizeof(char)+1);
+			charVotos=new char[intQ+1];
+			for(j=0;j<intQ;j++){
+				charVotos[j]=linea[i+j];
+			}
+			if(intQ>0) {/*2017.12.05.18.13*/
+				charVotos[intQ]='\0';
+			}else {
+				charVotos[intQ]='0';
+			}
+//			partPt->intVotos=atoi(charVotos);
+//			System.out.println("LLEGAMOS AQUI!!! 2017.12.05.16.05");
+			partPt.PARTIDO.get(intNumDCoalicion).intVotos=
+//					Integer.parseInt(new String(charVotos));
+					Integer.parseInt(new String(purify(charVotos)));
+//		 printf("Partido %s %s %d",charVotos,partPt->intVotos);
+		 }
+	     else {
+//	     	while(linea[i+intQ+1]!=','&&(i+intQ)<128){
+		    while(linea[i+intQ+1]!=','&&(i+intQ)<linea.length){	     		
+	     		intQ++;
+	        }
+//			 printf("\nintQ=%d\n",intQ);
+//			charVotos=malloc(intQ*sizeof(char)+1);
+		    charVotos=new char[intQ+1];
+			i++;
+			for(j=0;j<intQ;j++){
+				charVotos[j]=linea[(i)+j];
+			}
+//			charVotos[intQ]=0;
+			if(intQ>0) {/*2017.12.05.18.19*/
+				System.out.println("DE AQUI");
+				charVotos[intQ]='\0';
+			}else {
+				System.out.println("A ALLA");
+				charVotos[intQ]='0';
+			}
+//			partPt->intVotos=atoi(charVotos);
+			partPt.PARTIDO.get(intNumDCoalicion).intVotos=
+					Integer.parseInt(new String(purify(charVotos)));
+	          i=intQ=cantDComas=0;
+	          do{
+	            if(lineaH[i]==','){
+	              cantDComas++;
+	            }
+	            if(cantDComas==intIndexPartido){
+	              break;
+	            }
+	            i++;
+//	          }while(i<128);
+	          }while(i<lineaH.length);
+	          if (cantDComas==0){
+//	     	    while(lineaH[i+intQ]!=','&&(i+intQ)<128){
+	        	while(lineaH[i+intQ]!=','&&(i+intQ)<lineaH.length){
+	     		intQ++;
+		    }
+//	            charNomDPart=malloc(intQ*sizeof(char)+1);
+	            charNomDPart=new char[intQ+1];
+	     	    for(j=0;j<intQ;j++){
+	     			charNomDPart[j]=lineaH[i+j];
+		    }
+		    charNomDPart[intQ]=0;
+//		    System.out.println("LLEGAMOS ACA!!! 2017.12.05.16.55");
+			/*partPt->intVotos=atoi(charVotos);*/
+	          }else{
+//	     	     while(lineaH[i+intQ+1]!=','&&(i+intQ)<128){
+	        	 while(lineaH[i+intQ+1]!=','&&(i+intQ)<lineaH.length){
+	     	    	 intQ++;
+	             }
+	       // printf("\nintQ=%d\n",intQ);
+//	             charNomDPart=malloc(intQ*sizeof(char)+1);
+	             charNomDPart=new char[intQ+1];
+	             i++;
+	             for(j=0;j<intQ;j++){
+	               charNomDPart[j]=lineaH[(i)+j];
+	             }
+	             charNomDPart[intQ]=0;
+//	             System.out.println("LLEGAMOS ACUYA!!! 2017.12.05.17.02\tintQ="+intQ);
+	          }
+	          
+	     }/*-----------end  else{}*/
+//		 printf("\nPartido |%s|  |%s| |%d|\n",charNomDPart,charVotos,partPt->intVotos);
+	     String str1=new String(charNomDPart),str2=new String(charVotos);
+//		 System.out.printf("\nPartido |"+str1+"|  |"+str2+"| |%d|\n",
+//				 partPt.PARTIDO.get(intNumDCoalicion).intVotos);
+		 return 0;
+	 }else{
+	 	return -1;
+	 }
+	}//end contar_votos()
+	private static char[] purify(char charVotos[]) {
+		char r[];
+		int i=0;
+		while(is_digit(charVotos[i])) {
+			i++;
+		}
+		r=new char[i];
+		for(int in=0;in<i;in++) {
+			r[in]=charVotos[in];
+		}
+		return r;
+	}
+	private static boolean is_digit(char c) {
+		if(((c>='1')&&(c<='9'))||(c=='0')) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public static void showCuentaDVotos(MyBin MBin[],int intIndexPartido) {
+		int sum=0;
+//		System.out.println("\nTenemos MBin.length="+MBin.length+" Bins, las casillas de estos son:");
+		ArrayList<Partido> ALdP=new ArrayList<Partido>();/*2017.12.05.17.34*/
+		ALdP.add(new Partido("pan"));
+		Coalicion CoalicionFictitus=new Coalicion("FICTITUS Coallition", ALdP);
+		for(int i=0;i<MBin.length;i++) {
+//			sum+=MBin[i].VectorDInt.size();
+//			System.out.println("\nMBin["+i+"].VectorDInt.size()="+
+//								MBin[i].VectorDInt.size()+" Casillas acumuladas="+sum);
+			for(int j=0;j<MBin[i].VectorDInt.size();j++){
+//				System.out.print(MBin[i].VectorDInt.get(j)+" ");
+//				if(((j+1)%10)==0){
+//					System.out.println();
+//				}
+				contar_votos(0,intIndexPartido, ContD.CASILLA.get(0).CasillaLine.toCharArray(),
+						ContD.CASILLA.get(MBin[i].VectorDInt.get(j)).CasillaLine.toCharArray(),
+						CoalicionFictitus);
+				sum+=ALdP.get(0).intVotos;
+			}
+		}
+		System.out.println("============>sum="+sum);
+	}
 	/**
 	 * main(): Driver de prueba para algunos de los metodos de esta clase utilitaria.
 	 * @param arr

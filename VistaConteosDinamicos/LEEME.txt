@@ -1,0 +1,11 @@
+Para compilar usando ant se debe usar:
+# ant -lib lib/ compile
+
+Para crear el archivo jar se debe usar:
+# ant jar
+
+Para ejecutar el archivo jar se ebe usar:
+#ant run
+
+O bien se puede usar
+# java -jar Build/jar/Ventanas.jar

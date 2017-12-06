@@ -2,7 +2,7 @@ package ventanas;
 /**
  * 
  * @author Beto
- * VdConf: Ventana de Configuración
+ * VdConf: Ventana de Configuracion
  */
 import java.awt.*;
 import java.awt.event.*;//1/5 ActionListener, ActionEvent
@@ -64,7 +64,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 //    	boton4=new JButton(" <<  ");
     	BLTLT=new JButton(" <<  ");
     	BLTLT.addActionListener(this);
-    	BCreaCoa=new JButton("Crear coalición");
+    	BCreaCoa=new JButton("Crear coalicion");
     	BCreaCoa.addActionListener(this);//3/5 ActionListener
     	BCreaCoa.setEnabled(false);
     	Bsiguiente=new JButton("Siguiente");
@@ -219,7 +219,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 			}
 			//QUE DEVUELVE JOptionPane.showInputDialog("str") cuando se presiona Cancel????????
 			//RESPUESTA=Si se presiona Cancel nomDCoal sera null
-			nomDCoal=JOptionPane.showInputDialog("Nombre de la coalición: ");
+			nomDCoal=JOptionPane.showInputDialog("Nombre de la coalicion: ");
 			if(nomDCoal!=null){//no se puede usar !(nomDCoal.equals(null)), ya que seproduce excepcion
 				ContD.COAL.add(new Coalicion(nomDCoal,partido));
 				LE.removeAll();
@@ -240,7 +240,7 @@ public class VdConf implements WindowListener,ActionListener{//2/5 WindowListene
 		}
 	}//end actionPerformed()
 	void terminaConfiguracion(){
-		switch(JOptionPane.showConfirmDialog(null, "Confirma que ha terminado la Configuración de Coaliciones?")){// 5/5 WindowListener
+		switch(JOptionPane.showConfirmDialog(null, "Confirma que ha terminado la Configuracion de Coaliciones?")){// 5/5 WindowListener
 		case 0:{ 
 			//AQUI  HAY QUE PONER COALICIONES Y PARTIDOS EN EL AREA DE TEXTO DE ContD
 			System.gc();//execute the garbage colector

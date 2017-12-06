@@ -17,8 +17,9 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+//207.10.19.15.51
+//import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
+//import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 
 public class ChatSwing extends JFrame
 {

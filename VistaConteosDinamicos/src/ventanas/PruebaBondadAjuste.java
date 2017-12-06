@@ -7,7 +7,7 @@ package ventanas;
  *                       Hipotesis nula: las frecuencias observadas corresponde a una 
  *                       distribucion uniforme.
  *                       Hipotesis uno: las frecuencias observadas no corresponden a 
- *                       una distribución uniforme.
+ *                       una distribucion uniforme.
  * @author Toshiba
  *
  */
@@ -63,7 +63,7 @@ public class PruebaBondadAjuste {
 	public PruebaBondadAjuste(int intArr[]) {
 		FO=intArr;
 		intNDIntrvs=intArr.length;
-System.out.println("Cantidad de clases="+intNDIntrvs);
+//System.out.println("Cantidad de clases="+intNDIntrvs);
 		difsCuads=new double[intArr.length];
 		suma=0;
 		/*Sumando frecuencias observadas*/

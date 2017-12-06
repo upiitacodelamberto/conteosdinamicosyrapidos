@@ -14,11 +14,13 @@ import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+/*2017.10.19.15.54
 import sun.awt.WindowClosingListener;
 import sun.awt.WindowClosingSupport;
 import sun.awt.AWTAccessor.WindowAccessor;
 import ventanas.AgregaPartidos;
 import ventanas.PanelPartidOCoalicion;
+*/
 
 //public class MostrandoElec implements WindowListener, ActionListener {//// 2/5
 public class MostrandoElec implements WindowListener, ActionListener {//// 2/5

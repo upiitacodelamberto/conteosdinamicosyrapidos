@@ -22,7 +22,7 @@ public class MyBarras extends Frame implements ActionListener,MouseListener{
 		B=new Barras();
 		
 		ventas=new Tabla(3,7);
-		Label L=new Label("Introduzca un número y haga clic en componente");
+		Label L=new Label("Introduzca un numero y haga clic en componente");
 		add(L);
 		valor=new TextField(8);
 		add(valor);

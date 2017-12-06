@@ -10,7 +10,6 @@
 <fullyQualifiedTypeName name="sun.awt.WindowClosingSupport"/>
 <fullyQualifiedTypeName name="sun.awt.AWTAccessor.WindowAccessor"/>
 <fullyQualifiedTypeName name="java.awt.event.WindowListener"/>
-<fullyQualifiedTypeName name="ventanas.PanelPartidOCoalicion"/>
 <fullyQualifiedTypeName name="java.awt.GridLayout"/>
 <fullyQualifiedTypeName name="javax.imageio.ImageIO"/>
 <fullyQualifiedTypeName name="java.io.File"/>
@@ -29,10 +28,8 @@
 <fullyQualifiedTypeName name="java.awt.GridBagConstraints"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
 <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
-<fullyQualifiedTypeName name="java.util.StringTokenizer"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="ventanas.utilitaria"/>
 <fullyQualifiedTypeName name="org.jfree.data.general.DefaultPieDataset"/>
 <fullyQualifiedTypeName name="org.jfree.chart.ChartFrame"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
@@ -51,4 +48,10 @@
 <fullyQualifiedTypeName name="ventanas.RunnableImplementator"/>
 <fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="ventanas.PanelPartidOCoalicion"/>
+<fullyQualifiedTypeName name="ventanas.utilitaria"/>
+<fullyQualifiedTypeName name="java.util.StringTokenizer"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="ventanas.Coalicion"/>
 </qualifiedTypeNameHistroy>

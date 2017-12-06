@@ -19,7 +19,7 @@ public class Histograma {
 					ca++;
 				}
 			}
-			if (rep[i] == 0) { // Si aún no se ha repetido
+			if (rep[i] == 0) { // Si aun no se ha repetido
 				System.out.print(v[i] + ": ");
 				for (int k = 0; k < ca; k++) {
 					System.out.print("*"); // Un '*' por cada punto frecuencial
@@ -28,7 +28,7 @@ public class Histograma {
 			}
 			for (int j = 0; j < v.length; j++) {
 				if (v[i] == v[j]) {
-					rep[j]++; // Si ya está visto esta parte
+					rep[j]++; // Si ya esta visto esta parte
 				}
 			}
 		}

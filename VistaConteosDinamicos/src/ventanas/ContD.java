@@ -25,6 +25,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+//import ventanas.PanelPartidOCoalicion;
 // 20170608
 //DESCARGAR EL PREP DEL EDO MEX
 //(EN EXEL)

@@ -20,7 +20,7 @@ public class Ventana {
 //		JF.getContentPane().setLayout(new GridBagLayout());
 		JF.setLayout(new GridBagLayout());
 		
-		areaTexto=new JTextArea("Área texto");
+		areaTexto=new JTextArea("Area texto");
 		GridBagConstraints gbRestriccion=new GridBagConstraints();
 		gbRestriccion.gridx=0;// Columna 0. No necesita estirarse, no ponemos weightx
 		gbRestriccion.gridy=0;// Fila 0. Necesita estirarse, hay que poner weighty
@@ -37,13 +37,13 @@ public class Ventana {
 		gbRestriccion.gridy = 0;// Fila 0. Necesita estirarse, hay que poner weighty
 		gbRestriccion.gridwidth = 1;
 		gbRestriccion.gridheight = 1;
-		// El botón 1 debe ocupar la posición NORTH de su celda
+		// El boton 1 debe ocupar la posicion NORTH de su celda
 		gbRestriccion.anchor=GridBagConstraints.NORTH;
-		// El botón 1 no debe estirarse. Habíamos cambiado este valor en el
+		// El boton 1 no debe estirarse. Habiamos cambiado este valor en el
 		// area de texto, asi que lo restauramos.
 		gbRestriccion.fill=GridBagConstraints.NONE;
 		gbRestriccion.weighty = 1.0; /* La fila 0 debe estirarse, le ponemos un 1.0. Ya lo hicimos en el area de texto, 
-		                                               pero aquí debemos ser coherentes y poner lo mismo.*/
+		                                               pero aqui debemos ser coherentes y poner lo mismo.*/
 		JF.add (boton1, gbRestriccion);
 		// Restauramos valores por defecto
 		gbRestriccion.anchor=GridBagConstraints.CENTER;

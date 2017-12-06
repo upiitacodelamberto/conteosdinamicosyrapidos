@@ -20,7 +20,7 @@ public class myjava1417 {
 		CargaDatos();
 		// Creamos una instancia del componente Swing
 		tabla = new JTable(datoColumna, titColumna);
-		// Aquí se configuran algunos de los parámetros que permite
+		// Aqui se configuran algunos de los parametros que permite
 		// variar la JTable
 		tabla.setShowHorizontalLines(true);
 		tabla.setRowSelectionAllowed(true);
@@ -30,14 +30,14 @@ public class myjava1417 {
 		tabla.setSelectionBackground(Color.red);
 		// Incorporamos la tabla a un panel que incorpora ya una barra
 		// de desplazamiento, para que la visibilidad de la tabla sea
-		// automática
+		// automatica
 		tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);//ESTO ES PARA QUE SE MUESTRE 
 		tabla.doLayout();					//LA BARRA DE DESPLAZAMIENTOHORIZONTAL 
 		panelScroll = new JScrollPane(tabla);
 		JP.add(panelScroll, BorderLayout.CENTER);
 	}// end myjava1417()
 
-	// Creamos las etiquetas que sirven de título a cada una de
+	// Creamos las etiquetas que sirven de titulo a cada una de
 	// las columnas de la tabla
 	public void CreaColumnas() {
 		titColumna = new String[8];

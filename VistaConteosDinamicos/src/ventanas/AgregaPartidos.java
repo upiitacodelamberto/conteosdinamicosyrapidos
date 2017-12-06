@@ -200,7 +200,7 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 		}
 	}// end actionPerformed()
 	void terminaConfiguracion(){
-		switch(JOptionPane.showConfirmDialog(null, "Confirma que no hay coaliciones en esta elección?")){// 5/5 WindowListener
+		switch(JOptionPane.showConfirmDialog(null, "Confirma que no hay coaliciones en esta eleccion?")){// 5/5 WindowListener
 		case 0:{ 
 			//AQUI  HAY QUE PONER COALICIONES Y PARTIDOS EN EL AREA DE TEXTO DE ContD
 //			System.gc();//execute the garbage colector
@@ -251,27 +251,27 @@ public class AgregaPartidos implements WindowListener, ActionListener {//// 2/5
 	}// end main()
 
 }// end class AgregaPartidos
-	// Función de densidad de probabilidad de Moyal
-	// Distribución de Moyal transformada
-	// Distribución Loglogistica, aplicación en Economia: distribución del
+	// Funcion de densidad de probabilidad de Moyal
+	// Distribucion de Moyal transformada
+	// Distribucion Loglogistica, aplicacion en Economia: distribucion del
 	// ingreso
-	// Prueba de bondad de ajuste mediante el método de Kolmogorov-Smirnov
-	// para ver si una función de distribución de probabiliidad de
-	// de la variaciones de amplitud de las señalespiroeléctricas
+	// Prueba de bondad de ajuste mediante el metodo de Kolmogorov-Smirnov
+	// para ver si una funcion de distribucion de probabiliidad de
+	// de la variaciones de amplitud de las senialespiroelectricas
 	// Descrita en Massey F. J., 1951, y en Lillie, 1967
-	// Métodos no parametricos
+	// Metodos no parametricos
 	// histograma y estimaciones kernel
-	// Método de estimación de la densidad kernel
+	// Metodo de estimacion de la densidad kernel
 	//
-	// Estimación de la densidad mediante Kernel
+	// Estimacion de la densidad mediante Kernel
 	// serie de tiempo transformada Y=aZ-b
 
 // HinnesW.W, , Montgomery D. C.,1990
 // Tama\~no de muestra N=2809, num de clases \sqrt{N}
 
-// Software STATGRAPHICS permite revisar que tanto se parece una distribución
+// Software STATGRAPHICS permite revisar que tanto se parece una distribucion
 // teorica
 
-// Se puedendescribir estadisticamente mediante la función de
-// densidad/distribución de Moyal con un nivel
+// Se puedendescribir estadisticamente mediante la funcion de
+// densidad/distribucion de Moyal con un nivel
 // de significancia

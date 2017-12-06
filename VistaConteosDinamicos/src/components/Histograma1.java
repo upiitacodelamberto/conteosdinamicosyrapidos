@@ -31,9 +31,9 @@ public class Histograma1 extends ApplicationFrame {
 				60, 71, 61, 55, 59, 60, 67, 57, 67, 61, 67, 51, 81, 53, 64, 76, 44, 73, 56, 62, 63, 60 };
 		System.out.println("vector.lengt="+vector.length);
 //		double vector[] = {1, 2, 3, 4, 5, 4, 4, 4, 3, 3};
-		// En el ejercicio nos piden construir una distribución de frecuencias
+		// En el ejercicio nos piden construir una distribucion de frecuencias
 		// de 8 intervalos
-		// Por eso ponemos 8 en el tercer parámetro del addSeries
+		// Por eso ponemos 8 en el tercer parametro del addSeries
 		dataset.addSeries("Frecuencias de los ingresos", vector, 8);
 		return dataset;
 	}

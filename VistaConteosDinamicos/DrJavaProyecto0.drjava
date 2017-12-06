@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<drjava version="drjava-20160913-225446">
+  <project autorefresh="false" build="DrJavaBuild/" main="ventanas.ContD" root="src/" work="">
+    <createjar file=""/>
+    <source>
+      <file active="true" name="ventanas/MostrandoSTATUSDELEC.java" package="ventanas" timestamp="21-Nov-2017 16:04:47">
+        <select from="23865" to="23865"/>
+        <scroll column="13483" row="0"/>
+      </file>
+      <file name="ventanas/MyBarras.java" package="ventanas" timestamp="26-Oct-2017 19:42:03">
+        <select from="23865" to="23865"/>
+        <scroll column="13483" row="0"/>
+      </file>
+      <file name="ventanas/ContD.java" package="ventanas" timestamp="31-Oct-2017 14:56:53">
+        <select from="23865" to="23865"/>
+        <scroll column="13483" row="0"/>
+      </file>
+      <file name="ventanas/AgregaPartidos.java" package="ventanas" timestamp="19-Oct-2017 14:37:35">
+        <select from="23865" to="23865"/>
+        <scroll column="13483" row="0"/>
+      </file>
+      <file name="ventanas/utilitaria.java" package="ventanas" timestamp="07-Nov-2017 19:35:18">
+        <select from="23865" to="23865"/>
+        <scroll column="13483" row="0"/>
+      </file>
+      <file name="ventanas/RunnableImplementator.java" package="ventanas" timestamp="19-Oct-2017 20:24:30">
+        <select from="23865" to="23865"/>
+        <scroll column="13483" row="0"/>
+      </file>
+      <file name="ventanas/Casilla.java" package="ventanas" timestamp="21-Nov-2017 15:49:48">
+        <select from="23865" to="23865"/>
+        <scroll column="13483" row="0"/>
+      </file>
+    </source>
+    <included/>
+    <excluded/>
+    <collapsed/>
+    <classpath/>
+    <breakpoints/>
+    <watches/>
+    <bookmarks/>
+    <preferences/>
+  </project>
+</drjava>

@@ -70,7 +70,7 @@ public class PanelConBotones {
 		GBC.gridx=10;GBC.gridy=1;GBC.gridwidth=GBC.gridheight=1;
 		JP.add(DL,GBC);
 		
-//		boton5=new JButton("Crear Coalición");
+//		boton5=new JButton("Crear Coalicion");
 		GBC.gridx=11;GBC.gridy=1;GBC.gridwidth=GBC.gridheight=1;
 		JP.add(boton5, GBC);
 		
@@ -103,7 +103,7 @@ public class PanelConBotones {
     	boton2=new JButton("  >>  ");
     	boton3=new JButton("  <  ");
     	boton4=new JButton(" <<  ");
-    	boton5=new JButton("Crear coalición");
+    	boton5=new JButton("Crear coalicion");
     	Bsiguiente=new JButton("Siguiente");
     	PanelConBotones ventana=new PanelConBotones(Banterior,boton1,boton2,boton3,boton4,boton5,Bsiguiente);
     	//contd.F.pack();

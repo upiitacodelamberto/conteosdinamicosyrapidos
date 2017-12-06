@@ -1,0 +1,28 @@
+Revisar:
+
+https://adtmag.com/articles/2001/09/24/ant-build-process-mini-howto.aspx
+
+http://www.c4learn.com/java-ant/ant-introduction/
+
+http://www.jajakarta.org/ant/ant-1.6.1/docs/en/projects/antidote/index.html
+
+http://www.jajakarta.org/ant/ant-1.6.1/docs/en/index.html
+
+
+https://blog.idrsolutions.com/2015/03/the-top-11-free-ide-for-java-coding-development-programming/
+
+
+
+
+
+
+https://adtmag.com/articles/2001/09/24/ant-build-process-mini-howto.aspx
+
+Project Directory Structure, Naming, and Convention 
+Ant looks for a file named build.xml in the current working directory. Typing 
+"Ant" on the command line executes Ant. In the absence of a build.xml file, a 
+different file can be specified with the -d option. A comprehensive list of 
+command line options can be obtained by executing "Ant" with a -help command 
+line switch.
+
+

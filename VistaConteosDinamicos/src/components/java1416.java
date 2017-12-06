@@ -2,7 +2,8 @@ package components;
 
 import java.awt.*;
 import java.awt.event.*;
-import com.sun.java.swing.*;
+//2017.10.19.15.52
+//import com.sun.java.swing.*;
 import javax.swing.table.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -35,12 +36,12 @@ class ModeloDatos extends AbstractTableModel {
 		addTableModelListener(new TablaListener());
 	}
 
-	// Devuelve el número de columnas de la tabla
+	// Devuelve el numero de columnas de la tabla
 	public int getColumnCount() {
 		return (datos[0].length);
 	}
 
-	// Devuelve el número de filas de la tabla
+	// Devuelve el numero de filas de la tabla
 	public int getRowCount() {
 		return (datos.length);
 	}
@@ -70,8 +71,8 @@ public class java1416 extends JPanel {
 	public java1416() {
 		setLayout(new BorderLayout());
 		JTable tabla = new JTable(new ModeloDatos());
-		// La tabla se añade a un ScrollPane para que sea éste el
-		// que controle automáticamente en tamaño de la tabla,
+		// La tabla se aniade a un ScrollPane para que sea este el
+		// que controle automaticamente en tamanio de la tabla,
 		// presentando una barra de desplazamiento cuando sea
 		// necesario
 		JScrollPane panel = new JScrollPane(tabla);

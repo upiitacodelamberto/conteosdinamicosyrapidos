@@ -10,7 +10,7 @@ public class TestHashtable
 	{
 		Persona p1 = new Persona("Pablo",33,"Argentino");
 		Persona p2 = new Persona("Juan",25,"Mexicano");
-		Persona p3 = new Persona("Pedro",18,"Español");
+		Persona p3 = new Persona("Pedro",18,"Espaniol");
 		
 		Hashtable<String,Persona> tabla = new Hashtable<String, Persona>();
 		tabla.put(p1.getNombre(), p1);

@@ -44,7 +44,7 @@ public class MostrandoPREP implements WindowListener {//2/5 WindowListener
 			e.printStackTrace();
 		}
 		tabla = new JTable(datoColumna, titColumna);
-		// Aquí se configuran algunos de los parámetros que permite
+		// Aqui se configuran algunos de los parametros que permite
 		// variar la JTable
 		tabla.setShowHorizontalLines(true);
 		tabla.setRowSelectionAllowed(true);
@@ -54,7 +54,7 @@ public class MostrandoPREP implements WindowListener {//2/5 WindowListener
 		tabla.setSelectionBackground(Color.red);
 		// Incorporamos la tabla a un panel que incorpora ya una barra
 		// de desplazamiento, para que la visibilidad de la tabla sea
-		// automática
+		// automatica
 		tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);//ESTO ES PARA QUE SE MUESTRE 
 		tabla.doLayout();					//LA BARRA DE DESPLAZAMIENTOHORIZONTAL 
 		panelScroll = new JScrollPane(tabla);
