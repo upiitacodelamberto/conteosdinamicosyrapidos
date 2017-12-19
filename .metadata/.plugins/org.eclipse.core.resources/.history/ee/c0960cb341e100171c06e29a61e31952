@@ -444,7 +444,7 @@ public class utilitaria {
    }
 //   charVotos[intQ]=0;
    if(intQ>0) {/*2017.12.05.18.19*/
-//    System.out.println("DE AQUI");//2017.
+    System.out.println("DE AQUI");
     charVotos[intQ]='\0';
    }else {/*2017.12.07.16.50 Qu\'e puede ocasionar que intQ sea 0?, 
     * cu\'ando aqu\'i intQ es igual a 0?*/
@@ -546,7 +546,7 @@ public class utilitaria {
     contar_votos(0,intIndexPartido, ContD.CASILLA.get(0).CasillaLine.toCharArray(),
       ContD.CASILLA.get(MBin[i].VectorDInt.get(j)).CasillaLine.toCharArray(),
       CoalicionFictitus);
-    sum+=ALdP.get(0).intVotos; 
+    sum+=ALdP.get(0).intVotos;
    }
   }
   System.out.println("============>sum="+sum);

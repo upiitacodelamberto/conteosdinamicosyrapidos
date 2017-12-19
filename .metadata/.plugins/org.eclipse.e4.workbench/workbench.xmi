@@ -148,17 +148,15 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_9M0nucQsEeeUxf6EiHAZJA" elementId="org.eclipse.ui.editorss" selectedElement="_9M0nusQsEeeUxf6EiHAZJA">
-      <children xsi:type="basic:PartStack" xmi:id="_9M0nusQsEeeUxf6EiHAZJA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_9M0nu8QsEeeUxf6EiHAZJA">
+      <children xsi:type="basic:PartStack" xmi:id="_9M0nusQsEeeUxf6EiHAZJA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_9M0oFcQsEeeUxf6EiHAZJA">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_9M0nu8QsEeeUxf6EiHAZJA" elementId="org.eclipse.e4.ui.compatibility.editor" containerData="5357" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ContD.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ContD.java&quot; partName=&quot;ContD.java&quot; title=&quot;ContD.java&quot; tooltip=&quot;Ventanas/src/ventanas/ContD.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Ventanas/src/ventanas/ContD.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2656&quot; selectionTopPixel=&quot;1003&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ContD.java&quot; partName=&quot;ContD.java&quot; title=&quot;ContD.java&quot; tooltip=&quot;Ventanas/src/ventanas/ContD.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Ventanas/src/ventanas/ContD.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;9801&quot; selectionTopPixel=&quot;5360&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
-          <tags>active</tags>
-          <tags>activeOnClose</tags>
           <menus xsi:type="menu:PopupMenu" xmi:id="_9M0nvMQsEeeUxf6EiHAZJA" elementId="#CompilationUnitEditorContext">
             <tags>menuContribution:popup</tags>
             <tags>popup:#CompilationUnitEditorContext</tags>
@@ -221,10 +219,12 @@
           </menus>
         </children>
         <children xsi:type="basic:Part" xmi:id="_9M0oFcQsEeeUxf6EiHAZJA" elementId="org.eclipse.e4.ui.compatibility.editor" containerData="5000" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="utilitaria.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;utilitaria.java&quot; partName=&quot;utilitaria.java&quot; title=&quot;utilitaria.java&quot; tooltip=&quot;Ventanas/src/ventanas/utilitaria.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Ventanas/src/ventanas/utilitaria.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;14381&quot; selectionTopPixel=&quot;9592&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;utilitaria.java&quot; partName=&quot;utilitaria.java&quot; title=&quot;utilitaria.java&quot; tooltip=&quot;Ventanas/src/ventanas/utilitaria.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Ventanas/src/ventanas/utilitaria.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;17581&quot; selectionTopPixel=&quot;11607&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
           <menus xsi:type="menu:PopupMenu" xmi:id="_9M0oFsQsEeeUxf6EiHAZJA" elementId="#CompilationUnitEditorContext">
             <tags>menuContribution:popup</tags>
             <tags>popup:#CompilationUnitEditorContext</tags>
@@ -457,7 +457,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_9M0ou8QsEeeUxf6EiHAZJA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_jVeykNnxEee3OPQOaGLd0g" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_9M-XucQsEeeUxf6EiHAZJA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_rOAxoOHfEeelEMP8OOLjzw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_9M-XucQsEeeUxf6EiHAZJA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_9M0oycQsEeeUxf6EiHAZJA" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -481,7 +481,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_9M0pEcQsEeeUxf6EiHAZJA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_jVn8g9nxEee3OPQOaGLd0g" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_9M0wv8QsEeeUxf6EiHAZJA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_rOTskeHfEeelEMP8OOLjzw" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_9M0wv8QsEeeUxf6EiHAZJA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_9M0pHMQsEeeUxf6EiHAZJA" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>

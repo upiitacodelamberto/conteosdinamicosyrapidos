@@ -546,7 +546,7 @@ public class utilitaria {
     contar_votos(0,intIndexPartido, ContD.CASILLA.get(0).CasillaLine.toCharArray(),
       ContD.CASILLA.get(MBin[i].VectorDInt.get(j)).CasillaLine.toCharArray(),
       CoalicionFictitus);
-    sum+=ALdP.get(0).intVotos; 
+    sum+=ALdP.get(0).intVotos;
    }
   }
   System.out.println("============>sum="+sum);
